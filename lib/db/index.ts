@@ -1,0 +1,1048 @@
+import fs from 'fs';
+import path from 'path';
+import crypto from 'crypto';
+import {
+  DatabaseSchema,
+  SiteSettings,
+  BroadbandPackage,
+  ServiceItem,
+  ShopProduct,
+  ContactSubmission,
+  ShopInquiryOrder,
+  AdminUser,
+  AdminSession,
+  AuditLog,
+  SecurityEvent,
+} from './types';
+import { getInitialSeedData } from './seed';
+
+const DB_OVERRIDE = process.env.ABS_DB_PATH?.trim();
+const DB_DIR = DB_OVERRIDE
+  ? path.dirname(DB_OVERRIDE)
+  : path.join(process.cwd(), 'data');
+const DB_FILE = DB_OVERRIDE || path.join(DB_DIR, 'abs_database.json');
+
+let cachedDb: DatabaseSchema | null = null;
+
+// -------------------------------------------------------------
+// Cryptographically-secure ID / token generation (SEC-001)
+// Replaces all Math.random()-based identifiers with CSPRNG output.
+// -------------------------------------------------------------
+
+export function generateEntityId(prefix: string): string {
+  return `${prefix}_${Date.now()}_${crypto.randomBytes(6).toString('hex')}`;
+}
+
+export function generateSessionToken(): string {
+  return `sess_${crypto.randomBytes(32).toString('hex')}`;
+}
+
+export function generateOrderNumber(year: number): string {
+  return `ABS-NET-${year}-${crypto.randomBytes(4).toString('hex').toUpperCase()}`;
+}
+
+function ensureDbDirectory() {
+  if (!fs.existsSync(DB_DIR)) {
+    fs.mkdirSync(DB_DIR, { recursive: true });
+  }
+}
+
+export function getDatabase(): DatabaseSchema {
+  if (cachedDb) {
+    return cachedDb;
+  }
+
+  ensureDbDirectory();
+
+  if (!fs.existsSync(DB_FILE)) {
+    const seed = getInitialSeedData();
+    saveDatabase(seed);
+    cachedDb = seed;
+    return seed;
+  }
+
+  try {
+    const raw = fs.readFileSync(DB_FILE, 'utf-8');
+    const parsed = JSON.parse(raw) as DatabaseSchema;
+
+    if (!parsed.shopProducts && (parsed as any).solarProducts) {
+      parsed.shopProducts = (parsed as any).solarProducts;
+      delete (parsed as any).solarProducts;
+    }
+    if (!parsed.shopOrders && (parsed as any).solarOrders) {
+      parsed.shopOrders = (parsed as any).solarOrders;
+      delete (parsed as any).solarOrders;
+    }
+    if (!parsed.settings.shopBannerText && (parsed.settings as any).solarBannerText) {
+      parsed.settings.shopBannerText = (parsed.settings as any).solarBannerText;
+      delete (parsed.settings as any).solarBannerText;
+    }
+    if ((parsed.settings as any).statsSolarKwhInstalled !== undefined) {
+      parsed.settings.statsShopProductCount = parsed.shopProducts?.length || 0;
+      delete (parsed.settings as any).statsSolarKwhInstalled;
+    }
+    if (!parsed.settings.shopBannerText) {
+      parsed.settings.shopBannerText = 'Professional fiber optic and networking equipment for ISPs, enterprises, and home networks.';
+    }
+    if (parsed.settings.statsShopProductCount === undefined) {
+      parsed.settings.statsShopProductCount = parsed.shopProducts?.length || 0;
+    }
+
+    cachedDb = parsed;
+    return parsed;
+  } catch (error) {
+    console.error('Error reading database file, re-initializing with seed:', error);
+    const seed = getInitialSeedData();
+    saveDatabase(seed);
+    cachedDb = seed;
+    return seed;
+  }
+}
+
+export function saveDatabase(data: DatabaseSchema): void {
+  ensureDbDirectory();
+  cachedDb = data;
+  const tempFile = `${DB_FILE}.tmp.${Date.now()}`;
+  try {
+    fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), 'utf-8');
+    fs.renameSync(tempFile, DB_FILE);
+  } catch (err) {
+    console.error('Error saving database to file:', err);
+    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
+  }
+}
+
+// -------------------------------------------------------------
+// Audit & Security Logging Helpers
+// -------------------------------------------------------------
+
+export function logAudit(
+  action: string,
+  entityType: string,
+  entityId?: string,
+  details?: Record<string, any>,
+  user?: { id?: string; email?: string },
+  ipAddress?: string
+): AuditLog {
+  const db = getDatabase();
+  const log: AuditLog = {
+    id: generateEntityId('aud'),
+    action,
+    entityType,
+    entityId,
+    userId: user?.id,
+    userEmail: user?.email,
+    details,
+    ipAddress,
+    createdAt: new Date().toISOString(),
+  };
+
+  db.auditLogs.unshift(log);
+  if (db.auditLogs.length > 1000) {
+    db.auditLogs = db.auditLogs.slice(0, 1000);
+  }
+  saveDatabase(db);
+  return log;
+}
+
+export function logSecurityEvent(
+  eventType: SecurityEvent['eventType'],
+  severity: SecurityEvent['severity'],
+  description: string,
+  user?: { id?: string; email?: string },
+  ipAddress?: string,
+  metadata?: Record<string, any>
+): SecurityEvent {
+  const db = getDatabase();
+  const event: SecurityEvent = {
+    id: generateEntityId('sec'),
+    eventType,
+    severity,
+    description,
+    userId: user?.id,
+    userEmail: user?.email,
+    ipAddress,
+    metadata,
+    createdAt: new Date().toISOString(),
+  };
+
+  db.securityEvents.unshift(event);
+  if (db.securityEvents.length > 1000) {
+    db.securityEvents = db.securityEvents.slice(0, 1000);
+  }
+  saveDatabase(db);
+  return event;
+}
+
+// -------------------------------------------------------------
+// Site Settings
+// -------------------------------------------------------------
+
+export function getSiteSettings(): SiteSettings {
+  const db = getDatabase();
+  return db.settings;
+}
+
+export function updateSiteSettings(
+  updates: Partial<SiteSettings>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): SiteSettings {
+  const db = getDatabase();
+  const prev = { ...db.settings };
+  db.settings = {
+    ...db.settings,
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_UPDATED_SETTINGS',
+    'SiteSettings',
+    'global',
+    { previous: prev, updated: db.settings },
+    actor,
+    ipAddress
+  );
+
+  return db.settings;
+}
+
+// -------------------------------------------------------------
+// Broadband Packages
+// -------------------------------------------------------------
+
+export function getPackages(activeOnly = false): BroadbandPackage[] {
+  const db = getDatabase();
+  let pkgs = [...db.packages];
+  if (activeOnly) {
+    pkgs = pkgs.filter((p) => p.isActive);
+  }
+  return pkgs.sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export function getPackageById(id: string): BroadbandPackage | undefined {
+  const db = getDatabase();
+  return db.packages.find((p) => p.id === id);
+}
+
+export function createPackage(
+  pkgData: Omit<BroadbandPackage, 'id' | 'createdAt' | 'updatedAt'>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): BroadbandPackage {
+  const db = getDatabase();
+  const now = new Date().toISOString();
+  const id = generateEntityId('pkg');
+  const newPkg: BroadbandPackage = {
+    ...pkgData,
+    id,
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  db.packages.push(newPkg);
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_CREATED_PACKAGE',
+    'BroadbandPackage',
+    id,
+    { name: newPkg.name, speed: newPkg.speedMbps, price: newPkg.pricePkr },
+    actor,
+    ipAddress
+  );
+
+  return newPkg;
+}
+
+export function updatePackage(
+  id: string,
+  updates: Partial<BroadbandPackage>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): BroadbandPackage | null {
+  const db = getDatabase();
+  const index = db.packages.findIndex((p) => p.id === id);
+  if (index === -1) return null;
+
+  const prev = db.packages[index];
+  const updated: BroadbandPackage = {
+    ...prev,
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.packages[index] = updated;
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_UPDATED_PACKAGE',
+    'BroadbandPackage',
+    id,
+    { previous: prev, updated },
+    actor,
+    ipAddress
+  );
+
+  return updated;
+}
+
+export function deletePackage(
+  id: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): boolean {
+  const db = getDatabase();
+  const index = db.packages.findIndex((p) => p.id === id);
+  if (index === -1) return false;
+
+  const removed = db.packages.splice(index, 1)[0];
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_DELETED_PACKAGE',
+    'BroadbandPackage',
+    id,
+    { name: removed.name },
+    actor,
+    ipAddress
+  );
+
+  return true;
+}
+
+// -------------------------------------------------------------
+// Services
+// -------------------------------------------------------------
+
+export function getServices(activeOnly = false): ServiceItem[] {
+  const db = getDatabase();
+  let services = [...db.services];
+  if (activeOnly) {
+    services = services.filter((s) => s.isActive);
+  }
+  return services.sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export function getServiceById(id: string): ServiceItem | undefined {
+  const db = getDatabase();
+  return db.services.find((s) => s.id === id);
+}
+
+export function createService(
+  serviceData: Omit<ServiceItem, 'id' | 'createdAt' | 'updatedAt'>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): ServiceItem {
+  const db = getDatabase();
+  const now = new Date().toISOString();
+  const id = generateEntityId('srv');
+  const newService: ServiceItem = {
+    ...serviceData,
+    id,
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  db.services.push(newService);
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_CREATED_SERVICE',
+    'ServiceItem',
+    id,
+    { title: newService.title, category: newService.category },
+    actor,
+    ipAddress
+  );
+
+  return newService;
+}
+
+export function updateService(
+  id: string,
+  updates: Partial<ServiceItem>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): ServiceItem | null {
+  const db = getDatabase();
+  const index = db.services.findIndex((s) => s.id === id);
+  if (index === -1) return null;
+
+  const prev = db.services[index];
+  const updated: ServiceItem = {
+    ...prev,
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.services[index] = updated;
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_UPDATED_SERVICE',
+    'ServiceItem',
+    id,
+    { previous: prev, updated },
+    actor,
+    ipAddress
+  );
+
+  return updated;
+}
+
+export function deleteService(
+  id: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): boolean {
+  const db = getDatabase();
+  const index = db.services.findIndex((s) => s.id === id);
+  if (index === -1) return false;
+
+  const removed = db.services.splice(index, 1)[0];
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_DELETED_SERVICE',
+    'ServiceItem',
+    id,
+    { title: removed.title },
+    actor,
+    ipAddress
+  );
+
+  return true;
+}
+
+// -------------------------------------------------------------
+// Shop Products (Fiber & Networking Equipment)
+// -------------------------------------------------------------
+
+export function getShopProducts(activeOnly = false): ShopProduct[] {
+  const db = getDatabase();
+  let products = [...(db.shopProducts || [])];
+  if (activeOnly) {
+    products = products.filter((p) => p.isActive);
+  }
+  return products.sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export function getShopProductById(id: string): ShopProduct | undefined {
+  const db = getDatabase();
+  return (db.shopProducts || []).find((p) => p.id === id);
+}
+
+export function createShopProduct(
+  productData: Omit<ShopProduct, 'id' | 'createdAt' | 'updatedAt'>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): ShopProduct {
+  const db = getDatabase();
+  if (!db.shopProducts) db.shopProducts = [];
+  const now = new Date().toISOString();
+  const id = generateEntityId('shop');
+  const newProduct: ShopProduct = {
+    ...productData,
+    id,
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  db.shopProducts.push(newProduct);
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_CREATED_SHOP_PRODUCT',
+    'ShopProduct',
+    id,
+    { name: newProduct.name, category: newProduct.category, price: newProduct.pricePkr },
+    actor,
+    ipAddress
+  );
+
+  return newProduct;
+}
+
+export function updateShopProduct(
+  id: string,
+  updates: Partial<ShopProduct>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): ShopProduct | null {
+  const db = getDatabase();
+  if (!db.shopProducts) db.shopProducts = [];
+  const index = db.shopProducts.findIndex((p) => p.id === id);
+  if (index === -1) return null;
+
+  const prev = db.shopProducts[index];
+  const updated: ShopProduct = {
+    ...prev,
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.shopProducts[index] = updated;
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_UPDATED_SHOP_PRODUCT',
+    'ShopProduct',
+    id,
+    { previous: prev, updated },
+    actor,
+    ipAddress
+  );
+
+  return updated;
+}
+
+export function deleteShopProduct(
+  id: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): boolean {
+  const db = getDatabase();
+  if (!db.shopProducts) db.shopProducts = [];
+  const index = db.shopProducts.findIndex((p) => p.id === id);
+  if (index === -1) return false;
+
+  const removed = db.shopProducts.splice(index, 1)[0];
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_DELETED_SHOP_PRODUCT',
+    'ShopProduct',
+    id,
+    { name: removed.name },
+    actor,
+    ipAddress
+  );
+
+  return true;
+}
+
+// -------------------------------------------------------------
+// Contact Submissions
+// -------------------------------------------------------------
+
+export function getContactSubmissions(): ContactSubmission[] {
+  const db = getDatabase();
+  return [...db.contactSubmissions].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+}
+
+export function getContactSubmissionById(id: string): ContactSubmission | undefined {
+  const db = getDatabase();
+  return db.contactSubmissions.find((s) => s.id === id);
+}
+
+export function createContactSubmission(
+  subData: Omit<ContactSubmission, 'id' | 'status' | 'createdAt' | 'updatedAt'>,
+  ipAddress?: string
+): ContactSubmission {
+  const db = getDatabase();
+  const now = new Date().toISOString();
+  const id = generateEntityId('sub');
+  const newSub: ContactSubmission = {
+    ...subData,
+    id,
+    status: 'new',
+    ipAddress,
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  db.contactSubmissions.unshift(newSub);
+  saveDatabase(db);
+
+  logAudit(
+    'PUBLIC_CONTACT_SUBMISSION',
+    'ContactSubmission',
+    id,
+    { fullName: newSub.fullName, subject: newSub.subject, type: newSub.inquiryType },
+    undefined,
+    ipAddress
+  );
+
+  return newSub;
+}
+
+export function updateContactSubmissionStatus(
+  id: string,
+  status: ContactSubmission['status'],
+  internalNotes?: string,
+  assignedToStaff?: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): ContactSubmission | null {
+  const db = getDatabase();
+  const index = db.contactSubmissions.findIndex((s) => s.id === id);
+  if (index === -1) return null;
+
+  const prev = db.contactSubmissions[index];
+  const updated: ContactSubmission = {
+    ...prev,
+    status,
+    internalNotes: internalNotes !== undefined ? internalNotes : prev.internalNotes,
+    assignedToStaff: assignedToStaff !== undefined ? assignedToStaff : prev.assignedToStaff,
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.contactSubmissions[index] = updated;
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_UPDATED_CONTACT_SUBMISSION',
+    'ContactSubmission',
+    id,
+    { previousStatus: prev.status, newStatus: status, assignedTo: assignedToStaff },
+    actor,
+    ipAddress
+  );
+
+  return updated;
+}
+
+export function deleteContactSubmission(
+  id: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): boolean {
+  const db = getDatabase();
+  const index = db.contactSubmissions.findIndex((s) => s.id === id);
+  if (index === -1) return false;
+
+  const deleted = db.contactSubmissions[index];
+  db.contactSubmissions.splice(index, 1);
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_DELETED_CONTACT_SUBMISSION',
+    'ContactSubmission',
+    id,
+    { fullName: deleted.fullName, subject: deleted.subject },
+    actor,
+    ipAddress
+  );
+
+  return true;
+}
+
+// -------------------------------------------------------------
+// Shop Inquiries & Orders
+// -------------------------------------------------------------
+
+export function getShopOrders(): ShopInquiryOrder[] {
+  const db = getDatabase();
+  return [...(db.shopOrders || [])].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+}
+
+export function getShopOrderById(id: string): ShopInquiryOrder | undefined {
+  const db = getDatabase();
+  return (db.shopOrders || []).find((o) => o.id === id);
+}
+
+export function createShopOrder(
+  orderData: Omit<ShopInquiryOrder, 'id' | 'orderNumber' | 'status' | 'createdAt' | 'updatedAt'>,
+  ipAddress?: string
+): ShopInquiryOrder {
+  const db = getDatabase();
+  if (!db.shopOrders) db.shopOrders = [];
+  const now = new Date().toISOString();
+  const id = generateEntityId('ord_shop');
+  const orderNumber = generateOrderNumber(new Date().getFullYear());
+
+  const newOrder: ShopInquiryOrder = {
+    ...orderData,
+    id,
+    orderNumber,
+    status: 'pending',
+    ipAddress,
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  db.shopOrders.unshift(newOrder);
+  saveDatabase(db);
+
+  logAudit(
+    'PUBLIC_SHOP_ORDER_SUBMISSION',
+    'ShopInquiryOrder',
+    id,
+    { orderNumber, customerName: newOrder.customerName, product: newOrder.productName },
+    undefined,
+    ipAddress
+  );
+
+  return newOrder;
+}
+
+export function updateShopOrderStatus(
+  id: string,
+  status: ShopInquiryOrder['status'],
+  quotedAmountPkr?: number,
+  internalNotes?: string,
+  assignedToStaff?: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): ShopInquiryOrder | null {
+  const db = getDatabase();
+  if (!db.shopOrders) db.shopOrders = [];
+  const index = db.shopOrders.findIndex((o) => o.id === id);
+  if (index === -1) return null;
+
+  const prev = db.shopOrders[index];
+  const updated: ShopInquiryOrder = {
+    ...prev,
+    status,
+    quotedAmountPkr: quotedAmountPkr !== undefined ? quotedAmountPkr : prev.quotedAmountPkr,
+    internalNotes: internalNotes !== undefined ? internalNotes : prev.internalNotes,
+    assignedToStaff: assignedToStaff !== undefined ? assignedToStaff : prev.assignedToStaff,
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.shopOrders[index] = updated;
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_UPDATED_SHOP_ORDER',
+    'ShopInquiryOrder',
+    id,
+    { orderNumber: prev.orderNumber, previousStatus: prev.status, newStatus: status, quotedAmount: quotedAmountPkr },
+    actor,
+    ipAddress
+  );
+
+  return updated;
+}
+
+export function deleteShopOrder(
+  id: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): boolean {
+  const db = getDatabase();
+  if (!db.shopOrders) db.shopOrders = [];
+  const index = db.shopOrders.findIndex((o) => o.id === id);
+  if (index === -1) return false;
+
+  const deleted = db.shopOrders.splice(index, 1)[0];
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_DELETED_SHOP_ORDER',
+    'ShopInquiryOrder',
+    id,
+    { orderNumber: deleted.orderNumber, customerName: deleted.customerName },
+    actor,
+    ipAddress
+  );
+
+  return true;
+}
+
+// -------------------------------------------------------------
+// Admin Users & RBAC
+// -------------------------------------------------------------
+
+export function getAdminUsers(): AdminUser[] {
+  const db = getDatabase();
+  return db.users.map((u) => {
+    const { passwordHash, ...safeUser } = u;
+    return { ...safeUser, passwordHash: '' };
+  });
+}
+
+export function getAdminUserWithHash(email: string): AdminUser | undefined {
+  const db = getDatabase();
+  return db.users.find((u) => u.email.toLowerCase() === email.toLowerCase());
+}
+
+export function getAdminUserById(id: string): AdminUser | undefined {
+  const db = getDatabase();
+  return db.users.find((u) => u.id === id);
+}
+
+export function createAdminUser(
+  userData: { name: string; email: string; passwordHash: string; role: AdminUser['role'] },
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): AdminUser {
+  const db = getDatabase();
+  const now = new Date().toISOString();
+  const id = generateEntityId('usr');
+
+  const newUser: AdminUser = {
+    id,
+    name: userData.name,
+    email: userData.email.toLowerCase(),
+    passwordHash: userData.passwordHash,
+    role: userData.role,
+    isActive: true,
+    createdAt: now,
+    updatedAt: now,
+  };
+
+  db.users.push(newUser);
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_CREATED_USER',
+    'AdminUser',
+    id,
+    { email: newUser.email, role: newUser.role },
+    actor,
+    ipAddress
+  );
+
+  logSecurityEvent(
+    'USER_CREATED',
+    'INFO',
+    `New admin user ${newUser.email} created with role ${newUser.role}`,
+    actor,
+    ipAddress
+  );
+
+  const { passwordHash, ...safe } = newUser;
+  return { ...safe, passwordHash: '' };
+}
+
+export function updateAdminUser(
+  id: string,
+  updates: Partial<Pick<AdminUser, 'name' | 'role' | 'isActive' | 'passwordHash'>>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): AdminUser | null {
+  const db = getDatabase();
+  const index = db.users.findIndex((u) => u.id === id);
+  if (index === -1) return null;
+
+  const prev = db.users[index];
+  const updated: AdminUser = {
+    ...prev,
+    ...updates,
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.users[index] = updated;
+  saveDatabase(db);
+
+  if (updates.role && updates.role !== prev.role) {
+    logSecurityEvent(
+      'USER_ROLE_CHANGED',
+      'WARNING',
+      `User ${prev.email} role changed from ${prev.role} to ${updates.role}`,
+      actor,
+      ipAddress
+    );
+  }
+
+  if (updates.isActive !== undefined && updates.isActive !== prev.isActive) {
+    logSecurityEvent(
+      'USER_DISABLED',
+      'WARNING',
+      `User ${prev.email} active status changed to ${updates.isActive}`,
+      actor,
+      ipAddress
+    );
+  }
+
+  logAudit(
+    'ADMIN_UPDATED_USER',
+    'AdminUser',
+    id,
+    { email: prev.email, role: updated.role, isActive: updated.isActive },
+    actor,
+    ipAddress
+  );
+
+  const { passwordHash, ...safe } = updated;
+  return { ...safe, passwordHash: '' };
+}
+
+export function deleteAdminUser(
+  id: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): boolean {
+  const db = getDatabase();
+  const index = db.users.findIndex((u) => u.id === id);
+  if (index === -1) return false;
+
+  const deleted = db.users.splice(index, 1)[0];
+  saveDatabase(db);
+
+  logSecurityEvent(
+    'USER_DELETED',
+    'CRITICAL',
+    `Admin user ${deleted.email} (${deleted.role}) was deleted`,
+    actor,
+    ipAddress
+  );
+
+  logAudit(
+    'ADMIN_DELETED_USER',
+    'AdminUser',
+    id,
+    { email: deleted.email, role: deleted.role },
+    actor,
+    ipAddress
+  );
+
+  return true;
+}
+
+// -------------------------------------------------------------
+// Sessions
+// -------------------------------------------------------------
+
+export function createSession(
+  userId: string,
+  ipAddress?: string,
+  userAgent?: string
+): AdminSession {
+  const db = getDatabase();
+  const now = new Date();
+  const expiresAt = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString();
+  const token = generateSessionToken();
+
+  const session: AdminSession = {
+    id: generateEntityId('sid'),
+    userId,
+    token,
+    ipAddress,
+    userAgent,
+    expiresAt,
+    createdAt: now.toISOString(),
+  };
+
+  db.sessions.push(session);
+
+  const user = db.users.find((u) => u.id === userId);
+  if (user) {
+    user.lastLoginAt = now.toISOString();
+  }
+
+  saveDatabase(db);
+  return session;
+}
+
+export function getSession(token: string): { session: AdminSession; user: AdminUser } | null {
+  const db = getDatabase();
+  const session = db.sessions.find((s) => s.token === token);
+  if (!session) return null;
+
+  if (new Date(session.expiresAt).getTime() < Date.now()) {
+    revokeSession(token);
+    return null;
+  }
+
+  const user = db.users.find((u) => u.id === session.userId);
+  if (!user || !user.isActive) {
+    revokeSession(token);
+    return null;
+  }
+
+  return { session, user };
+}
+
+export function revokeSession(token: string, actor?: { id: string; email: string }, ipAddress?: string): boolean {
+  const db = getDatabase();
+  const index = db.sessions.findIndex((s) => s.token === token);
+  if (index === -1) return false;
+
+  const removed = db.sessions.splice(index, 1)[0];
+  saveDatabase(db);
+
+  logSecurityEvent(
+    'SESSION_REVOKED',
+    'INFO',
+    `Session revoked for user ID ${removed.userId}`,
+    actor,
+    ipAddress
+  );
+
+  return true;
+}
+
+export function revokeAllUserSessions(userId: string, actor?: { id: string; email: string }, ipAddress?: string): void {
+  const db = getDatabase();
+  db.sessions = db.sessions.filter((s) => s.userId !== userId);
+  saveDatabase(db);
+
+  logSecurityEvent(
+    'SESSION_REVOKED',
+    'WARNING',
+    `All active sessions revoked for user ID ${userId}`,
+    actor,
+    ipAddress
+  );
+}
+
+// -------------------------------------------------------------
+// Activity, Audit & Security Logs
+// -------------------------------------------------------------
+
+export function getAuditLogs(limit?: number): AuditLog[] {
+  const db = getDatabase();
+  return limit ? db.auditLogs.slice(0, limit) : db.auditLogs;
+}
+
+export function getSecurityEvents(limit?: number): SecurityEvent[] {
+  const db = getDatabase();
+  return limit ? db.securityEvents.slice(0, limit) : db.securityEvents;
+}
+
+// -------------------------------------------------------------
+// Dashboard Metrics
+// -------------------------------------------------------------
+
+export function getDashboardMetrics() {
+  const db = getDatabase();
+
+  const totalPackages = db.packages.length;
+  const activePackages = db.packages.filter((p) => p.isActive).length;
+
+  const totalServices = db.services.length;
+  const activeServices = db.services.filter((s) => s.isActive).length;
+
+  const totalShopProducts = (db.shopProducts || []).length;
+  const lowStockShopProducts = (db.shopProducts || []).filter(
+    (p) => p.stockStatus === 'low_stock' || p.stockQuantity < 10
+  ).length;
+
+  const newContactSubmissions = db.contactSubmissions.filter((s) => s.status === 'new').length;
+  const totalContactSubmissions = db.contactSubmissions.length;
+
+  const pendingShopOrders = (db.shopOrders || []).filter((o) => o.status === 'pending').length;
+  const totalShopOrders = (db.shopOrders || []).length;
+
+  const totalAdmins = db.users.filter((u) => u.isActive).length;
+
+  const recentSecurityAlerts = db.securityEvents.filter((s) => s.severity === 'WARNING' || s.severity === 'CRITICAL').length;
+
+  return {
+    totalPackages,
+    activePackages,
+    totalServices,
+    activeServices,
+    totalShopProducts,
+    lowStockShopProducts,
+    newContactSubmissions,
+    totalContactSubmissions,
+    pendingShopOrders,
+    totalShopOrders,
+    totalAdmins,
+    recentSecurityAlerts,
+    recentAuditLogs: db.auditLogs.slice(0, 10),
+    recentSecurityEvents: db.securityEvents.slice(0, 10),
+    recentSubmissions: db.contactSubmissions.slice(0, 5),
+    recentOrders: (db.shopOrders || []).slice(0, 5),
+  };
+}

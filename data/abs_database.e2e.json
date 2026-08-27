@@ -1,0 +1,486 @@
+{
+  "settings": {
+    "companyName": "ABS Network Broadband SMCVP Pvt Ltd",
+    "shortName": "ABS Network",
+    "legalRegistration": "SMCVP-PVT-LTD-98421",
+    "tagline": "Ultra-Fast Fiber Broadband & Professional Networking Solutions",
+    "phone": "+92 51 8899200",
+    "supportPhone": "+92 51 8899201",
+    "whatsapp": "+92 300 8599200",
+    "email": "info@absnetwork.pk",
+    "salesEmail": "sales@absnetwork.pk",
+    "supportEmail": "support@absnetwork.pk",
+    "address": "Plot 42-B, Commercial Avenue, Sector G-11/3, Islamabad, Pakistan",
+    "city": "Islamabad",
+    "businessHours": "24/7 Support | Sales: Mon - Sat (9:00 AM - 8:00 PM)",
+    "facebookUrl": "https://facebook.com/absnetworkpk",
+    "instagramUrl": "https://instagram.com/absnetworkpk",
+    "linkedinUrl": "https://linkedin.com/company/abs-network-broadband",
+    "twitterUrl": "https://twitter.com/absnetworkpk",
+    "heroHeadline": "High-Speed Fiber Broadband Built for the Future",
+    "heroSubheadline": "Experience seamless gigabit fiber internet, dedicated enterprise bandwidth, and professional-grade networking equipment tailored for homes and businesses across Pakistan.",
+    "footerNotice": "ABS Network Broadband SMCVP Pvt Ltd is a licensed high-speed ISP and digital infrastructure provider committed to uninterrupted connectivity and professional networking solutions.",
+    "shopBannerText": "Professional fiber optic and networking equipment for ISPs, enterprises, and home networks.",
+    "statsFiberCoverageKm": 850,
+    "statsActiveSubscribers": 28500,
+    "statsUptimeGuarantee": "99.98%",
+    "statsShopProductCount": 0,
+    "updatedAt": "2026-08-27T20:06:30.521Z"
+  },
+  "users": [
+    {
+      "id": "usr_admin_01",
+      "name": "System Super Admin",
+      "email": "admin@absnetwork.pk",
+      "passwordHash": "$2b$10$8MUCm4RtTXk/dXPeFYjB.ebpiCGDGL1PK3TbBXiyOSsH21TN3rmUO",
+      "role": "SUPER_ADMIN",
+      "isActive": true,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z",
+      "lastLoginAt": "2026-08-27T20:06:35.823Z"
+    },
+    {
+      "id": "usr_sales_01",
+      "name": "Tariq Mehmood",
+      "email": "sales@absnetwork.pk",
+      "passwordHash": "$2b$10$8MUCm4RtTXk/dXPeFYjB.ebpiCGDGL1PK3TbBXiyOSsH21TN3rmUO",
+      "role": "SALES_MANAGER",
+      "isActive": true,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "usr_support_01",
+      "name": "Zainab Fatima",
+      "email": "support@absnetwork.pk",
+      "passwordHash": "$2b$10$8MUCm4RtTXk/dXPeFYjB.ebpiCGDGL1PK3TbBXiyOSsH21TN3rmUO",
+      "role": "SUPPORT_AGENT",
+      "isActive": true,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "usr_content_01",
+      "name": "Bilal Khan",
+      "email": "content@absnetwork.pk",
+      "passwordHash": "$2b$10$8MUCm4RtTXk/dXPeFYjB.ebpiCGDGL1PK3TbBXiyOSsH21TN3rmUO",
+      "role": "CONTENT_MANAGER",
+      "isActive": true,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "usr_security_01",
+      "name": "Hamza Farooq",
+      "email": "security@absnetwork.pk",
+      "passwordHash": "$2b$10$8MUCm4RtTXk/dXPeFYjB.ebpiCGDGL1PK3TbBXiyOSsH21TN3rmUO",
+      "role": "SECURITY_AUDITOR",
+      "isActive": true,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    }
+  ],
+  "sessions": [
+    {
+      "id": "sid_1787861195824_aecd963e98a6",
+      "userId": "usr_admin_01",
+      "token": "sess_f7a8cba7a5a787ce633c0126228498c7a8afbe8bc73c49991dd046f785ec421b",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-03T20:06:35.823Z",
+      "createdAt": "2026-08-27T20:06:35.823Z"
+    }
+  ],
+  "packages": [
+    {
+      "id": "pkg_fiber_20",
+      "name": "ABS Starter Fiber",
+      "slug": "abs-starter-fiber-20mbps",
+      "category": "residential",
+      "speedMbps": 20,
+      "uploadSpeedMbps": 20,
+      "pricePkr": 2200,
+      "billingPeriod": "Monthly",
+      "installationFeePkr": 0,
+      "dataLimit": "Truly Unlimited",
+      "features": [
+        "20 Mbps Symmetric Fiber Speed",
+        "Unlimited High-Speed Data (No FUP)",
+        "Dual-Band Wi-Fi 5 Gigabit Router Included",
+        "Free Optical Fiber Installation",
+        "Standard 24/7 Helpdesk Support",
+        "Optimized for HD Streaming & Browsing"
+      ],
+      "routerIncluded": true,
+      "routerDetails": "Dual-Band 5GHz AC1200 Gigabit ONT",
+      "isPopular": false,
+      "isActive": true,
+      "displayOrder": 1,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "pkg_fiber_40",
+      "name": "ABS Turbo Stream",
+      "slug": "abs-turbo-stream-40mbps",
+      "category": "residential",
+      "speedMbps": 40,
+      "uploadSpeedMbps": 40,
+      "pricePkr": 3200,
+      "billingPeriod": "Monthly",
+      "installationFeePkr": 0,
+      "dataLimit": "Truly Unlimited",
+      "features": [
+        "40 Mbps Dedicated Symmetric Fiber",
+        "Uncapped 4K Ultra-HD Streaming",
+        "Dual-Band Wi-Fi 5 Gigabit Gateway",
+        "Zero Installation Charges on 3-Month Plan",
+        "Priority Routing for Zoom & Teams",
+        "Round-the-Clock Priority Phone Support"
+      ],
+      "routerIncluded": true,
+      "routerDetails": "Dual-Band High-Gain Gigabit Optical Gateway",
+      "isPopular": true,
+      "isActive": true,
+      "displayOrder": 2,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "pkg_fiber_75",
+      "name": "ABS Ultra Gamer",
+      "slug": "abs-ultra-gamer-75mbps",
+      "category": "gaming",
+      "speedMbps": 75,
+      "uploadSpeedMbps": 75,
+      "pricePkr": 4800,
+      "billingPeriod": "Monthly",
+      "installationFeePkr": 0,
+      "dataLimit": "Truly Unlimited",
+      "features": [
+        "75 Mbps Ultra-Low Latency Fiber",
+        "Direct BGP Peering to Discord, Steam & Valorant",
+        "Wi-Fi 6 AX3000 Next-Gen Router Included",
+        "Static IPv4 Address Available (Optional)",
+        "Bufferbloat Grade A+ Gaming Optimization",
+        "24/7 Gaming Support Desk"
+      ],
+      "routerIncluded": true,
+      "routerDetails": "Wi-Fi 6 AX3000 Low-Latency Gigabit Gateway",
+      "isPopular": false,
+      "isActive": true,
+      "displayOrder": 3,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "pkg_fiber_150",
+      "name": "ABS Gigamax Pro",
+      "slug": "abs-gigamax-pro-150mbps",
+      "category": "residential",
+      "speedMbps": 150,
+      "uploadSpeedMbps": 150,
+      "pricePkr": 7500,
+      "billingPeriod": "Monthly",
+      "installationFeePkr": 0,
+      "dataLimit": "Truly Unlimited",
+      "features": [
+        "150 Mbps Blazing Fast Symmetrical Speed",
+        "Multi-Gigabit Wi-Fi 6 Mesh Ready Gateway",
+        "Zero Throttle Bandwidth Guarantee",
+        "Dedicated Account Support Specialist",
+        "Free Static IP Address Included",
+        "Annual Plan: Free Network Monitoring Dashboard"
+      ],
+      "routerIncluded": true,
+      "routerDetails": "Wi-Fi 6 AX3000 Mesh Gateway + 4 GE Ports",
+      "isPopular": false,
+      "isActive": true,
+      "displayOrder": 4,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "pkg_biz_100",
+      "name": "ABS Business Prime",
+      "slug": "abs-business-prime-100mbps",
+      "category": "business",
+      "speedMbps": 100,
+      "uploadSpeedMbps": 100,
+      "pricePkr": 12500,
+      "billingPeriod": "Monthly",
+      "installationFeePkr": 0,
+      "dataLimit": "Dedicated 1:1 CIR",
+      "features": [
+        "100 Mbps 1:1 Dedicated Symmetrical CIR",
+        "99.98% SLA Uptime Service Contract",
+        "2 Usable Public Static IPv4 Addresses",
+        "Corporate Optical Fiber Direct Run",
+        "Dedicated Technical Account Manager",
+        "4-Hour MTTR On-Site Replacement Guarantee"
+      ],
+      "routerIncluded": true,
+      "routerDetails": "Enterprise Dual-WAN Managed Fiber Gateway",
+      "isPopular": false,
+      "isActive": true,
+      "displayOrder": 5,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "pkg_biz_300",
+      "name": "ABS Enterprise Apex",
+      "slug": "abs-enterprise-apex-300mbps",
+      "category": "enterprise",
+      "speedMbps": 300,
+      "uploadSpeedMbps": 300,
+      "pricePkr": 28000,
+      "billingPeriod": "Monthly",
+      "installationFeePkr": 0,
+      "dataLimit": "Dedicated Carrier Grade",
+      "features": [
+        "300 Mbps Carrier-Grade Optical Bandwidth",
+        "Redundant Ring Architecture Fiber Loop",
+        "/29 Subnet (5 Usable Public Static IPs)",
+        "99.99% Guaranteed SLA Uptime",
+        "Enterprise DDoS Mitigation & Protection",
+        "24/7 Tier-3 NOC Direct Engineering Access"
+      ],
+      "routerIncluded": true,
+      "routerDetails": "Rackmount Carrier Edge Layer-3 Gateway",
+      "isPopular": false,
+      "isActive": true,
+      "displayOrder": 6,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    }
+  ],
+  "services": [
+    {
+      "id": "srv_fiber_broadband",
+      "title": "Ultra-Fast Fiber Broadband",
+      "slug": "fiber-broadband",
+      "category": "broadband",
+      "shortDescription": "Direct GPON fiber-to-the-home connectivity with zero packet drop and true symmetrical speeds.",
+      "fullDescription": "ABS Network delivers genuine optical fiber to your doorstep. Backed by multi-homed upstream carrier links, our FTTH network delivers uninterrupted 4K streaming, instant downloads, and crystal-clear video conferences with zero bandwidth throttling.",
+      "iconName": "Zap",
+      "badge": "Core Service",
+      "features": [
+        "True 100% Fiber to the Home (FTTH)",
+        "Symmetrical Upload & Download Speeds",
+        "Dual-Band Wi-Fi Router with Optical ONT",
+        "No Data Capping or Fair Usage Policies",
+        "Automated 24/7 Line Quality Monitoring"
+      ],
+      "isActive": true,
+      "displayOrder": 1,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "srv_dedicated_leased",
+      "title": "Dedicated Leased Lines & DIA",
+      "slug": "dedicated-leased-lines",
+      "category": "enterprise",
+      "shortDescription": "1:1 unshared dedicated internet access with guaranteed CIR, custom BGP peering, and 99.99% uptime SLA.",
+      "fullDescription": "Engineered for financial institutions, software houses, call centers, and multi-branch enterprises that cannot compromise on uptime. Our dedicated leased line service features redundant backhauls, low latency routes, and round-the-clock NOC monitoring.",
+      "iconName": "Server",
+      "badge": "Enterprise SLA",
+      "features": [
+        "1:1 Committed Information Rate (CIR)",
+        "Multi-Path Ring Redundancy Protection",
+        "Public IP Subnets (/29, /28, /27)",
+        "Custom BGP Peering & Routing Optimization",
+        "Signed Service Level Agreement (SLA)"
+      ],
+      "isActive": true,
+      "displayOrder": 2,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "srv_managed_network",
+      "title": "Managed IT & Network Solutions",
+      "slug": "managed-network-solutions",
+      "category": "it",
+      "shortDescription": "Complete office Wi-Fi meshing, structured cabling, VPN interconnects, and enterprise firewall deployment.",
+      "fullDescription": "From greenfield office cabling to multi-site SD-WAN interconnections, ABS Network handles your complete physical and logical network infrastructure. We deploy enterprise-grade access points, switches, and UTM firewalls.",
+      "iconName": "ShieldCheck",
+      "badge": "Full Turnkey",
+      "features": [
+        "Cat6A / Optical Fiber Structured Cabling",
+        "Zero-Handoff High-Density Office Wi-Fi",
+        "Site-to-Site WireGuard / IPsec VPNs",
+        "Next-Gen Firewall & Content Filtering",
+        "Scheduled On-Site Preventive Maintenance"
+      ],
+      "isActive": true,
+      "displayOrder": 3,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "srv_networking_equipment",
+      "title": "Fiber & Networking Equipment Sales",
+      "slug": "networking-equipment-sales",
+      "category": "it",
+      "shortDescription": "Professional-grade fiber optic cables, switches, routers, ONTs, and structured cabling equipment for ISPs and enterprises.",
+      "fullDescription": "ABS Network supplies enterprise-grade networking and fiber optic equipment from trusted global brands. Whether you need fiber patch panels, managed switches, enterprise access points, or structured cabling kits, we provide competitive pricing with manufacturer-backed warranties.",
+      "iconName": "Router",
+      "badge": "Equipment Sales",
+      "features": [
+        "Fiber Optic Patch Panels & Splice Closures",
+        "Managed & Unmanaged Enterprise Switches",
+        "Wi-Fi 6/7 Enterprise Access Points",
+        "GPON ONTs, OLTs & Optical Splitters",
+        "Cat6A/6/5E Structured Cabling Kits"
+      ],
+      "isActive": true,
+      "displayOrder": 4,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "srv_digital_web",
+      "title": "Web & Digital Services",
+      "slug": "web-digital-services",
+      "category": "it",
+      "shortDescription": "High-performance web development, custom cloud hosting, API integrations, and SEO engineering.",
+      "fullDescription": "Accelerate your digital transformation with our bespoke web and software engineering team. We craft high-speed Next.js web applications, secure cloud infrastructure, responsive enterprise portals, and search optimization.",
+      "iconName": "Globe",
+      "badge": "Digital Scale",
+      "features": [
+        "Modern Next.js / React Web Applications",
+        "High-Speed Cloud Hosting & CDN Deployment",
+        "API Integrations & Payment Gateway Setup",
+        "Technical SEO & Core Web Vitals Optimization",
+        "Ongoing Security Updates & Maintenance"
+      ],
+      "isActive": true,
+      "displayOrder": 5,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    },
+    {
+      "id": "srv_tier3_support",
+      "title": "24/7 Tier-3 NOC & Field Support",
+      "slug": "tier3-support",
+      "category": "support",
+      "shortDescription": "Round-the-clock network operations center with rapid-response fiber splicing and field repair teams.",
+      "fullDescription": "Our Network Operations Center (NOC) operates 24 hours a day, 365 days a year. With automated optical power anomaly detection and dedicated on-ground field technicians equipped with OTDR testers, we resolve physical anomalies in record time.",
+      "iconName": "Headphones",
+      "badge": "24/7 Available",
+      "features": [
+        "Real-Time Fiber Line Telemetry & Monitoring",
+        "Average Under-15-Minute Support Ticket Response",
+        "Equipped On-Ground Splicing & Restoration Teams",
+        "Direct WhatsApp, Phone & Portal Ticketing",
+        "Proactive Storm & Grid Disruption Alerts"
+      ],
+      "isActive": true,
+      "displayOrder": 6,
+      "createdAt": "2026-08-27T20:06:30.521Z",
+      "updatedAt": "2026-08-27T20:06:30.521Z"
+    }
+  ],
+  "shopProducts": [],
+  "contactSubmissions": [
+    {
+      "id": "sub_001",
+      "fullName": "Muhammad Kamran",
+      "phone": "+92 321 5566778",
+      "email": "kamran.k@example.com",
+      "subject": "Inquiry for 75 Mbps Fiber Connection in Sector F-10",
+      "inquiryType": "new_connection",
+      "packageInterest": "ABS Ultra Gamer (75 Mbps)",
+      "message": "Hello ABS Network team, I am moving into Sector F-10/2 and need a low-latency fiber connection for work and gaming. Can you verify fiber coverage on Street 14 and quote the earliest installation date?",
+      "status": "new",
+      "ipAddress": "103.255.4.12",
+      "createdAt": "2026-08-27T16:06:30.521Z",
+      "updatedAt": "2026-08-27T16:06:30.521Z"
+    },
+    {
+      "id": "sub_002",
+      "fullName": "Dr. Ayesha Siddiqui",
+      "phone": "+92 333 9876543",
+      "email": "ayesha.clinic@example.com",
+      "subject": "100 Mbps Leased Line for Medical Diagnostic Center",
+      "inquiryType": "sales",
+      "packageInterest": "ABS Business Prime (100 Mbps)",
+      "message": "We require a high-availability dedicated fiber line with static IP addresses for our imaging center PACS server and patient portal. Please send a corporate proposal and SLA terms.",
+      "status": "in_review",
+      "assignedToStaff": "Tariq Mehmood",
+      "internalNotes": "Contacted client regarding site survey schedule. Proposal to be emailed today.",
+      "ipAddress": "110.39.12.88",
+      "createdAt": "2026-08-26T22:06:30.521Z",
+      "updatedAt": "2026-08-27T12:06:30.521Z"
+    },
+    {
+      "id": "sub_003",
+      "fullName": "Shahbaz Ahmed",
+      "phone": "+92 300 4455667",
+      "email": "shahbaz.a@example.com",
+      "subject": "Enterprise Fiber Installation for Factory Campus",
+      "inquiryType": "general",
+      "packageInterest": "ABS Enterprise Apex (300 Mbps)",
+      "message": "Looking for a dedicated fiber connection and network setup for our factory campus in Bahria Town Phase 7. Need consultation on structured cabling and enterprise network design.",
+      "status": "contacted",
+      "assignedToStaff": "Tariq Mehmood",
+      "internalNotes": "Site survey scheduled for Friday 3:00 PM.",
+      "ipAddress": "39.40.180.201",
+      "createdAt": "2026-08-25T20:06:30.521Z",
+      "updatedAt": "2026-08-27T02:06:30.521Z"
+    }
+  ],
+  "shopOrders": [],
+  "auditLogs": [
+    {
+      "id": "aud_1787861195843_20043ee4ce75",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1787861195824_aecd963e98a6",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-27T20:06:35.843Z"
+    },
+    {
+      "id": "aud_init_01",
+      "action": "SYSTEM_BOOTSTRAP",
+      "entityType": "System",
+      "entityId": "abs_network_core",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "message": "Initialized ABS Network database with fiber & networking shop architecture."
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-27T20:06:30.521Z"
+    }
+  ],
+  "securityEvents": [
+    {
+      "id": "sec_1787861195838_6c236ff15240",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-27T20:06:35.838Z"
+    },
+    {
+      "id": "sec_001",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "Super Admin successfully authenticated from master terminal.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-27T20:06:30.521Z"
+    }
+  ]
+}
