@@ -1,135 +1,137 @@
 import React from 'react';
 import Link from 'next/link';
-import { Wifi, Check, Zap, ArrowRight, Router } from 'lucide-react';
+import { Check, ArrowRight, Router, Zap } from 'lucide-react';
 import { BroadbandPackage } from '@/lib/db/types';
+import { isContactPricing, getPackagePriceText } from '@/lib/db/pricing';
 
 interface PackageCardProps {
   pkg: BroadbandPackage;
   onSelect?: (pkg: BroadbandPackage) => void;
 }
 
+const categoryLabels: Record<string, string> = {
+  residential: 'Home Fiber',
+  gaming: 'Pro Gaming',
+  business: 'Business',
+  enterprise: 'Enterprise',
+};
+
+const defaultTaglines: Record<string, string> = {
+  residential: 'Dedicated optical fiber with 24/7 prioritized carrier routing',
+  gaming: 'Low-latency fiber routing engineered for competitive play',
+  business: '1:1 unshared dedicated internet with guaranteed CIR and priority NOC',
+  enterprise: 'Carrier-grade dedicated bandwidth with custom BGP peering and SLA support',
+};
+
 export default function PackageCard({ pkg, onSelect }: PackageCardProps) {
   const isPopular = pkg.isPopular;
-
-  const categoryLabels: Record<string, string> = {
-    residential: 'Home Fiber',
-    gaming: 'Pro Gaming',
-    business: 'Business DIA',
-    enterprise: 'Enterprise Apex',
-  };
+  const isContact = isContactPricing(pkg);
+  const isSymmetric = !pkg.uploadSpeedMbps || pkg.uploadSpeedMbps >= pkg.speedMbps;
+  const upload = pkg.uploadSpeedMbps || pkg.speedMbps;
+  const tagline = pkg.shortDescription || defaultTaglines[pkg.category] || '';
+  const dataLabel =
+    pkg.dataLimit && pkg.dataLimit.toLowerCase().includes('unlimited')
+      ? `${pkg.dataLimit} DATA`
+      : pkg.dataLimit;
+  const setupLabel =
+    pkg.installationFeePkr === 0
+      ? 'FREE SETUP INCLUDED WITH PLAN'
+      : `INSTALLATION ${pkg.installationFeePkr.toLocaleString()} PKR`;
+  const ctaLabel = isContact ? 'Get Custom Quote' : `Subscribe to ${pkg.name}`;
 
   return (
     <div
-      className={`relative flex flex-col rounded-2xl transition-all duration-300 ${
+      className={`relative flex flex-col h-full rounded-2xl bg-white overflow-hidden transition-shadow duration-300 ${
         isPopular
-          ? 'bg-white border-2 border-blue-600 shadow-xl shadow-blue-500/10'
-          : 'bg-white border border-slate-200 hover:border-blue-400 shadow-sm hover:shadow-md'
+          ? 'border-2 border-blue-600 shadow-xl shadow-blue-500/10'
+          : 'border border-slate-200 hover:border-blue-400 hover:shadow-lg'
       }`}
     >
-      {/* Recommended Tag */}
       {isPopular && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-[10px] font-mono font-bold uppercase tracking-widest py-1 px-4 rounded-full shadow-sm border border-blue-500">
-          ★ MOST POPULAR FIBER
+        <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white text-center text-[11px] font-bold tracking-[0.14em] py-1.5 uppercase">
+          ★ Most Popular Fiber
         </div>
       )}
 
-      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-6">
-        {/* Header: Name, Category, Speed */}
-        <div className="space-y-4">
-          <div className="flex items-center justify-between pt-1">
-            <span className="text-[11px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 bg-slate-100 text-slate-700 rounded-md border border-slate-200">
-              {categoryLabels[pkg.category] || pkg.category}
+      <div className="p-6 flex-1 flex flex-col gap-4">
+        <div className="flex items-center justify-between gap-2">
+          <span className="badge badge-blue">{categoryLabels[pkg.category] || pkg.category}</span>
+          {isSymmetric && (
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-bold tracking-[0.1em] text-slate-600 bg-slate-100 border border-slate-200 rounded-full px-2.5 py-1 uppercase">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+              1:1 Symmetric
             </span>
-            <div className="flex items-center gap-1 text-[11px] text-blue-600 font-mono font-bold">
-              <Zap className="w-3.5 h-3.5 text-blue-600 fill-blue-600" />
-              <span>1:1 SYMMETRIC</span>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-black text-slate-900 tracking-tight">{pkg.name}</h3>
-            <p className="text-xs text-slate-500 mt-1">
-              {pkg.shortDescription || 'Optical fiber connection with 24/7 priority NOC link'}
-            </p>
-          </div>
-
-          {/* Speed Display Badge */}
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200/90 flex items-center justify-between">
-            <div>
-              <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight flex items-baseline gap-1.5 font-sans">
-                {pkg.speedMbps}
-                <span className="text-blue-600 text-lg font-bold">Mbps</span>
-              </div>
-              <div className="text-[11px] text-slate-500 font-sans">
-                {pkg.uploadSpeedMbps ? `${pkg.uploadSpeedMbps} Mbps Upload` : 'Equal Upload & Download'}
-              </div>
-            </div>
-            <div className="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center shadow-xs">
-              <Wifi className="w-6 h-6" />
-            </div>
-          </div>
-
-          {/* Price */}
-          <div className="pt-2 border-t border-slate-100">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-xs font-bold text-slate-500 font-sans">PKR</span>
-              <span className="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">
-                {pkg.pricePkr.toLocaleString()}
-              </span>
-              <span className="text-xs font-medium text-slate-500 font-sans">/{pkg.billingPeriod.toLowerCase()}</span>
-            </div>
-            <div className="text-[11px] text-blue-600 font-semibold mt-1 flex items-center gap-1.5 font-sans">
-              <span>{pkg.dataLimit} DATA</span>
-              <span>&bull;</span>
-              <span>
-                {pkg.installationFeePkr === 0 ? 'FREE SETUP' : `PKR ${pkg.installationFeePkr} SETUP`}
-              </span>
-            </div>
-          </div>
-
-          {/* Features Checklist */}
-          <div className="space-y-2.5 pt-2">
-            <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-widest">
-              INCLUDED PERKS
-            </div>
-            <ul className="space-y-2 text-xs text-slate-700">
-              {pkg.features.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-2">
-                  <div className="w-4 h-4 bg-blue-50 text-blue-600 rounded-full border border-blue-200 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-2.5 h-2.5 stroke-[3]" />
-                  </div>
-                  <span>{feature}</span>
-                </li>
-              ))}
-              {pkg.routerIncluded && (
-                <li className="flex items-start gap-2 text-blue-700 font-medium">
-                  <div className="w-4 h-4 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center shrink-0 mt-0.5">
-                    <Router className="w-2.5 h-2.5" />
-                  </div>
-                  <span>{pkg.routerDetails || 'Optical Wi-Fi Router Included'}</span>
-                </li>
-              )}
-            </ul>
-          </div>
+          )}
         </div>
 
-        {/* CTA Button */}
-        <div className="pt-4">
+        <div>
+          <h3 className="h3-card">{pkg.name}</h3>
+          {tagline && <p className="text-xs text-slate-500 leading-relaxed mt-1.5">{tagline}</p>}
+        </div>
+
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-4xl font-extrabold text-slate-900 tracking-tight">{pkg.speedMbps}</span>
+          <span className="text-lg font-bold text-blue-600">Mbps</span>
+          <span className="text-xs text-slate-500 ml-auto">{upload} Mbps Upload</span>
+        </div>
+
+        <div>
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-wide text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-3 py-1">
+            <Zap className="w-3 h-3 fill-amber-400 text-amber-500" />
+            Unlimited Speed from 2am to 10am
+          </span>
+        </div>
+
+        <div className="pt-4 border-t border-slate-100">
+          {isContact ? (
+            <p className="text-2xl font-extrabold text-slate-900 tracking-tight">{getPackagePriceText(pkg)}</p>
+          ) : (
+            <p className="text-2xl font-extrabold text-slate-900 tracking-tight">
+              PKR {pkg.pricePkr.toLocaleString()}
+              <span className="text-sm font-semibold text-blue-600"> + TAX</span>
+              <span className="text-sm font-semibold text-slate-400">/monthly</span>
+            </p>
+          )}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] font-bold uppercase tracking-wider text-slate-600 bg-blue-50/70 border border-blue-100 rounded-lg px-3 py-2.5">
+          <span>{dataLabel}</span>
+          <span className="text-blue-400">•</span>
+          <span className="text-blue-600">{setupLabel}</span>
+        </div>
+
+        <ul className="space-y-2.5">
+          {pkg.features.map((feature, idx) => (
+            <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+              <span className="w-4 h-4 mt-0.5 bg-blue-50 text-blue-600 rounded-full border border-blue-200 flex items-center justify-center shrink-0">
+                <Check className="w-2.5 h-2.5 stroke-[3]" />
+              </span>
+              <span>{feature}</span>
+            </li>
+          ))}
+          {pkg.routerIncluded && (
+            <li className="flex items-start gap-2 text-sm text-slate-700">
+              <span className="w-4 h-4 mt-0.5 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center shrink-0">
+                <Router className="w-2.5 h-2.5" />
+              </span>
+              <span>{pkg.routerDetails || 'Optical Wi-Fi Router Included'}</span>
+            </li>
+          )}
+        </ul>
+
+        <div className="pt-2 mt-auto">
           {onSelect ? (
-            <button
-              onClick={() => onSelect(pkg)}
-              className="w-full py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-widest text-center text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 transition-all flex items-center justify-center gap-2 shadow-sm"
-            >
-              <span>Get {pkg.name}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+            <button onClick={() => onSelect(pkg)} className="btn-primary w-full">
+              <span>Inquire Now</span>
+              <ArrowRight className="w-4 h-4" />
             </button>
           ) : (
             <Link
               href={`/contact?package=${encodeURIComponent(pkg.name)}&type=new_connection`}
-              className="w-full py-3 px-4 rounded-xl font-bold text-xs uppercase tracking-widest text-center text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 transition-all flex items-center justify-center gap-2 shadow-sm"
+              className="btn-primary w-full"
             >
-              <span>Subscribe Now</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <span>{ctaLabel}</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           )}
         </div>

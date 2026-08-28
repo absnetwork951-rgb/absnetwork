@@ -95,32 +95,30 @@ export default function OrdersManagerClient({
   const getStatusBadge = (status: ShopInquiryOrder['status']) => {
     switch (status) {
       case 'pending_feasibility':
-        return 'bg-amber-500/20 text-amber-400 border-amber-500/30';
+        return 'bg-amber-50 text-amber-700 border-amber-200';
       case 'survey_booked':
-        return 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30';
+        return 'bg-cyan-50 text-cyan-700 border-cyan-200';
       case 'quote_sent':
-        return 'bg-purple-500/20 text-purple-300 border-purple-500/30';
+        return 'bg-purple-50 text-purple-700 border-purple-200';
       case 'approved':
-        return 'bg-teal-500/20 text-teal-300 border-teal-500/30';
+        return 'bg-teal-50 text-teal-700 border-teal-200';
       case 'in_installation':
-        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+        return 'bg-blue-50 text-blue-700 border-blue-200';
       case 'completed':
-        return 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30';
+        return 'bg-emerald-50 text-emerald-700 border-emerald-200';
       case 'cancelled':
-        return 'bg-rose-500/20 text-rose-400 border-rose-500/30';
+        return 'bg-rose-50 text-rose-700 border-rose-200';
       default:
-        return 'bg-slate-800 text-slate-400 border-slate-700';
+        return 'bg-slate-50 text-slate-600 border-slate-200';
     }
   };
 
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h2 className="text-xl sm:text-2xl font-light text-slate-900">
-          <span className="font-bold">Shop Orders</span> &amp; Inquiry Pipeline
-        </h2>
-        <p className="text-xs text-slate-500 font-mono">Rooftop surveys, Net Metering feasibility, and equipment delivery tracking</p>
+      <div className="space-y-1.5">
+        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Shop Orders</h2>
+        <p className="text-sm text-slate-500">Equipment order inquiries, quotations, and delivery tracking</p>
       </div>
 
       {/* Filter Bar */}
@@ -159,59 +157,53 @@ export default function OrdersManagerClient({
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-600 uppercase font-mono font-bold text-[10px] bg-slate-50/70">
-                <th className="p-4">Order #</th>
-                <th className="p-4">Customer Name</th>
-                <th className="p-4">Product &amp; Qty</th>
-                <th className="p-4">Est. Total (PKR)</th>
-                <th className="p-4">Location</th>
-                <th className="p-4">Status</th>
-                <th className="p-4">Date</th>
-                <th className="p-4 text-right">Actions</th>
+              <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
+                <th className="p-4 text-sm font-semibold">Order #</th>
+                <th className="p-4 text-sm font-semibold">Customer Name</th>
+                <th className="p-4 text-sm font-semibold">Product &amp; Qty</th>
+                <th className="p-4 text-sm font-semibold">Est. Total (PKR)</th>
+                <th className="p-4 text-sm font-semibold">Location</th>
+                <th className="p-4 text-sm font-semibold">Status</th>
+                <th className="p-4 text-sm font-semibold">Date</th>
+                <th className="p-4 text-sm font-semibold text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filtered.map((ord) => (
                 <tr key={ord.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="p-4 font-mono font-bold text-blue-600 whitespace-nowrap">
+                  <td className="p-4 font-bold text-blue-600 whitespace-nowrap text-sm">
                     {ord.orderNumber}
                   </td>
                   <td className="p-4 font-bold text-slate-900 whitespace-nowrap">
                     <div>{ord.customerName}</div>
-                    <div className="text-[10px] text-slate-400 font-mono">{ord.phone}</div>
+                    <div className="text-xs text-slate-400">{ord.phone}</div>
                   </td>
                   <td className="p-4 max-w-xs">
                     <div className="font-semibold text-slate-800 truncate">{ord.productName}</div>
-                    <div className="text-[10px] text-slate-400 font-mono">Qty: {ord.quantity} Unit(s)</div>
+                    <div className="text-xs text-slate-400">Qty: {ord.quantity} Unit(s)</div>
                   </td>
-                  <td className="p-4 font-bold text-slate-900 whitespace-nowrap font-mono">
+                  <td className="p-4 font-bold text-slate-900 whitespace-nowrap text-sm">
                     PKR {(ord.estimatedTotalPkr ?? 0).toLocaleString()}
                   </td>
-                  <td className="p-4 text-slate-700">
+                  <td className="p-4 text-slate-700 text-sm">
                     <div>{ord.city}</div>
-                    <div className="text-[10px] text-slate-400 truncate max-w-[150px]">{ord.address}</div>
+                    <div className="text-xs text-slate-400 truncate max-w-[150px]">{ord.address}</div>
                   </td>
                   <td className="p-4">
                     <span
-                      className={`px-2.5 py-0.5 text-[10px] font-semibold rounded-full border capitalize whitespace-nowrap ${
-                        ord.status === 'completed'
-                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                          : ord.status === 'cancelled'
-                          ? 'bg-rose-50 text-rose-700 border-rose-200'
-                          : 'bg-blue-50 text-blue-700 border-blue-200'
-                      }`}
+                      className={`px-2.5 py-0.5 text-xs font-medium rounded-full border capitalize whitespace-nowrap ${getStatusBadge(ord.status)}`}
                     >
                       {ord.status.replace('_', ' ')}
                     </span>
                   </td>
-                  <td className="p-4 text-slate-500 whitespace-nowrap font-mono text-[10px]">
+                  <td className="p-4 text-slate-500 whitespace-nowrap text-xs">
                     {new Date(ord.createdAt).toLocaleDateString()}
                   </td>
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => handleOpenDetail(ord)}
-                        className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-bold text-[11px] transition-colors rounded-lg"
+                        className="px-3 py-1.5 bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 font-semibold text-xs transition-colors rounded-lg"
                       >
                         Manage Pipeline
                       </button>
@@ -255,29 +247,29 @@ export default function OrdersManagerClient({
               <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3 text-xs">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <span className="text-slate-500 block font-mono text-[10px] uppercase">Ordered Product:</span>
+                    <span className="text-slate-500 block text-xs font-semibold">Ordered Product:</span>
                     <span className="text-slate-900 font-bold">{selectedOrder.productName || 'Custom Product Order'}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block font-mono text-[10px] uppercase">Order Total:</span>
+                    <span className="text-slate-500 block text-xs font-semibold">Order Total:</span>
                     <span className="text-blue-600 font-bold text-sm font-mono">
                       PKR {(selectedOrder.estimatedTotalPkr ?? 0).toLocaleString()} (x{selectedOrder.quantity})
                     </span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block font-mono text-[10px] uppercase">Customer Contact:</span>
+                    <span className="text-slate-500 block text-xs font-semibold">Customer Contact:</span>
                     <span className="text-slate-900 font-mono font-bold">{selectedOrder.phone}</span>
                     <span className="text-slate-500 block text-[11px] font-mono">{selectedOrder.email}</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block font-mono text-[10px] uppercase">Installation Site Address:</span>
+                    <span className="text-slate-500 block text-xs font-semibold">Installation Site Address:</span>
                     <span className="text-slate-700">{selectedOrder.address}, {selectedOrder.city}</span>
                   </div>
                 </div>
 
                 {selectedOrder.notes && (
                   <div className="pt-2 border-t border-slate-200">
-                    <span className="text-slate-500 block mb-0.5 font-mono text-[10px] uppercase">Customer Roof Notes:</span>
+                    <span className="text-slate-500 block mb-0.5 text-xs font-semibold">Customer Roof Notes:</span>
                     <div className="p-2.5 bg-white border border-slate-200 text-slate-700 rounded-lg">
                       {selectedOrder.notes}
                     </div>
@@ -319,17 +311,17 @@ export default function OrdersManagerClient({
                 <button
                   type="button"
                   onClick={() => setSelectedOrder(null)}
-                  className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 border border-slate-200 rounded-xl"
+                  className="btn-ghost"
                 >
                   Close
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 flex items-center gap-1.5 shadow-sm rounded-xl"
+                  className="btn-primary"
                 >
-                  {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-                  <span>Save Order Pipeline</span>
+                  {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                  Save Order Pipeline
                 </button>
               </div>
             </form>

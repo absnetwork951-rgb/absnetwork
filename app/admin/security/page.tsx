@@ -1,9 +1,11 @@
 import React from 'react';
 import { redirect, notFound } from 'next/navigation';
-import { ShieldAlert, ShieldCheck, Activity, AlertTriangle, Info } from 'lucide-react';
+import { ShieldAlert, AlertTriangle, Info, Activity } from 'lucide-react';
 import { getCurrentSession } from '@/lib/auth/session';
 import { hasPermission } from '@/lib/auth/rbac';
 import { getSecurityEvents } from '@/lib/db';
+import AdminPageHeader from '@/components/admin/AdminPageHeader';
+import StatCard from '@/components/admin/StatCard';
 
 export const dynamic = 'force-dynamic';
 
@@ -45,95 +47,74 @@ export default async function AdminSecurityPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-xl sm:text-2xl font-light text-slate-900">
-          <span className="font-bold">Security Dashboard</span>
-        </h1>
-        <p className="text-xs text-slate-500 font-mono">
-          Security events &amp; access anomalies from the ABS Network control plane
-        </p>
-      </div>
+      <AdminPageHeader
+        title="Security Dashboard"
+        description="Security events and access anomalies from the ABS Network control plane."
+      />
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase text-slate-500 tracking-wider">Total Events</span>
-            <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-              <Activity className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{events.length}</div>
-        </div>
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase text-slate-500 tracking-wider">Critical</span>
-            <div className="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
-              <ShieldAlert className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{criticalCount}</div>
-        </div>
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase text-slate-500 tracking-wider">Warnings</span>
-            <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-              <AlertTriangle className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{warningCount}</div>
-        </div>
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-5 space-y-3 shadow-xs">
-          <div className="flex items-center justify-between">
-            <span className="text-[11px] font-semibold uppercase text-slate-500 tracking-wider">Login Failures</span>
-            <div className="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center">
-              <Info className="w-4 h-4" />
-            </div>
-          </div>
-          <div className="text-3xl font-extrabold text-slate-900 tracking-tight">{loginFailures}</div>
-        </div>
+        <StatCard label="Total Events" value={events.length} icon={Activity} />
+        <StatCard
+          label="Critical"
+          value={criticalCount}
+          icon={ShieldAlert}
+          iconBgClass="bg-rose-50 text-rose-600"
+        />
+        <StatCard
+          label="Warnings"
+          value={warningCount}
+          icon={AlertTriangle}
+          iconBgClass="bg-amber-50 text-amber-600"
+        />
+        <StatCard
+          label="Login Failures"
+          value={loginFailures}
+          icon={Info}
+          iconBgClass="bg-slate-100 text-slate-600"
+        />
       </div>
 
       <div className="bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-xs">
-        <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-200 bg-slate-50/70">
-          <ShieldCheck className="w-4 h-4 text-blue-600" />
-          <h2 className="text-xs font-bold uppercase tracking-wider text-slate-600">Security Event Stream (latest 100)</h2>
+        <div className="px-6 py-4 border-b border-slate-200 bg-slate-50/70">
+          <h2 className="text-base font-bold text-slate-900">Security Event Stream</h2>
+          <p className="text-sm text-slate-500">Latest 100 events</p>
         </div>
         <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-xs">
+          <table className="w-full text-left border-collapse text-sm">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-600 uppercase font-mono font-bold text-[10px] bg-slate-50/70">
-                <th className="p-4">Timestamp</th>
-                <th className="p-4">Severity</th>
-                <th className="p-4">Event</th>
-                <th className="p-4">Description</th>
-                <th className="p-4 font-mono">User</th>
-                <th className="p-4 font-mono">IP Address</th>
+              <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
+                <th className="p-4 font-semibold">Timestamp</th>
+                <th className="p-4 font-semibold">Severity</th>
+                <th className="p-4 font-semibold">Event</th>
+                <th className="p-4 font-semibold">Description</th>
+                <th className="p-4 font-semibold">User</th>
+                <th className="p-4 font-semibold">IP Address</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {events.map((event) => (
                 <tr key={event.id} className="hover:bg-slate-50 transition-colors">
-                  <td className="p-4 font-mono text-slate-500 whitespace-nowrap text-[11px]">
+                  <td className="p-4 text-slate-500 whitespace-nowrap text-xs">
                     {new Date(event.createdAt).toLocaleString()}
                   </td>
                   <td className="p-4 whitespace-nowrap">
-                    <span className={`px-2.5 py-0.5 rounded-full border font-mono text-[10px] uppercase font-bold ${severityStyles[event.severity] || severityStyles.INFO}`}>
+                    <span className={`px-2.5 py-0.5 rounded-full border text-xs font-medium ${severityStyles[event.severity] || severityStyles.INFO}`}>
                       {event.severity}
                     </span>
                   </td>
                   <td className="p-4 whitespace-nowrap">
-                    <span className={`px-2.5 py-0.5 rounded-full border font-mono text-[10px] uppercase font-bold ${eventTypeStyles[event.eventType] || 'bg-slate-50 text-slate-600 border-slate-200'}`}>
+                    <span className={`px-2.5 py-0.5 rounded-full border text-xs font-medium ${eventTypeStyles[event.eventType] || 'bg-slate-50 text-slate-600 border-slate-200'}`}>
                       {event.eventType}
                     </span>
                   </td>
-                  <td className="p-4 text-slate-600 leading-relaxed max-w-md font-mono text-[11px]">
+                  <td className="p-4 text-slate-600 leading-relaxed max-w-md text-xs">
                     {event.description}
                   </td>
-                  <td className="p-4 font-mono text-slate-700 text-[11px] whitespace-nowrap">
+                  <td className="p-4 text-slate-700 text-xs whitespace-nowrap">
                     {event.userEmail || event.userId || 'System'}
                   </td>
-                  <td className="p-4 font-mono text-slate-400 text-[10px] whitespace-nowrap">
-                    {event.ipAddress || 'Internal Gateway'}
+                  <td className="p-4 text-slate-400 text-xs whitespace-nowrap">
+                    {event.ipAddress || 'Internal'}
                   </td>
                 </tr>
               ))}

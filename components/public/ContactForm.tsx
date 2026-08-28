@@ -59,7 +59,7 @@ export default function ContactForm({
     <div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-10 shadow-xs relative overflow-hidden">
       <div className="space-y-6">
         <div>
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 border border-blue-200 rounded-full mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-50 border border-blue-200 rounded-full mb-3">
             <Zap className="w-3.5 h-3.5" /> Fast Response Ticket
           </div>
           <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
@@ -83,7 +83,7 @@ export default function ContactForm({
               <button
                 type="button"
                 onClick={() => setSuccessMsg(null)}
-                className="py-2.5 px-5 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 transition-colors shadow-sm rounded-xl"
+                className="btn-secondary"
               >
                 Send Another Inquiry
               </button>
@@ -225,17 +225,17 @@ export default function ContactForm({
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3.5 px-6 font-bold text-xs uppercase tracking-widest text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 flex items-center justify-center gap-2 transition-all shadow-sm rounded-xl"
+                className="btn-primary w-full"
               >
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Transmitting to ABS Network NOC...</span>
+                    Submitting...
                   </>
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    <span>Submit Inquiry</span>
+                    Submit Inquiry
                   </>
                 )}
               </button>

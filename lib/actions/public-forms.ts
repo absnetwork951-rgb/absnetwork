@@ -4,25 +4,30 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { createContactSubmission, createShopOrder } from '../db';
 import { getClientIp } from '../auth/session';
+import { ContactSchema } from '../validation/contact';
+import { isSmtpConfigured } from '../email/config';
+import { sendContactEmail } from '../email/transporter';
 
-const ContactSchema = z.object({
-  fullName: z.string().min(2, 'Name is required (minimum 2 characters)'),
-  phone: z.string().min(8, 'Valid phone number is required'),
-  email: z.string().email('Valid email address is required'),
-  subject: z.string().min(3, 'Subject is required'),
-  inquiryType: z.enum([
-    'general',
-    'sales',
-    'new_connection',
-    'package_inquiry',
-    'technical_support',
-    'billing',
-  ]),
-  packageInterest: z.string().optional(),
-  message: z.string().min(10, 'Message must be at least 10 characters'),
-  // Honeypot (SEC-006): hidden from humans, bots auto-fill it.
-  website: z.string().optional().default(''),
-});
+/**
+ * Minimal in-memory rate limit for the public contact form (per IP).
+ * The honeypot stops naive bots; the limiter throttles scripts that replay
+ * valid submissions to flood the admin inbox via the SMTP endpoint.
+ */
+const CONTACT_RATE_WINDOW_MS = 10 * 60 * 1000;
+const CONTACT_RATE_MAX = 5;
+const contactRateHits = new Map<string, number[]>();
+
+function isContactRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const recent = (contactRateHits.get(ip) || []).filter((ts) => now - ts < CONTACT_RATE_WINDOW_MS);
+  if (recent.length >= CONTACT_RATE_MAX) {
+    contactRateHits.set(ip, recent);
+    return true;
+  }
+  recent.push(now);
+  contactRateHits.set(ip, recent);
+  return false;
+}
 
 export async function submitContactForm(formData: FormData) {
   try {
@@ -54,10 +59,50 @@ export async function submitContactForm(formData: FormData) {
     }
 
     const ip = await getClientIp();
+
+    if (isContactRateLimited(ip)) {
+      return {
+        success: false,
+        error: 'Too many submissions from this device. Please wait a while and try again.',
+      };
+    }
+
     const submission = createContactSubmission(parsed.data, ip);
+
+    // Deliver to the ABS Network inbox via SMTP. The submission is always
+    // saved (persisted in the database) so the inquiry is never lost even if
+    // mail delivery fails. User input never controls the To/Sender headers.
+    const smtpConfigured = isSmtpConfigured();
+    let emailDelivered = false;
+    if (smtpConfigured) {
+      try {
+        await sendContactEmail({
+          submissionId: submission.id,
+          fullName: parsed.data.fullName,
+          email: parsed.data.email,
+          phone: parsed.data.phone,
+          subject: parsed.data.subject,
+          inquiryType: parsed.data.inquiryType,
+          packageInterest: parsed.data.packageInterest,
+          message: parsed.data.message,
+        });
+        emailDelivered = true;
+      } catch (err) {
+        // Never expose internals or secrets to the visitor or the logs.
+        console.error('Contact email delivery failed (submission saved):', err instanceof Error ? err.message : 'unknown error');
+      }
+    }
 
     revalidatePath('/admin/submissions');
     revalidatePath('/admin/dashboard');
+
+    if (smtpConfigured && !emailDelivered) {
+      return {
+        success: false,
+        error: 'Your inquiry has been recorded, but our system could not notify the team instantly. Please call our 24/7 helpline.',
+        submissionId: submission.id,
+      };
+    }
 
     return {
       success: true,

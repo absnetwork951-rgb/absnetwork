@@ -130,20 +130,15 @@ export default function ServicesManagerClient({
   return (
     <div className="space-y-6">
       {/* Header with Add Button */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-light text-slate-900">
-            <span className="font-bold">Telecom &amp; IT</span> Services
-          </h2>
-          <p className="text-xs text-slate-500 font-mono">Configure corporate leased lines, network solutions, and digital IT services</p>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="space-y-1.5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Telecom &amp; IT Services</h2>
+          <p className="text-sm text-slate-500">Configure corporate leased lines, network solutions, and digital IT services</p>
         </div>
 
-        <button
-          onClick={handleOpenCreate}
-          className="px-4 py-2.5 font-bold text-xs uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 flex items-center gap-1.5 shadow-sm transition-colors rounded-xl"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add New Service</span>
+        <button onClick={handleOpenCreate} className="btn-primary btn-sm shrink-0">
+          <Plus className="w-3.5 h-3.5" />
+          Add New Service
         </button>
       </div>
 
@@ -169,7 +164,7 @@ export default function ServicesManagerClient({
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-600 uppercase font-mono font-bold text-[10px] bg-slate-50/70">
+              <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
                 <th className="p-4">Service</th>
                 <th className="p-4">Badge / Category</th>
                 <th className="p-4">Icon Key</th>
@@ -340,7 +335,7 @@ export default function ServicesManagerClient({
                     <button
                       type="button"
                       onClick={handleAddCap}
-                      className="px-4 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold uppercase rounded-xl"
+                      className="btn-secondary btn-sm shrink-0"
                     >
                       Add
                     </button>
@@ -389,10 +384,10 @@ export default function ServicesManagerClient({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 flex items-center gap-1.5 shadow-sm rounded-xl"
+                  className="btn-primary"
                 >
-                  {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-                  <span>{editingService ? 'Update Service' : 'Save Service'}</span>
+                  {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                  {editingService ? 'Update Service' : 'Save Service'}
                 </button>
               </div>
             </form>

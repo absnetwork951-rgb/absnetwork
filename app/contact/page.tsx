@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
+import PageHeader from '@/components/public/PageHeader';
 import ContactForm from '@/components/public/ContactForm';
 import { getSiteSettings } from '@/lib/db';
 
@@ -47,65 +48,66 @@ export default function ContactPage() {
     },
   ];
 
+  const contactCards = [
+    {
+      icon: Phone,
+      label: 'Sales & Connections',
+      value: settings.phone,
+      note: 'Mon – Sat, 9:00 AM – 8:00 PM',
+    },
+    {
+      icon: Headphones,
+      label: '24/7 NOC Helpline',
+      value: settings.supportPhone,
+      note: 'Round-the-clock technician desk',
+    },
+    {
+      icon: Mail,
+      label: 'Official Email',
+      value: settings.email,
+      note: `Sales: ${settings.salesEmail}`,
+    },
+    {
+      icon: Globe,
+      label: 'Equipment Sales',
+      value: settings.whatsapp,
+      note: 'WhatsApp product inquiries',
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
       <Header settings={settings} />
 
-      <main className="flex-1 pt-32 pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-20">
-          {/* Page Hero Header */}
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-[11px] font-mono uppercase font-bold text-blue-600 tracking-wider bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200">
-              Get in Touch
-            </span>
-            <h1 className="text-4xl sm:text-5xl font-light text-slate-900 tracking-tight">
-              Contact <span className="font-black text-blue-600">ABS Network</span>
-            </h1>
-            <p className="text-base text-slate-600 leading-relaxed">
-              Have questions regarding broadband packages, corporate DIA leased lines, or enterprise networking equipment? Our specialized team is here to assist you 24/7.
-            </p>
+      <main className="flex-1 pt-[var(--header-h)] pb-24">
+        <div className="page-container space-y-16">
+          <div className="pt-12 md:pt-16">
+            <PageHeader
+              eyebrow="Get in Touch"
+              title={
+                <>
+                  Contact <span className="text-blue-600">ABS Network</span>
+                </>
+              }
+              description="Have questions regarding broadband packages, corporate DIA leased lines, or enterprise networking equipment? Our specialized team is here to assist you 24/7."
+            />
           </div>
 
-          {/* Quick Contact Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-xs">
-              <div className="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center rounded-xl">
-                <Phone className="w-5 h-5" />
+            {contactCards.map((card) => (
+              <div key={card.label} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-xs">
+                <div className="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center rounded-xl">
+                  <card.icon className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-sm font-bold text-slate-900">{card.label}</div>
+                  <div className="mt-1 text-sm text-blue-700 font-medium break-all">{card.value}</div>
+                  <div className="text-xs text-slate-500 mt-1">{card.note}</div>
+                </div>
               </div>
-              <div className="text-xs font-mono font-bold text-slate-500 uppercase">Sales & Connections</div>
-              <div className="text-base font-mono font-bold text-slate-900">{settings.phone}</div>
-              <div className="text-xs text-slate-500">Mon - Sat (9:00 AM - 8:00 PM)</div>
-            </div>
-
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-xs">
-              <div className="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center rounded-xl">
-                <Headphones className="w-5 h-5" />
-              </div>
-              <div className="text-xs font-mono font-bold text-slate-500 uppercase">24/7 NOC Helpline</div>
-              <div className="text-base font-mono font-bold text-slate-900">{settings.supportPhone}</div>
-              <div className="text-xs text-slate-500">Round-the-clock technician desk</div>
-            </div>
-
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-xs">
-              <div className="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center rounded-xl">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div className="text-xs font-mono font-bold text-slate-500 uppercase">Official Email</div>
-              <div className="text-sm font-mono font-bold text-slate-900 break-all">{settings.email}</div>
-              <div className="text-xs text-slate-500">Sales: {settings.salesEmail}</div>
-            </div>
-
-            <div className="bg-white border border-slate-200 rounded-2xl p-6 space-y-3 shadow-xs">
-              <div className="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center rounded-xl">
-                <Globe className="w-5 h-5" />
-              </div>
-              <div className="text-xs font-mono font-bold text-slate-500 uppercase">Equipment Sales</div>
-              <div className="text-base font-mono font-bold text-slate-900">{settings.whatsapp}</div>
-              <div className="text-xs text-slate-500">WhatsApp product inquiries</div>
-            </div>
+            ))}
           </div>
 
-          {/* Main Grid: Form + Address Info */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-7">
               <Suspense fallback={<div className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-10 shadow-xs h-96 animate-pulse" />}>
@@ -114,32 +116,29 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-5 space-y-6">
-              {/* Corporate Head Office Card */}
               <div className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-6 shadow-xs">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center rounded-xl">
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-slate-900">Corporate Head Office</h3>
+                    <h3 className="h3-card">Corporate Head Office</h3>
                     <div className="text-xs text-slate-500">{settings.companyName}</div>
                   </div>
                 </div>
 
-                <div className="space-y-3 text-xs text-slate-700">
-                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <div className="font-mono font-bold text-slate-500">Physical Address:</div>
-                    <div className="text-slate-900 font-medium">{settings.address}</div>
+                <div className="space-y-3 text-sm text-slate-700">
+                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Address</div>
+                    <div className="mt-1 font-medium text-slate-900">{settings.address}</div>
                   </div>
-
-                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <div className="font-mono font-bold text-slate-500">Operating Hours:</div>
-                    <div className="text-slate-900 font-medium">{settings.businessHours}</div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Operating hours</div>
+                    <div className="mt-1 font-medium text-slate-900">{settings.businessHours}</div>
                   </div>
-
-                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-                    <div className="font-mono font-bold text-slate-500">Legal Registration:</div>
-                    <div className="text-blue-600 font-mono font-bold">Registration #{settings.legalRegistration}</div>
+                  <div className="p-3.5 bg-slate-50 border border-slate-200 rounded-xl">
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide">Legal registration</div>
+                    <div className="mt-1 font-medium text-slate-900">Registration #{settings.legalRegistration}</div>
                   </div>
                 </div>
 
@@ -147,35 +146,33 @@ export default function ContactPage() {
                   href={`https://wa.me/${settings.whatsapp.replace(/[^0-9]/g, '')}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-full py-3.5 px-4 font-bold text-xs uppercase tracking-widest text-center text-white bg-emerald-600 hover:bg-emerald-700 flex items-center justify-center gap-2 transition-all rounded-xl shadow-xs"
+                  className="btn-primary w-full"
                 >
                   <MessageSquare className="w-4 h-4" />
-                  <span>Start WhatsApp Chat ({settings.whatsapp})</span>
+                  <span>Start WhatsApp Chat</span>
                 </a>
               </div>
 
-              {/* NOC Status Card */}
               <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-3">
-                <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-600 uppercase tracking-wider">
+                <div className="flex items-center gap-2 text-sm font-semibold text-emerald-600">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  NOC Status: Fully Operational
+                  Network operational
                 </div>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  All upstream GPON nodes, BGP peering gateways, and network monitoring systems are operating normally with 0.00% packet loss.
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  All upstream GPON nodes, peering gateways, and network monitoring systems are operating normally.
                 </p>
               </div>
             </div>
           </div>
 
-          {/* FAQs Section */}
-          <div className="space-y-8 pt-8 border-t border-slate-200">
-            <div className="text-center max-w-2xl mx-auto space-y-2">
-              <div className="inline-flex items-center gap-2 text-[11px] font-mono uppercase tracking-[0.2em] text-blue-600 font-bold">
-                <HelpCircle className="w-3.5 h-3.5 text-blue-600" />
-                FREQUENTLY ASKED QUESTIONS
-              </div>
-              <h2 className="text-3xl font-light text-slate-900">
-                Got Questions? <span className="font-black text-blue-600">We&apos;ve Got Answers</span>
+          <div className="space-y-8 pt-4 border-t border-slate-200">
+            <div className="text-center max-w-2xl mx-auto space-y-3">
+              <span className="eyebrow justify-center">
+                <HelpCircle className="w-3.5 h-3.5" />
+                FAQ
+              </span>
+              <h2 className="h2-section">
+                Got questions? <span className="text-blue-600">We&apos;ve got answers</span>
               </h2>
             </div>
 
@@ -183,10 +180,10 @@ export default function ContactPage() {
               {faqs.map((faq, idx) => (
                 <div key={idx} className="bg-white border border-slate-200 rounded-2xl p-6 space-y-2.5 shadow-xs">
                   <h3 className="text-sm font-bold text-slate-900 flex items-start gap-2">
-                    <span className="text-blue-600 font-mono">Q.</span>
+                    <span className="text-blue-600">Q.</span>
                     <span>{faq.q}</span>
                   </h3>
-                  <p className="text-xs text-slate-600 leading-relaxed pl-5">
+                  <p className="text-sm text-slate-600 leading-relaxed pl-6">
                     {faq.a}
                   </p>
                 </div>

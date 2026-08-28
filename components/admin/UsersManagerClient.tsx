@@ -176,20 +176,15 @@ export default function UsersManagerClient({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-light text-slate-900">
-            <span className="font-bold">Team &amp; Access</span> (RBAC)
-          </h2>
-          <p className="text-xs text-slate-500 font-mono">Manage administrator privileges, NOC staff, and role authorizations</p>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="space-y-1.5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Team &amp; Access Control</h2>
+          <p className="text-sm text-slate-500">Manage administrator privileges, NOC staff, and role authorizations</p>
         </div>
 
-        <button
-          onClick={handleOpenCreate}
-          className="px-4 py-2.5 font-bold text-xs uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 flex items-center gap-1.5 shadow-sm transition-colors rounded-xl"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Create Admin User</span>
+        <button onClick={handleOpenCreate} className="btn-primary btn-sm shrink-0">
+          <Plus className="w-3.5 h-3.5" />
+          Create Admin User
         </button>
       </div>
 
@@ -215,7 +210,7 @@ export default function UsersManagerClient({
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-600 uppercase font-mono font-bold text-[10px] bg-slate-50/70">
+              <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
                 <th className="p-4">Name</th>
                 <th className="p-4">Email</th>
                 <th className="p-4">Role</th>
@@ -260,7 +255,7 @@ export default function UsersManagerClient({
                         {u.isActive ? 'Active' : 'Disabled'}
                       </span>
                     </td>
-                    <td className="p-4 text-slate-500 font-mono text-[10px]">
+                    <td className="p-4 text-slate-500 text-xs">
                       {u.lastLoginAt ? new Date(u.lastLoginAt).toLocaleString() : 'Never'}
                     </td>
                     <td className="p-4 text-right">
@@ -289,7 +284,7 @@ export default function UsersManagerClient({
                           </button>
                         </div>
                       ) : (
-                        <span className="text-slate-400 font-mono text-[10px]">Protected</span>
+                        <span className="text-slate-400 text-xs">Protected</span>
                       )}
                     </td>
                   </tr>
@@ -399,10 +394,10 @@ export default function UsersManagerClient({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 flex items-center gap-1.5 shadow-sm rounded-xl"
+                  className="btn-primary"
                 >
-                  {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-                  <span>{editingUser ? 'Update User' : 'Create User'}</span>
+                  {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                  {editingUser ? 'Update User' : 'Create User'}
                 </button>
               </div>
             </form>
@@ -449,7 +444,7 @@ export default function UsersManagerClient({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-5 py-2 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 rounded-xl"
+                  className="btn-primary"
                 >
                   {loading ? 'Resetting...' : 'Confirm Reset Password'}
                 </button>

@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
+import PageHeader from '@/components/public/PageHeader';
 import { getSiteSettings, getServices } from '@/lib/db';
 
 export const revalidate = 60;
@@ -46,18 +47,18 @@ export default function ServicesPage() {
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
       <Header settings={settings} />
 
-      <main className="flex-1 pt-32 pb-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-[11px] font-mono uppercase font-bold text-blue-600 tracking-wider bg-blue-50 px-3.5 py-1 rounded-full border border-blue-200">
-              Our Services
-            </span>
-            <h1 className="text-4xl sm:text-5xl font-light text-slate-900 tracking-tight">
-              ABS Network <span className="font-black text-blue-600">Services</span>
-            </h1>
-            <p className="text-base text-slate-600 leading-relaxed">
-              From symmetrical fiber backbone to enterprise IT, cloud, and round-the-clock NOC support - we power businesses and homes across Islamabad.
-            </p>
+      <main className="flex-1 pt-[var(--header-h)] pb-24">
+        <div className="page-container space-y-14">
+          <div className="pt-12 md:pt-16">
+            <PageHeader
+              eyebrow="Our Services"
+              title={
+                <>
+                  ABS Network <span className="text-blue-600">Services</span>
+                </>
+              }
+              description="From symmetrical fiber backbone to enterprise IT, cloud, and round-the-clock NOC support — we power businesses and homes across Islamabad."
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -79,14 +80,12 @@ export default function ServicesPage() {
                       <Icon className="w-6 h-6" />
                     </div>
                     {service.badge && (
-                      <span className="text-[10px] font-mono uppercase font-bold text-blue-600 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-lg">
-                        {service.badge}
-                      </span>
+                      <span className="badge badge-blue">{service.badge}</span>
                     )}
                   </div>
 
                   <div>
-                    <h2 className="text-lg font-bold text-slate-900">{service.title}</h2>
+                    <h2 className="h3-card">{service.title}</h2>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">
                       {service.shortDescription}
                     </p>
@@ -95,13 +94,20 @@ export default function ServicesPage() {
                   {service.features.length > 0 && (
                     <ul className="mt-auto space-y-2.5 pt-2">
                       {service.features.slice(0, 4).map((feature) => (
-                        <li key={feature} className="flex items-start gap-2 text-xs text-slate-600">
+                        <li key={feature} className="flex items-start gap-2 text-sm text-slate-600">
                           <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                           <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
                   )}
+
+                  <a
+                    href="/contact?type=sales&subject=Service%20Inquiry"
+                    className="btn-secondary btn-sm w-full"
+                  >
+                    <span>Contact ABS Network</span>
+                  </a>
                 </div>
               );
             })}

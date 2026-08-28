@@ -15,6 +15,7 @@ import {
   Layers,
 } from 'lucide-react';
 import { BroadbandPackage } from '@/lib/db/types';
+import { isContactPricing, getPackagePriceText } from '@/lib/db/pricing';
 import {
   savePackageAction,
   deletePackageAction,
@@ -37,9 +38,13 @@ export default function PackagesManagerClient({
   // Form state
   const [featuresList, setFeaturesList] = useState<string[]>([]);
   const [newFeature, setNewFeature] = useState('');
+  const [priceType, setPriceType] = useState<'fixed' | 'contact'>('fixed');
+  const [priceField, setPriceField] = useState(0);
 
   const handleOpenCreate = () => {
     setEditingPkg(null);
+    setPriceType('fixed');
+    setPriceField(3500);
     setFeaturesList([
       'Unlimited Monthly Data (No FUP)',
       '1:1 Symmetrical Upload & Download',
@@ -52,6 +57,8 @@ export default function PackagesManagerClient({
 
   const handleOpenEdit = (pkg: BroadbandPackage) => {
     setEditingPkg(pkg);
+    setPriceType(isContactPricing(pkg) ? 'contact' : 'fixed');
+    setPriceField(pkg.pricePkr || 0);
     setFeaturesList(pkg.features || []);
     setModalOpen(true);
   };
@@ -73,7 +80,7 @@ export default function PackagesManagerClient({
     setNotification(null);
 
     const formData = new FormData(e.currentTarget);
-    formData.set('features', JSON.stringify(featuresList));
+    formData.set('features', featuresList.join('\n'));
     if (editingPkg) {
       formData.set('id', editingPkg.id);
     }
@@ -134,20 +141,15 @@ export default function PackagesManagerClient({
   return (
     <div className="space-y-6">
       {/* Header with Add Button */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-light text-slate-900">
-            <span className="font-bold">Broadband</span> Packages
-          </h2>
-          <p className="text-xs text-slate-500">Manage residential, gaming, and enterprise fiber tiers</p>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="space-y-1.5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Broadband Packages</h2>
+          <p className="text-sm text-slate-500">Manage residential, gaming, and enterprise fiber tiers</p>
         </div>
 
-        <button
-          onClick={handleOpenCreate}
-          className="px-4 py-2.5 font-bold text-xs uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 flex items-center gap-1.5 shadow-sm transition-colors rounded-xl"
-        >
-          <Plus className="w-4 h-4" />
-          <span>Add New Package</span>
+        <button onClick={handleOpenCreate} className="btn-primary btn-sm shrink-0">
+          <Plus className="w-3.5 h-3.5" />
+          Add New Package
         </button>
       </div>
 
@@ -173,7 +175,7 @@ export default function PackagesManagerClient({
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-600 uppercase font-mono font-bold text-[10px] bg-slate-50/70">
+              <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
                 <th className="p-4">Package</th>
                 <th className="p-4">Speed</th>
                 <th className="p-4">Price (PKR)</th>
@@ -199,8 +201,14 @@ export default function PackagesManagerClient({
                     {pkg.speedMbps} Mbps
                   </td>
                   <td className="p-4 font-bold font-mono text-slate-900">
-                    PKR {pkg.pricePkr.toLocaleString()}
-                    <span className="text-[10px] font-normal text-slate-400">/mo</span>
+                    {isContactPricing(pkg) ? (
+                      <span className="text-blue-700">{getPackagePriceText(pkg)}</span>
+                    ) : (
+                      <>
+                        {getPackagePriceText(pkg)}
+                        <span className="text-[10px] font-normal text-slate-400">/{pkg.billingPeriod.toLowerCase()}</span>
+                      </>
+                    )}
                   </td>
                   <td className="p-4 capitalize text-slate-700 font-medium">
                     {pkg.category}
@@ -312,6 +320,38 @@ export default function PackagesManagerClient({
                   />
                 </div>
 
+                <div className="space-y-1.5 sm:col-span-2">
+                  <label className="text-xs font-semibold text-slate-700">Pricing Type *</label>
+                  <div className="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setPriceType('fixed')}
+                      className={`px-4 py-2 text-xs font-bold rounded-xl border transition-colors ${
+                        priceType === 'fixed'
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'bg-white text-slate-700 border-slate-300 hover:border-blue-400'
+                      }`}
+                    >
+                      Fixed Price (PKR + TAX)
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setPriceType('contact')}
+                      className={`px-4 py-2 text-xs font-bold rounded-xl border transition-colors ${
+                        priceType === 'contact'
+                          ? 'bg-blue-600 text-white border-blue-600'
+                          : 'bg-white text-slate-700 border-slate-300 hover:border-blue-400'
+                      }`}
+                    >
+                      Contact for Rates
+                    </button>
+                  </div>
+                  <input type="hidden" name="priceType" value={priceType} />
+                  {priceType === 'contact' && (
+                    <input type="hidden" name="pricePkr" value="0" />
+                  )}
+                </div>
+
                 <div className="space-y-1">
                   <label className="text-xs font-semibold text-slate-700">Monthly Price (PKR) *</label>
                   <input
@@ -319,9 +359,14 @@ export default function PackagesManagerClient({
                     type="number"
                     required
                     min="0"
-                    defaultValue={editingPkg?.pricePkr || 3500}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-xl focus:border-blue-600 focus:outline-none font-mono"
+                    disabled={priceType === 'contact'}
+                    value={priceType === 'contact' ? 0 : priceField}
+                    onChange={(e) => setPriceField(Number(e.target.value))}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-xl focus:border-blue-600 focus:outline-none font-mono disabled:opacity-50"
                   />
+                  {priceType === 'contact' && (
+                    <p className="text-[11px] text-blue-700">This package shows &quot;Please contact us for rates.&quot; on the public site.</p>
+                  )}
                 </div>
 
                 <div className="space-y-1">
@@ -370,7 +415,7 @@ export default function PackagesManagerClient({
                     <button
                       type="button"
                       onClick={handleAddFeature}
-                      className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold uppercase rounded-xl"
+                      className="btn-secondary btn-sm shrink-0"
                     >
                       Add
                     </button>
@@ -429,10 +474,10 @@ export default function PackagesManagerClient({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 flex items-center gap-1.5 shadow-sm rounded-xl"
+                  className="btn-primary"
                 >
-                  {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-                  <span>{editingPkg ? 'Update Package' : 'Save Package'}</span>
+                  {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                  {editingPkg ? 'Update Package' : 'Save Package'}
                 </button>
               </div>
             </form>

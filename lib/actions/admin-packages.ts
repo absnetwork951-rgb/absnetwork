@@ -13,6 +13,8 @@ const PackageSchema = z.object({
   speedMbps: z.coerce.number().min(1, 'Speed must be at least 1 Mbps'),
   uploadSpeedMbps: z.coerce.number().optional(),
   pricePkr: z.coerce.number().min(0, 'Price must be positive'),
+  priceType: z.enum(['fixed', 'contact']).optional(),
+  priceLabel: z.string().optional(),
   billingPeriod: z.string().default('Monthly'),
   installationFeePkr: z.coerce.number().default(0),
   dataLimit: z.string().default('Truly Unlimited'),
@@ -33,6 +35,11 @@ export async function savePackageAction(formData: FormData) {
   const id = formData.get('id')?.toString().trim();
   const rawFeatures = formData.get('features')?.toString() || '';
   const featuresList = rawFeatures.split('\n').map((f) => f.trim()).filter(Boolean);
+  const priceType: 'fixed' | 'contact' =
+    formData.get('priceType') === 'contact' ? 'contact' : 'fixed';
+  const rawPricePkr = Number(formData.get('pricePkr'));
+  const rawPriceLabel = formData.get('priceLabel')?.toString().trim();
+  const finalPricePkr = priceType === 'contact' ? 0 : rawPricePkr;
 
   const rawData = {
     name: formData.get('name')?.toString().trim(),
@@ -40,7 +47,16 @@ export async function savePackageAction(formData: FormData) {
     category: formData.get('category')?.toString() as any,
     speedMbps: Number(formData.get('speedMbps')),
     uploadSpeedMbps: Number(formData.get('uploadSpeedMbps')) || Number(formData.get('speedMbps')),
-    pricePkr: Number(formData.get('pricePkr')),
+    priceType,
+    pricePkr: finalPricePkr,
+    priceLabel:
+      priceType === 'contact'
+        ? 'Please contact us for rates.'
+        : rawPriceLabel
+          ? rawPriceLabel.toUpperCase().startsWith('PKR')
+            ? rawPriceLabel
+            : `PKR ${rawPriceLabel}`
+          : `PKR ${finalPricePkr.toLocaleString()} + TAX`,
     billingPeriod: formData.get('billingPeriod')?.toString() || 'Monthly',
     installationFeePkr: Number(formData.get('installationFeePkr')) || 0,
     dataLimit: formData.get('dataLimit')?.toString() || 'Truly Unlimited',

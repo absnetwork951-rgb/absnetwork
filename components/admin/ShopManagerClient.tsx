@@ -146,16 +146,14 @@ export default function ShopManagerClient({
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl sm:text-2xl font-light text-slate-900">
-            <span className="font-bold">Shop Products</span> Catalog
-          </h2>
-          <p className="text-xs text-slate-500">Manage fiber optic cables, routers, switches, and networking equipment</p>
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="space-y-1.5">
+          <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Shop Products</h2>
+          <p className="text-sm text-slate-500">Manage fiber optic cables, routers, switches, and networking equipment</p>
         </div>
-        <button onClick={handleOpenCreate} className="px-4 py-2.5 font-bold text-xs uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 flex items-center gap-1.5 shadow-sm transition-colors rounded-xl">
-          <Plus className="w-4 h-4" />
-          <span>Add Product</span>
+        <button onClick={handleOpenCreate} className="btn-primary btn-sm shrink-0">
+          <Plus className="w-3.5 h-3.5" />
+          Add Product
         </button>
       </div>
 
@@ -170,7 +168,7 @@ export default function ShopManagerClient({
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-slate-200 text-slate-600 uppercase font-mono font-bold text-[10px] bg-slate-50/70">
+              <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
                 <th className="p-4">Product</th>
                 <th className="p-4">Category</th>
                 <th className="p-4">Brand / Model</th>
@@ -338,7 +336,7 @@ export default function ShopManagerClient({
                   <div className="flex gap-2">
                     <input type="text" value={newKey} onChange={(e) => setNewKey(e.target.value)} placeholder="Spec Key" className="w-1/3 px-3 py-2 bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-xl" />
                     <input type="text" value={newVal} onChange={(e) => setNewVal(e.target.value)} placeholder="Value" className="flex-1 px-3 py-2 bg-slate-50 border border-slate-300 text-slate-900 text-xs rounded-xl" />
-                    <button type="button" onClick={handleAddSpec} className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold uppercase rounded-xl">Add</button>
+                    <button type="button" onClick={handleAddSpec} className="btn-secondary btn-sm shrink-0">Add</button>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
                     {specKeys.map((s, i) => (
@@ -355,7 +353,7 @@ export default function ShopManagerClient({
                   <label className="text-xs font-semibold text-slate-700">Product Image URLs</label>
                   <div className="flex gap-2">
                     <input type="url" value={newImgUrl} onChange={(e) => setNewImgUrl(e.target.value)} placeholder="Image URL" className="flex-1 px-3.5 py-2 bg-slate-50 border border-slate-300 text-slate-900 text-xs font-mono rounded-xl" />
-                    <button type="button" onClick={handleAddImage} className="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-bold uppercase rounded-xl">Add</button>
+                    <button type="button" onClick={handleAddImage} className="btn-secondary btn-sm shrink-0">Add</button>
                   </div>
                   <div className="flex flex-wrap gap-2 pt-1">
                     {imagesList.map((img, i) => (
@@ -382,10 +380,10 @@ export default function ShopManagerClient({
               </div>
 
               <div className="pt-4 border-t border-slate-200 flex justify-end gap-3">
-                <button type="button" onClick={() => setModalOpen(false)} className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 border border-slate-200 rounded-xl">Cancel</button>
-                <button type="submit" disabled={loading} className="px-6 py-2 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 flex items-center gap-1.5 shadow-sm rounded-xl">
-                  {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-                  <span>{editingProd ? 'Update Product' : 'Save Product'}</span>
+                <button type="button" onClick={() => setModalOpen(false)} className="btn-ghost">Cancel</button>
+                <button type="submit" disabled={loading} className="btn-primary">
+                  {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                  {editingProd ? 'Update Product' : 'Save Product'}
                 </button>
               </div>
             </form>

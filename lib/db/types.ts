@@ -36,6 +36,8 @@ export interface BroadbandPackage {
   speedMbps: number;
   uploadSpeedMbps?: number;
   pricePkr: number;
+  priceType?: 'fixed' | 'contact';
+  priceLabel?: string;
   billingPeriod: string;
   installationFeePkr: number;
   dataLimit: string;

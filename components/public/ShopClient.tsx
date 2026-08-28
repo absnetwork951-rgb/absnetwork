@@ -5,7 +5,9 @@ import {
   Search,
   X,
   Network,
-  ArrowUpDown,
+  ShieldCheck,
+  ClipboardCheck,
+  Truck,
 } from 'lucide-react';
 import { ShopProduct, SiteSettings } from '@/lib/db/types';
 import ShopProductCard from './ShopProductCard';
@@ -73,6 +75,19 @@ export default function ShopClient({
       return a.displayOrder - b.displayOrder;
     });
 
+  const isFiltering =
+    searchTerm.trim() !== '' ||
+    selectedCategory !== 'all' ||
+    selectedBrand !== 'all' ||
+    stockOnly;
+
+  const resetFilters = () => {
+    setSearchTerm('');
+    setSelectedCategory('all');
+    setSelectedBrand('all');
+    setStockOnly(false);
+  };
+
   const handleToggleCompare = (product: ShopProduct) => {
     if (compareList.some((p) => p.id === product.id)) {
       setCompareList(compareList.filter((p) => p.id !== product.id));
@@ -87,9 +102,9 @@ export default function ShopClient({
   };
 
   return (
-    <div className="space-y-16">
-      <div className="bg-white border border-slate-200/90 rounded-2xl p-6 shadow-xs space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+    <div className="space-y-12">
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-5 sm:p-6 shadow-xs space-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
           <div className="md:col-span-6 relative">
             <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" />
             <input
@@ -97,10 +112,15 @@ export default function ShopClient({
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="Search fiber optic cables, routers, switches, patch panels..."
-              className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs placeholder:text-slate-400 focus:outline-none focus:border-blue-600 transition-colors"
+              aria-label="Search products"
+              className="input-base pl-11"
             />
             {searchTerm && (
-              <button onClick={() => setSearchTerm('')} className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-700">
+              <button
+                onClick={() => setSearchTerm('')}
+                className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded-lg text-slate-400 hover:text-slate-700"
+                aria-label="Clear search"
+              >
                 <X className="w-4 h-4" />
               </button>
             )}
@@ -110,9 +130,10 @@ export default function ShopClient({
             <select
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-blue-600 capitalize"
+              aria-label="Filter by brand"
+              className="input-base capitalize"
             >
-              <option value="all">All Brands ({brands.length - 1})</option>
+              <option value="all">All Brands</option>
               {brands.filter((b) => b !== 'all').map((b) => (
                 <option key={b} value={b}>{b}</option>
               ))}
@@ -123,7 +144,8 @@ export default function ShopClient({
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:outline-none focus:border-blue-600"
+              aria-label="Sort products"
+              className="input-base"
             >
               <option value="featured">Featured & Recommended</option>
               <option value="price_asc">Price: Low to High</option>
@@ -138,7 +160,8 @@ export default function ShopClient({
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all ${
+                aria-pressed={selectedCategory === cat.id}
+                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
                   selectedCategory === cat.id
                     ? 'bg-blue-600 text-white shadow-sm border border-blue-500'
                     : 'bg-slate-50 text-slate-600 hover:text-slate-900 border border-slate-200 hover:border-slate-300'
@@ -149,7 +172,7 @@ export default function ShopClient({
             ))}
           </div>
 
-          <label className="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer select-none">
+          <label className="flex items-center gap-2 text-sm font-medium text-slate-700 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={stockOnly}
@@ -162,71 +185,88 @@ export default function ShopClient({
       </div>
 
       {compareList.length > 0 && (
-        <div className="fixed bottom-6 right-6 z-40 bg-white border-2 border-blue-600 text-slate-900 p-4 rounded-2xl shadow-xl flex items-center gap-4 animate-in slide-in-from-bottom duration-300">
+        <div className="fixed bottom-6 right-6 z-40 bg-white border border-slate-200 shadow-xl p-4 rounded-2xl flex items-center gap-4">
           <div className="flex items-center gap-2">
             <span className="w-6 h-6 rounded-full bg-blue-600 text-white text-xs font-black flex items-center justify-center">
               {compareList.length}
             </span>
-            <span className="text-xs font-bold">Selected for Spec Comparison</span>
+            <span className="text-sm font-semibold text-slate-900">Selected for Comparison</span>
           </div>
-          <button onClick={() => setShowCompareModal(true)} className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 shadow-sm rounded-xl">
-            Compare Specs Side-by-Side
+          <button onClick={() => setShowCompareModal(true)} className="btn-primary btn-sm">
+            Compare Specs
           </button>
-          <button onClick={() => setCompareList([])} className="p-1 text-slate-400 hover:text-slate-700" title="Clear comparison list">
+          <button
+            onClick={() => setCompareList([])}
+            className="p-1 rounded-lg text-slate-400 hover:text-slate-700"
+            aria-label="Clear comparison list"
+          >
             <X className="w-4 h-4" />
           </button>
         </div>
       )}
 
-      {filteredProducts.length === 0 ? (
+      {initialProducts.length === 0 ? (
         <div className="p-16 text-center bg-white border border-slate-200/90 rounded-2xl space-y-4 shadow-xs">
           <Network className="w-12 h-12 text-slate-400 mx-auto" />
-          <h3 className="text-xl font-bold text-slate-900">No networking equipment found</h3>
-          <p className="text-xs text-slate-500">Try modifying your search keywords or switching category filters.</p>
-          <button
-            onClick={() => { setSearchTerm(''); setSelectedCategory('all'); setSelectedBrand('all'); setStockOnly(false); }}
-            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow-xs"
-          >
+          <h3 className="text-xl font-bold text-slate-900">Shop catalog is being stocked</h3>
+          <p className="text-sm text-slate-500 max-w-md mx-auto">
+            Our networking equipment range is being added. Please check back soon or contact us directly for availability.
+          </p>
+        </div>
+      ) : filteredProducts.length === 0 ? (
+        <div className="p-16 text-center bg-white border border-slate-200/90 rounded-2xl space-y-4 shadow-xs">
+          <Search className="w-12 h-12 text-slate-400 mx-auto" />
+          <h3 className="text-xl font-bold text-slate-900">No products match your filters</h3>
+          <p className="text-sm text-slate-500">Try different keywords or clear some filters.</p>
+          <button onClick={resetFilters} className="btn-secondary">
             Reset All Filters
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((prod) => (
-            <ShopProductCard
-              key={prod.id}
-              product={prod}
-              onViewDetails={(p) => setActiveDetailProduct(p)}
-              onInquire={(p) => setActiveInquiryProduct(p)}
-              onToggleCompare={handleToggleCompare}
-              isCompared={compareList.some((c) => c.id === prod.id)}
-            />
-          ))}
+        <div className="space-y-6">
+          <p className="text-sm text-slate-500" role="status">
+            Showing {filteredProducts.length} of {initialProducts.length} products
+            {isFiltering && (
+              <button onClick={resetFilters} className="ml-2 text-blue-600 hover:text-blue-700 font-semibold">
+                Clear filters
+              </button>
+            )}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProducts.map((prod) => (
+              <ShopProductCard
+                key={prod.id}
+                product={prod}
+                onViewDetails={(p) => setActiveDetailProduct(p)}
+                onInquire={(p) => setActiveInquiryProduct(p)}
+                onToggleCompare={handleToggleCompare}
+                isCompared={compareList.some((c) => c.id === prod.id)}
+              />
+            ))}
+          </div>
         </div>
       )}
 
       <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 sm:p-12 shadow-xs space-y-10">
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <span className="text-[11px] font-mono uppercase font-bold text-blue-600 tracking-wider bg-blue-100 px-3 py-1 rounded-full border border-blue-300">
-            Why Shop with ABS Network
-          </span>
-          <h3 className="text-2xl sm:text-3xl font-light text-slate-900">
-            Quality Networking <span className="font-black text-blue-600">Equipment &amp; Expert Support</span>
+          <span className="eyebrow">Why Shop with ABS Network</span>
+          <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
+            Quality Equipment, <span className="text-blue-600">Expert Support</span>
           </h3>
-          <p className="text-xs sm:text-sm text-slate-600">
+          <p className="text-sm sm:text-base text-slate-600">
             Professional-grade fiber optic, routing, and switching equipment sourced from certified distributors with full manufacturer warranty.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { num: '01', title: 'Certified Hardware', desc: 'All products sourced from authorized distributors with full manufacturer warranty and documentation.' },
-            { num: '02', title: 'Technical Consulting', desc: 'Our network engineers help you select the right equipment for your infrastructure requirements.' },
-            { num: '03', title: 'Nationwide Delivery', desc: 'Fast delivery across Pakistan with optional on-site installation and configuration support.' },
+            { icon: ShieldCheck, title: 'Certified Hardware', desc: 'All products sourced from authorized distributors with full manufacturer warranty and documentation.' },
+            { icon: ClipboardCheck, title: 'Technical Consulting', desc: 'Our network engineers help you select the right equipment for your infrastructure requirements.' },
+            { icon: Truck, title: 'Nationwide Delivery', desc: 'Fast delivery across Pakistan with optional on-site installation and configuration support.' },
           ].map((item) => (
-            <div key={item.num} className="p-6 bg-white border border-slate-200 rounded-2xl space-y-2 text-center shadow-xs">
-              <div className="w-10 h-10 bg-blue-50 text-blue-600 font-mono font-bold text-sm flex items-center justify-center mx-auto rounded-xl">
-                {item.num}
+            <div key={item.title} className="p-6 bg-white border border-slate-200 rounded-2xl space-y-3 text-center shadow-xs">
+              <div className="w-10 h-10 bg-blue-50 text-blue-600 flex items-center justify-center mx-auto rounded-xl">
+                <item.icon className="w-5 h-5" />
               </div>
               <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
               <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>

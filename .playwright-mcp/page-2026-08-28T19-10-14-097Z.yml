@@ -1,0 +1,277 @@
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: Network Operational
+      - generic [ref=e8]:
+        - link "+92 51 8899200" [ref=e9] [cursor=pointer]:
+          - /url: tel:+92518899200
+        - link "Admin" [ref=e13] [cursor=pointer]:
+          - /url: /admin/login
+    - generic [ref=e19]:
+      - link "ABS Broadband Fiber · Networks · Equipment" [ref=e20] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e24]:
+          - generic [ref=e25]: ABS Broadband
+          - generic [ref=e26]: Fiber · Networks · Equipment
+      - navigation "Main navigation" [ref=e27]:
+        - link "Home" [ref=e28] [cursor=pointer]:
+          - /url: /
+        - link "Packages" [ref=e31] [cursor=pointer]:
+          - /url: /packages
+        - link "Shop" [ref=e33] [cursor=pointer]:
+          - /url: /shop
+        - link "Contact" [ref=e35] [cursor=pointer]:
+          - /url: /contact
+      - generic [ref=e37]:
+        - link "Shop Equipment" [ref=e38] [cursor=pointer]:
+          - /url: /shop
+        - link "Check Availability" [ref=e45] [cursor=pointer]:
+          - /url: /contact
+  - main [ref=e49]:
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: Next-Gen Fiber Network • ABS Network Broadband SMCVP Pvt Ltd
+        - heading "Fast, Reliable Fiber Internet For Everyone" [level=1] [ref=e60]
+        - paragraph [ref=e61]: Experience ultra-high-speed fiber broadband engineered for modern homes and demanding enterprises. Buffer-free streaming, low-latency gaming, and rock-solid reliability backed by 24/7 dedicated support.
+        - generic [ref=e62]:
+          - link "Get Started" [ref=e63] [cursor=pointer]:
+            - /url: /packages
+          - link "Explore Packages" [ref=e67] [cursor=pointer]:
+            - /url: /packages
+        - generic [ref=e71]:
+          - generic [ref=e76]:
+            - paragraph [ref=e77]: High Speed
+            - paragraph [ref=e78]: Lightning fast internet
+          - generic [ref=e84]:
+            - paragraph [ref=e85]: Reliable
+            - paragraph [ref=e86]: Stable connectivity
+          - generic [ref=e91]:
+            - paragraph [ref=e92]: 24/7 Support
+            - paragraph [ref=e93]: We're always here
+      - img "Modern fiber optic Wi-Fi router for high-speed broadband internet" [ref=e96]
+    - generic [ref=e99]:
+      - generic [ref=e100]:
+        - generic [ref=e101]: 850KM
+        - generic [ref=e102]: Fiber Network
+      - generic [ref=e103]:
+        - generic [ref=e104]: 28,500+
+        - generic [ref=e105]: Subscribers
+      - generic [ref=e106]:
+        - generic [ref=e107]: 99.98%
+        - generic [ref=e108]: Network Uptime
+      - generic [ref=e109]:
+        - generic [ref=e110]: 24/7
+        - generic [ref=e111]: Support
+    - generic [ref=e113]:
+      - generic [ref=e114]:
+        - generic [ref=e115]: Pure Optical Fiber
+        - heading "Engineered for zero downtime and absolute symmetrical speed" [level=2] [ref=e117]
+        - paragraph [ref=e118]: ABS Network unites pure optical GPON to the premises with dedicated BGP routing and local NOC peering.
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - heading "Direct 100% Optical Fiber" [level=3] [ref=e126]
+          - paragraph [ref=e127]: Pure optical fiber straight to your living room or server rack, delivering true symmetric speeds with zero throttling.
+          - list [ref=e128]:
+            - listitem [ref=e129]:
+              - generic [ref=e131]: Equal 1:1 upload & download bandwidth
+            - listitem [ref=e132]:
+              - generic [ref=e134]: No fair usage policy (FUP) throttling
+        - generic [ref=e135]:
+          - heading "Low-Latency Gaming & Enterprise Peering" [level=3] [ref=e139]
+          - paragraph [ref=e140]: Direct peering with major exchange points and platforms provides dependable response times for competitive gaming and business traffic.
+          - list [ref=e141]:
+            - listitem [ref=e142]:
+              - generic [ref=e144]: Bufferbloat elimination on game routes
+            - listitem [ref=e145]:
+              - generic [ref=e147]: Dual-stack IPv4 & IPv6 routing
+    - generic [ref=e150]:
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - generic [ref=e153]: Featured Fiber Plans
+          - heading "Transparent pricing, symmetrical speed" [level=2] [ref=e155]
+          - paragraph [ref=e156]: Choose the ideal fiber package for seamless streaming, competitive gaming, remote work, or enterprise offices.
+        - link "View All 8 Packages" [ref=e157] [cursor=pointer]:
+          - /url: /packages
+      - generic [ref=e161]:
+        - generic [ref=e163]:
+          - generic [ref=e164]:
+            - generic [ref=e165]: Home Fiber
+            - generic [ref=e166]: 1:1 Symmetric
+          - generic [ref=e168]:
+            - heading "ABS Home Fiber 15" [level=3] [ref=e169]
+            - paragraph [ref=e170]: Dedicated optical fiber with 24/7 prioritized carrier routing
+          - generic [ref=e171]:
+            - generic [ref=e172]: "15"
+            - generic [ref=e173]: Mbps
+            - generic [ref=e174]: 15 Mbps Upload
+          - generic [ref=e175]: Unlimited Speed from 2am to 10am
+          - paragraph [ref=e180]: PKR 1,999 + TAX/monthly
+          - generic [ref=e181]:
+            - generic [ref=e182]: Truly Unlimited DATA
+            - generic [ref=e183]: •
+            - generic [ref=e184]: FREE SETUP INCLUDED WITH PLAN
+          - list [ref=e185]:
+            - listitem [ref=e186]:
+              - generic [ref=e190]: 15 Mbps Symmetric Fiber Speed
+            - listitem [ref=e191]:
+              - generic [ref=e195]: Unlimited High-Speed Data (No FUP)
+            - listitem [ref=e196]:
+              - generic [ref=e200]: Dual-Band Wi-Fi 5 Gigabit Router Included
+            - listitem [ref=e201]:
+              - generic [ref=e205]: Free Optical Fiber Installation
+            - listitem [ref=e206]:
+              - generic [ref=e210]: 24/7 Helpdesk Support
+            - listitem [ref=e211]:
+              - generic [ref=e217]: Dual-Band AC1200 Gigabit ONT
+          - link "Subscribe to ABS Home Fiber 15" [ref=e219] [cursor=pointer]:
+            - /url: /contact?package=ABS%20Home%20Fiber%2015&type=new_connection
+        - generic [ref=e224]:
+          - generic [ref=e225]:
+            - generic [ref=e226]: Home Fiber
+            - generic [ref=e227]: 1:1 Symmetric
+          - generic [ref=e229]:
+            - heading "ABS Starter Fiber" [level=3] [ref=e230]
+            - paragraph [ref=e231]: Dedicated optical fiber with 24/7 prioritized carrier routing
+          - generic [ref=e232]:
+            - generic [ref=e233]: "20"
+            - generic [ref=e234]: Mbps
+            - generic [ref=e235]: 20 Mbps Upload
+          - generic [ref=e236]: Unlimited Speed from 2am to 10am
+          - paragraph [ref=e241]: PKR 2,499 + TAX/monthly
+          - generic [ref=e242]:
+            - generic [ref=e243]: Truly Unlimited DATA
+            - generic [ref=e244]: •
+            - generic [ref=e245]: FREE SETUP INCLUDED WITH PLAN
+          - list [ref=e246]:
+            - listitem [ref=e247]:
+              - generic [ref=e251]: 20 Mbps Symmetric Fiber Speed
+            - listitem [ref=e252]:
+              - generic [ref=e256]: Unlimited High-Speed Data (No FUP)
+            - listitem [ref=e257]:
+              - generic [ref=e261]: Optimized for HD Streaming & Browsing
+            - listitem [ref=e262]:
+              - generic [ref=e266]: Free Optical Fiber Installation
+            - listitem [ref=e267]:
+              - generic [ref=e271]: 24/7 Helpdesk Support
+            - listitem [ref=e272]:
+              - generic [ref=e278]: Dual-Band AC1200 Gigabit ONT
+          - link "Subscribe to ABS Starter Fiber" [ref=e280] [cursor=pointer]:
+            - /url: /contact?package=ABS%20Starter%20Fiber&type=new_connection
+        - generic [ref=e284]:
+          - generic [ref=e285]: ★ Most Popular Fiber
+          - generic [ref=e286]:
+            - generic [ref=e287]:
+              - generic [ref=e288]: Home Fiber
+              - generic [ref=e289]: 1:1 Symmetric
+            - generic [ref=e291]:
+              - heading "ABS Turbo Stream" [level=3] [ref=e292]
+              - paragraph [ref=e293]: Dedicated optical fiber with 24/7 prioritized carrier routing
+            - generic [ref=e294]:
+              - generic [ref=e295]: "30"
+              - generic [ref=e296]: Mbps
+              - generic [ref=e297]: 30 Mbps Upload
+            - generic [ref=e298]: Unlimited Speed from 2am to 10am
+            - paragraph [ref=e303]: PKR 3,499 + TAX/monthly
+            - generic [ref=e304]:
+              - generic [ref=e305]: Truly Unlimited DATA
+              - generic [ref=e306]: •
+              - generic [ref=e307]: FREE SETUP INCLUDED WITH PLAN
+            - list [ref=e308]:
+              - listitem [ref=e309]:
+                - generic [ref=e313]: 30 Mbps Symmetric Fiber Speed
+              - listitem [ref=e314]:
+                - generic [ref=e318]: Uncapped 4K Ultra-HD Streaming
+              - listitem [ref=e319]:
+                - generic [ref=e323]: Dual-Band Wi-Fi 5 Gigabit Gateway
+              - listitem [ref=e324]:
+                - generic [ref=e328]: Priority Routing for Zoom & Teams
+              - listitem [ref=e329]:
+                - generic [ref=e333]: Round-the-Clock Priority Phone Support
+              - listitem [ref=e334]:
+                - generic [ref=e340]: Dual-Band High-Gain Gigabit Optical Gateway
+            - link "Subscribe to ABS Turbo Stream" [ref=e342] [cursor=pointer]:
+              - /url: /contact?package=ABS%20Turbo%20Stream&type=new_connection
+    - generic [ref=e349]:
+      - generic [ref=e350]:
+        - generic [ref=e351]: Business & Enterprise
+        - heading "Need dedicated 1:1 bandwidth for your organization?" [level=2] [ref=e353]
+        - paragraph [ref=e354]: Get custom optical ring pulls, multiple static IP pools, dual-homed BGP routing, and dedicated account engineers backed by a contractual SLA.
+        - generic [ref=e355]:
+          - generic [ref=e356]: 99.99% uptime SLA
+          - generic [ref=e360]: Dedicated NOC lead
+      - generic [ref=e363]:
+        - link "Request Proposal" [ref=e364] [cursor=pointer]:
+          - /url: /contact?type=sales&subject=Enterprise%20Dedicated%20Leased%20Line%20Proposal
+        - link "+92 51 8899200" [ref=e368] [cursor=pointer]:
+          - /url: tel:+92518899200
+  - contentinfo [ref=e372]:
+    - generic [ref=e373]:
+      - generic [ref=e375]:
+        - generic [ref=e376]:
+          - heading "Need networking equipment?" [level=3] [ref=e377]
+          - paragraph [ref=e378]: Browse our shop for professional-grade fiber optic cables, routers, switches, and networking hardware. Expert technical support included with every order.
+        - generic [ref=e379]:
+          - link "Get Connected" [ref=e380] [cursor=pointer]:
+            - /url: /contact
+          - link "Visit Shop" [ref=e385] [cursor=pointer]:
+            - /url: /shop
+      - generic [ref=e392]:
+        - generic [ref=e393]:
+          - link "ABS.NETWORK Broadband SMCVP Pvt Ltd" [ref=e394] [cursor=pointer]:
+            - /url: /
+            - generic [ref=e398]:
+              - generic [ref=e399]: ABS.NETWORK
+              - generic [ref=e400]: Broadband SMCVP Pvt Ltd
+          - paragraph [ref=e401]: ABS Network Broadband SMCVP Pvt Ltd is a licensed high-speed ISP and digital infrastructure provider committed to uninterrupted connectivity and professional networking solutions.
+        - generic [ref=e402]:
+          - heading "Navigation" [level=4] [ref=e403]
+          - list [ref=e404]:
+            - listitem [ref=e405]:
+              - link "Home" [ref=e406] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e407]:
+              - link "Broadband Packages" [ref=e408] [cursor=pointer]:
+                - /url: /packages
+            - listitem [ref=e409]:
+              - link "Shop" [ref=e410] [cursor=pointer]:
+                - /url: /shop
+            - listitem [ref=e411]:
+              - link "Contact & Support" [ref=e412] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e413]:
+          - heading "Services" [level=4] [ref=e414]
+          - list [ref=e415]:
+            - listitem [ref=e416]:
+              - link "Gigabit GPON FTTH" [ref=e417] [cursor=pointer]:
+                - /url: /packages
+            - listitem [ref=e418]:
+              - link "Gaming Low-Latency" [ref=e419] [cursor=pointer]:
+                - /url: /packages
+            - listitem [ref=e420]:
+              - link "Business & DIA" [ref=e421] [cursor=pointer]:
+                - /url: /packages
+            - listitem [ref=e422]:
+              - link "Network Equipment Shop" [ref=e423] [cursor=pointer]:
+                - /url: /shop
+            - listitem [ref=e424]:
+              - link "NOC Engineer Portal" [ref=e425] [cursor=pointer]:
+                - /url: /admin/login
+        - generic [ref=e426]:
+          - heading "NOC Helpdesk" [level=4] [ref=e427]
+          - list [ref=e428]:
+            - listitem [ref=e429]:
+              - generic [ref=e433]: Plot 42-B, Commercial Avenue, Sector G-11/3, Islamabad, Pakistan
+            - listitem [ref=e434]:
+              - link "+92 51 8899200" [ref=e437] [cursor=pointer]:
+                - /url: tel:+92518899200
+            - listitem [ref=e438]:
+              - link "support@absnetwork.pk" [ref=e442] [cursor=pointer]:
+                - /url: mailto:support@absnetwork.pk
+            - listitem [ref=e443]:
+              - generic [ref=e447]: 24/7 NOC Monitoring
+      - generic [ref=e448]:
+        - paragraph [ref=e449]: © 2026 ABS Network Broadband SMCVP Pvt Ltd. All rights reserved.
+        - generic [ref=e450]:
+          - generic [ref=e451]: "Registration #SMCVP-PVT-LTD-98421"
+          - link "Admin Login" [ref=e452] [cursor=pointer]:
+            - /url: /admin/login

@@ -88,6 +88,42 @@ export function getDatabase(): DatabaseSchema {
       parsed.settings.statsShopProductCount = parsed.shopProducts?.length || 0;
     }
 
+    // ---- Package catalog & pricing migration ---------------------------
+    // Replaces the legacy seed package set with the official 8-tier catalog,
+    // and backfills priceType/priceLabel for any packages that predate them.
+    const LEGACY_SEED_PACKAGE_IDS = [
+      'pkg_fiber_20',
+      'pkg_fiber_40',
+      'pkg_fiber_75',
+      'pkg_fiber_150',
+      'pkg_biz_100',
+      'pkg_biz_300',
+    ];
+    const hasLegacySeedPackages =
+      Array.isArray(parsed.packages) &&
+      parsed.packages.some((p) => LEGACY_SEED_PACKAGE_IDS.includes(p.id));
+
+    if (hasLegacySeedPackages) {
+      parsed.packages = getInitialSeedData().packages;
+    }
+
+    parsed.packages = (parsed.packages || []).map((p) => {
+      if (p.priceType) return p;
+      if (!p.pricePkr || p.speedMbps >= 200) {
+        return {
+          ...p,
+          priceType: 'contact' as const,
+          pricePkr: 0,
+          priceLabel: 'Please contact us for rates.',
+        };
+      }
+      return {
+        ...p,
+        priceType: 'fixed' as const,
+        priceLabel: `PKR ${p.pricePkr.toLocaleString()} + TAX`,
+      };
+    });
+
     cachedDb = parsed;
     return parsed;
   } catch (error) {

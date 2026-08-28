@@ -54,11 +54,9 @@ export default function SettingsManagerClient({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h2 className="text-xl sm:text-2xl font-light text-slate-900">
-          <span className="font-bold">Global Portal</span> Configuration
-        </h2>
-        <p className="text-xs text-slate-500 font-mono">Corporate brand details, hotlines, addresses, statistics counters, and social media</p>
+      <div className="space-y-1.5">
+        <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Site Settings</h2>
+        <p className="text-sm text-slate-500">Corporate brand details, hotlines, addresses, statistics counters, and social media</p>
       </div>
 
       {notification && (
@@ -275,17 +273,17 @@ export default function SettingsManagerClient({
           <button
             type="submit"
             disabled={loading}
-            className="px-8 py-3.5 font-bold text-xs uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 disabled:opacity-50 flex items-center gap-2 shadow-sm transition-all rounded-xl"
+            className="btn-primary"
           >
             {loading ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
-                <span>Saving Portal Changes...</span>
+                Saving changes...
               </>
             ) : (
               <>
                 <Save className="w-4 h-4" />
-                <span>Save All Site Configurations</span>
+                Save All Site Configurations
               </>
             )}
           </button>
