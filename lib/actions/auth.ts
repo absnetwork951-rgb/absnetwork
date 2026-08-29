@@ -37,7 +37,14 @@ export async function loginAction(
       };
     }
 
-    return { success: true };
+    // Server-side redirect after the session cookies were set. Redirecting here
+    // (rather than returning and letting the client do a window.location.replace)
+    // ensures the browser applies the session Set-Cookie before following the
+    // redirect, so the first authenticated navigation carries the cookie and the
+    // middleware/page guards accept it. This avoids a login race in which the
+    // client-side navigation fires before the cookie is committed, bouncing the
+    // user back to /admin/login (and, with the middleware, a redirect loop).
+    redirect('/admin/dashboard');
   } catch (error) {
     // Never leak internals; surface a safe, generic message instead.
     console.error('Login action error:', error);

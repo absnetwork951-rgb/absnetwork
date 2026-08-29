@@ -22,33 +22,84 @@
     "statsFiberCoverageKm": 850,
     "statsActiveSubscribers": 28500,
     "statsUptimeGuarantee": "99.98%",
-    "statsShopProductCount": 8,
-    "updatedAt": "2026-08-26T19:36:53.323Z"
+    "statsShopProductCount": 0,
+    "updatedAt": "2026-08-29T18:53:08.893Z"
   },
   "users": [
     {
       "id": "usr_admin_01",
       "name": "System Super Admin",
       "email": "admin@absnetwork.pk",
-      "passwordHash": "$2b$10$sEjpgCbOoLTB.SpYLQFzze4JuWL4BdnZ8YBA4kcq4k0VXctcgjrXa",
+      "passwordHash": "$2b$10$6oI8NE.bMej0VZKKzSDlM.335Map72N/qjCRL6TiVdL0qJ0eCgH6C",
       "role": "SUPER_ADMIN",
       "isActive": true,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z",
+      "lastLoginAt": "2026-08-29T18:53:09.187Z"
+    },
+    {
+      "id": "usr_sales_01",
+      "name": "Tariq Mehmood",
+      "email": "sales@absnetwork.pk",
+      "passwordHash": "$2b$10$6oI8NE.bMej0VZKKzSDlM.335Map72N/qjCRL6TiVdL0qJ0eCgH6C",
+      "role": "SALES_MANAGER",
+      "isActive": true,
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
+    },
+    {
+      "id": "usr_support_01",
+      "name": "Zainab Fatima",
+      "email": "support@absnetwork.pk",
+      "passwordHash": "$2b$10$6oI8NE.bMej0VZKKzSDlM.335Map72N/qjCRL6TiVdL0qJ0eCgH6C",
+      "role": "SUPPORT_AGENT",
+      "isActive": true,
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
+    },
+    {
+      "id": "usr_content_01",
+      "name": "Bilal Khan",
+      "email": "content@absnetwork.pk",
+      "passwordHash": "$2b$10$6oI8NE.bMej0VZKKzSDlM.335Map72N/qjCRL6TiVdL0qJ0eCgH6C",
+      "role": "CONTENT_MANAGER",
+      "isActive": true,
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
+    },
+    {
+      "id": "usr_security_01",
+      "name": "Hamza Farooq",
+      "email": "security@absnetwork.pk",
+      "passwordHash": "$2b$10$6oI8NE.bMej0VZKKzSDlM.335Map72N/qjCRL6TiVdL0qJ0eCgH6C",
+      "role": "SECURITY_AUDITOR",
+      "isActive": true,
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "usr_supabase_super_01",
       "name": "absnetwork951",
       "email": "absnetwork951@gmail.com",
-      "passwordHash": "$2b$10$876JR/LjKiegV3mM7ZJWyO5fAS3yE2LbtQ0mQny1kXrMlirZUoLiu",
+      "passwordHash": "$2b$10$0ylh9y/mYX20w1Xp2.k7QeSnz.F38NcmXVdnZnkHFuObJ9AyWOAGW",
       "role": "SUPER_ADMIN",
       "isActive": true,
       "authUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
-      "createdAt": "2026-08-28T23:36:41.780Z",
-      "updatedAt": "2026-08-28T23:36:41.780Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     }
   ],
-  "sessions": [],
+  "sessions": [
+    {
+      "id": "sid_1788029589187_e86ce436d503",
+      "userId": "usr_admin_01",
+      "token": "sess_f79138f4ffccb5ea7064713ad781af6d0a60fbcecb54c251a7fa1c16556b9a28",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-05T18:53:09.187Z",
+      "createdAt": "2026-08-29T18:53:09.187Z"
+    }
+  ],
   "packages": [
     {
       "id": "pkg_fiber_15",
@@ -75,8 +126,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 1,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "pkg_fiber_20",
@@ -103,8 +154,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 2,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "pkg_fiber_30",
@@ -131,8 +182,8 @@
       "isPopular": true,
       "isActive": true,
       "displayOrder": 3,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "pkg_fiber_50",
@@ -150,7 +201,7 @@
       "features": [
         "50 Mbps Ultra-Low Latency Fiber",
         "Direct BGP Peering to Steam & Discord",
-        "Dual-Band Wi-Fi 5 Gigabit Router Included",
+        "Wi-Fi 6 AX3000 Router Included",
         "Bufferbloat Grade-A Gaming Optimization",
         "24/7 Gaming Support Desk"
       ],
@@ -159,8 +210,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 4,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "pkg_biz_100",
@@ -187,8 +238,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 5,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "pkg_biz_200",
@@ -215,8 +266,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 6,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "pkg_ent_300",
@@ -243,8 +294,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 7,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "pkg_ent_500",
@@ -271,8 +322,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 8,
-      "createdAt": "2026-08-29T20:23:33.447Z",
-      "updatedAt": "2026-08-29T20:23:33.447Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     }
   ],
   "services": [
@@ -294,8 +345,8 @@
       ],
       "isActive": true,
       "displayOrder": 1,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "srv_leased",
@@ -315,8 +366,8 @@
       ],
       "isActive": true,
       "displayOrder": 2,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "srv_managed_network",
@@ -336,8 +387,8 @@
       ],
       "isActive": true,
       "displayOrder": 3,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "srv_networking_equipment",
@@ -357,8 +408,8 @@
       ],
       "isActive": true,
       "displayOrder": 4,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "srv_digital_web",
@@ -378,8 +429,8 @@
       ],
       "isActive": true,
       "displayOrder": 5,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     },
     {
       "id": "srv_tier3_support",
@@ -399,8 +450,8 @@
       ],
       "isActive": true,
       "displayOrder": 6,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z",
+      "updatedAt": "2026-08-29T18:53:08.893Z"
     }
   ],
   "shopProducts": [],
@@ -416,8 +467,8 @@
       "message": "Hello ABS Network team, I am moving into Sector F-10/2 and need a low-latency fiber connection for work and gaming. Can you verify fiber coverage on Street 14 and quote the earliest installation date?",
       "status": "new",
       "ipAddress": "103.255.4.12",
-      "createdAt": "2026-08-26T15:36:53.325Z",
-      "updatedAt": "2026-08-26T15:36:53.325Z"
+      "createdAt": "2026-08-29T14:53:08.894Z",
+      "updatedAt": "2026-08-29T14:53:08.894Z"
     },
     {
       "id": "sub_002",
@@ -432,8 +483,8 @@
       "assignedToStaff": "Tariq Mehmood",
       "internalNotes": "Contacted client regarding site survey schedule. Proposal to be emailed today.",
       "ipAddress": "110.39.12.88",
-      "createdAt": "2026-08-25T21:36:53.325Z",
-      "updatedAt": "2026-08-26T11:36:53.325Z"
+      "createdAt": "2026-08-28T20:53:08.894Z",
+      "updatedAt": "2026-08-29T10:53:08.894Z"
     },
     {
       "id": "sub_003",
@@ -448,119 +499,24 @@
       "assignedToStaff": "Tariq Mehmood",
       "internalNotes": "Site survey scheduled for Friday 3:00 PM.",
       "ipAddress": "39.40.180.201",
-      "createdAt": "2026-08-24T19:36:53.325Z",
-      "updatedAt": "2026-08-26T01:36:53.325Z"
+      "createdAt": "2026-08-27T18:53:08.894Z",
+      "updatedAt": "2026-08-29T00:53:08.894Z"
     }
   ],
   "shopOrders": [],
   "auditLogs": [
     {
-      "id": "aud_1788035013725_debf9a96e957",
-      "action": "ADMIN_LOGOUT",
-      "entityType": "SupabaseSession",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "details": {},
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:23:33.726Z"
-    },
-    {
-      "id": "aud_1788034914738_5f974b2fb2fc",
-      "action": "ADMIN_DELETED_USER",
-      "entityType": "AdminUser",
-      "entityId": "usr_sales_01",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "details": {
-        "email": "sales@absnetwork.pk",
-        "role": "SALES_MANAGER"
-      },
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:54.744Z"
-    },
-    {
-      "id": "aud_1788034912140_25acfcf33716",
-      "action": "ADMIN_DELETED_USER",
-      "entityType": "AdminUser",
-      "entityId": "usr_support_01",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "details": {
-        "email": "support@absnetwork.pk",
-        "role": "SUPPORT_AGENT"
-      },
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:52.141Z"
-    },
-    {
-      "id": "aud_1788034908525_10139adea464",
-      "action": "ADMIN_DELETED_USER",
-      "entityType": "AdminUser",
-      "entityId": "usr_content_01",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "details": {
-        "email": "content@absnetwork.pk",
-        "role": "CONTENT_MANAGER"
-      },
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:48.526Z"
-    },
-    {
-      "id": "aud_1788034901518_84de5f452ee0",
-      "action": "ADMIN_DELETED_USER",
-      "entityType": "AdminUser",
-      "entityId": "usr_security_01",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "details": {
-        "email": "security@absnetwork.pk",
-        "role": "SECURITY_AUDITOR"
-      },
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:41.519Z"
-    },
-    {
-      "id": "aud_1788034816987_ae04a48c3138",
-      "action": "ADMIN_DELETED_SHOP_ORDER",
-      "entityType": "ShopInquiryOrder",
-      "entityId": "ord_shop_002",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "details": {
-        "orderNumber": "ABS-SHP-2026-002",
-        "customerName": "Noman Hashmi"
-      },
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:20:16.988Z"
-    },
-    {
-      "id": "aud_1788034813414_dcba7f63b861",
-      "action": "ADMIN_DELETED_SHOP_ORDER",
-      "entityType": "ShopInquiryOrder",
-      "entityId": "ord_shop_001",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "details": {
-        "orderNumber": "ABS-SHP-2026-001",
-        "customerName": "Usman Ali Qureshi"
-      },
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:20:13.414Z"
-    },
-    {
-      "id": "aud_1788034667211_e2a615faa260",
+      "id": "aud_1788029589203_8925c53078d4",
       "action": "ADMIN_LOGIN",
-      "entityType": "SupabaseSession",
-      "entityId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788029589187_e86ce436d503",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
       "details": {
-        "role": "SUPER_ADMIN",
-        "provider": "supabase"
+        "role": "SUPER_ADMIN"
       },
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:17:47.212Z"
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-29T18:53:09.203Z"
     },
     {
       "id": "aud_init_01",
@@ -570,106 +526,22 @@
       "userId": "usr_admin_01",
       "userEmail": "admin@absnetwork.pk",
       "details": {
-        "message": "Initialized ABS Network database schema with seed packages, services, shop catalog, and security configuration."
+        "message": "Initialized ABS Network database with fiber & networking shop architecture."
       },
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z"
     }
   ],
   "securityEvents": [
     {
-      "id": "sec_1788035013722_fb411f8a4ce4",
-      "eventType": "LOGOUT",
-      "severity": "INFO",
-      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) logged out.",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "ipAddress": "::1",
-      "metadata": {
-        "provider": "supabase"
-      },
-      "createdAt": "2026-08-29T20:23:33.723Z"
-    },
-    {
-      "id": "sec_1788034914623_ea02e7acb7ae",
-      "eventType": "USER_DELETED",
-      "severity": "CRITICAL",
-      "description": "Admin user sales@absnetwork.pk (SALES_MANAGER) was deleted",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:54.626Z"
-    },
-    {
-      "id": "sec_1788034912136_107f583ffe11",
-      "eventType": "USER_DELETED",
-      "severity": "CRITICAL",
-      "description": "Admin user support@absnetwork.pk (SUPPORT_AGENT) was deleted",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:52.137Z"
-    },
-    {
-      "id": "sec_1788034908522_15beac804a11",
-      "eventType": "USER_DELETED",
-      "severity": "CRITICAL",
-      "description": "Admin user content@absnetwork.pk (CONTENT_MANAGER) was deleted",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:48.523Z"
-    },
-    {
-      "id": "sec_1788034901515_a0ea4c8958f9",
-      "eventType": "USER_DELETED",
-      "severity": "CRITICAL",
-      "description": "Admin user security@absnetwork.pk (SECURITY_AUDITOR) was deleted",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T20:21:41.515Z"
-    },
-    {
-      "id": "sec_1788034667205_163779eb5602",
+      "id": "sec_1788029589196_05c647769102",
       "eventType": "LOGIN_SUCCESS",
       "severity": "INFO",
-      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) signed in via Supabase Auth.",
-      "userId": "usr_supabase_super_01",
-      "userEmail": "absnetwork951@gmail.com",
-      "ipAddress": "::1",
-      "metadata": {
-        "supabaseUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0"
-      },
-      "createdAt": "2026-08-29T20:17:47.206Z"
-    },
-    {
-      "id": "sec_1787962650382_3db4e5d157e0",
-      "eventType": "LOGIN_FAILED",
-      "severity": "WARNING",
-      "description": "Invalid password attempt for account: admin@absnetwork.pk",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
       "userId": "usr_admin_01",
       "userEmail": "admin@absnetwork.pk",
-      "ipAddress": "::1",
-      "createdAt": "2026-08-29T00:17:30.546Z"
-    },
-    {
-      "id": "sec_1787953525034_1cf0328a89b6",
-      "eventType": "LOGIN_FAILED",
-      "severity": "WARNING",
-      "description": "Invalid password attempt for account: admin@absnetwork.pk",
-      "userId": "usr_admin_01",
-      "userEmail": "admin@absnetwork.pk",
-      "ipAddress": "::1",
-      "createdAt": "2026-08-28T21:45:25.036Z"
-    },
-    {
-      "id": "sec_1787862453052_0b6250efdacc",
-      "eventType": "LOGIN_FAILED",
-      "severity": "WARNING",
-      "description": "Failed login attempt for non-existent or disabled account: absnetwork951@gmail.com",
-      "ipAddress": "::ffff:172.30.208.1",
-      "createdAt": "2026-08-27T20:27:33.055Z"
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-29T18:53:09.196Z"
     },
     {
       "id": "sec_001",
@@ -679,7 +551,7 @@
       "userId": "usr_admin_01",
       "userEmail": "admin@absnetwork.pk",
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-08-26T19:36:53.323Z"
+      "createdAt": "2026-08-29T18:53:08.893Z"
     }
   ]
 }

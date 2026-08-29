@@ -4,91 +4,100 @@
     "shortName": "ABS Network",
     "legalRegistration": "SMCVP-PVT-LTD-98421",
     "tagline": "Ultra-Fast Fiber Broadband & Professional Networking Solutions",
-    "phone": "+92 51 8899200",
-    "supportPhone": "+92 51 8899201",
-    "whatsapp": "+92 300 8599200",
-    "email": "info@absnetwork.pk",
-    "salesEmail": "sales@absnetwork.pk",
-    "supportEmail": "support@absnetwork.pk",
-    "address": "Plot 42-B, Commercial Avenue, Sector G-11/3, Islamabad, Pakistan",
-    "city": "Islamabad",
+    "phone": "+92 3224180930",
+    "supportPhone": "+92 3224180930",
+    "whatsapp": "+92 3224180930",
+    "email": "info@absnetwork.com.pk",
+    "salesEmail": "info@absnetwork.com.pk",
+    "supportEmail": "info@absnetwork.com.pk",
+    "address": "Office 36, ST Main Nisbet Road Lahore",
+    "city": "Lahore",
     "businessHours": "24/7 Support | Sales: Mon - Sat (9:00 AM - 8:00 PM)",
-    "facebookUrl": "https://facebook.com/absnetworkpk",
-    "instagramUrl": "https://instagram.com/absnetworkpk",
-    "linkedinUrl": "https://linkedin.com/company/abs-network-broadband",
-    "twitterUrl": "https://twitter.com/absnetworkpk",
+    "facebookUrl": "https://www.facebook.com/absnetworksolution54",
+    "instagramUrl": "https://www.instagram.com/absnetwork",
     "heroHeadline": "Fast, Reliable Fiber Internet For Everyone",
-    "heroSubheadline": "Experience ultra-high-speed fiber broadband engineered for modern homes and demanding enterprises. Buffer-free streaming, low-latency gaming, and rock-solid reliability backed by 24/7 dedicated support.",
+    "heroSubheadline": "Experience ultra-high-speed fiber broadband engineered for modern homes and demanding enterprises. Buffer-free streaming, low-latency gaming, and rock-solid reliability backed by 24/7 support.",
     "footerNotice": "ABS Network Broadband SMCVP Pvt Ltd is a licensed high-speed ISP and digital infrastructure provider committed to uninterrupted connectivity and professional networking solutions.",
     "shopBannerText": "Professional fiber optic and networking equipment for ISPs, enterprises, and home networks.",
     "statsFiberCoverageKm": 850,
     "statsActiveSubscribers": 28500,
     "statsUptimeGuarantee": "99.98%",
     "statsShopProductCount": 0,
-    "updatedAt": "2026-08-28T22:58:41.449Z"
+    "updatedAt": "2026-08-29T18:52:00.420Z"
   },
   "users": [
     {
       "id": "usr_admin_01",
       "name": "System Super Admin",
       "email": "admin@absnetwork.pk",
-      "passwordHash": "$2b$10$arJzirzu.j7qTOyVjnEZV.H5Nl7v5CpOx7iugilYk0rRYt5MpnKRy",
+      "passwordHash": "$2b$10$R1KiS.5ZJWXyO4FMVTPGPuvSykQ5c3ysWOkOYlLDbMODbjfuw/2OS",
       "role": "SUPER_ADMIN",
       "isActive": true,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z",
-      "lastLoginAt": "2026-08-28T22:58:44.482Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z",
+      "lastLoginAt": "2026-08-29T18:52:00.689Z"
     },
     {
       "id": "usr_sales_01",
       "name": "Tariq Mehmood",
       "email": "sales@absnetwork.pk",
-      "passwordHash": "$2b$10$arJzirzu.j7qTOyVjnEZV.H5Nl7v5CpOx7iugilYk0rRYt5MpnKRy",
+      "passwordHash": "$2b$10$R1KiS.5ZJWXyO4FMVTPGPuvSykQ5c3ysWOkOYlLDbMODbjfuw/2OS",
       "role": "SALES_MANAGER",
       "isActive": true,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "usr_support_01",
       "name": "Zainab Fatima",
       "email": "support@absnetwork.pk",
-      "passwordHash": "$2b$10$arJzirzu.j7qTOyVjnEZV.H5Nl7v5CpOx7iugilYk0rRYt5MpnKRy",
+      "passwordHash": "$2b$10$R1KiS.5ZJWXyO4FMVTPGPuvSykQ5c3ysWOkOYlLDbMODbjfuw/2OS",
       "role": "SUPPORT_AGENT",
       "isActive": true,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "usr_content_01",
       "name": "Bilal Khan",
       "email": "content@absnetwork.pk",
-      "passwordHash": "$2b$10$arJzirzu.j7qTOyVjnEZV.H5Nl7v5CpOx7iugilYk0rRYt5MpnKRy",
+      "passwordHash": "$2b$10$R1KiS.5ZJWXyO4FMVTPGPuvSykQ5c3ysWOkOYlLDbMODbjfuw/2OS",
       "role": "CONTENT_MANAGER",
       "isActive": true,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "usr_security_01",
       "name": "Hamza Farooq",
       "email": "security@absnetwork.pk",
-      "passwordHash": "$2b$10$arJzirzu.j7qTOyVjnEZV.H5Nl7v5CpOx7iugilYk0rRYt5MpnKRy",
+      "passwordHash": "$2b$10$R1KiS.5ZJWXyO4FMVTPGPuvSykQ5c3ysWOkOYlLDbMODbjfuw/2OS",
       "role": "SECURITY_AUDITOR",
       "isActive": true,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
+    },
+    {
+      "id": "usr_supabase_super_01",
+      "name": "absnetwork951",
+      "email": "absnetwork951@gmail.com",
+      "passwordHash": "$2b$10$utTvg7V8QHZTrLqULkenvum5Y2lb7hGtN4nOTHkqZJqQYQq7Ufnea",
+      "role": "SUPER_ADMIN",
+      "isActive": true,
+      "authUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     }
   ],
   "sessions": [
     {
-      "id": "sid_1787957924482_6ab30152ac1a",
+      "id": "sid_1788029520689_2282e5fa5280",
       "userId": "usr_admin_01",
-      "token": "sess_58f844837db7e8a6f6ca754f7c273d3025a36e8bf8e6aeafc13df02fd3bc19d1",
+      "token": "sess_93b692d76ca4c8a7e1e5d5ea726f82370c1421977f4780776c6f08a01b9541a1",
       "ipAddress": "127.0.0.1",
       "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
-      "expiresAt": "2026-09-04T22:58:44.482Z",
-      "createdAt": "2026-08-28T22:58:44.482Z"
+      "expiresAt": "2026-09-05T18:52:00.689Z",
+      "createdAt": "2026-08-29T18:52:00.689Z"
     }
   ],
   "packages": [
@@ -108,7 +117,7 @@
       "features": [
         "15 Mbps Symmetric Fiber Speed",
         "Unlimited High-Speed Data (No FUP)",
-        "Dual-Band Wi-Fi 5 Gigabit Router Included",
+        "Dual-Band Wi-Fi 5 Gigabit",
         "Free Optical Fiber Installation",
         "24/7 Helpdesk Support"
       ],
@@ -117,8 +126,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 1,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "pkg_fiber_20",
@@ -145,8 +154,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 2,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "pkg_fiber_30",
@@ -173,8 +182,8 @@
       "isPopular": true,
       "isActive": true,
       "displayOrder": 3,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "pkg_fiber_50",
@@ -201,8 +210,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 4,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "pkg_biz_100",
@@ -216,12 +225,12 @@
       "priceLabel": "PKR 11,799 + TAX",
       "billingPeriod": "Monthly",
       "installationFeePkr": 0,
-      "dataLimit": "Dedicated 1:1 CIR",
+      "dataLimit": "1:1 CIR",
       "features": [
-        "100 Mbps 1:1 Dedicated Symmetrical CIR",
+        "100 Mbps 1:1 Symmetrical CIR",
         "2 Usable Public Static IPv4 Addresses",
         "Corporate Optical Fiber Direct Run",
-        "Dedicated Technical Account Manager",
+        "Technical Account Manager",
         "24/7 Priority NOC Support"
       ],
       "routerIncluded": true,
@@ -229,8 +238,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 5,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "pkg_biz_200",
@@ -244,9 +253,9 @@
       "priceLabel": "Please contact us for rates.",
       "billingPeriod": "Monthly",
       "installationFeePkr": 0,
-      "dataLimit": "Dedicated 1:1 CIR",
+      "dataLimit": "1:1 CIR",
       "features": [
-        "200 Mbps 1:1 Dedicated Bandwidth",
+        "200 Mbps 1:1 Bandwidth",
         "Public Static IP Pool (Optional)",
         "Custom BGP Routing Options",
         "Priority NOC & Account Engineer",
@@ -257,8 +266,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 6,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "pkg_ent_300",
@@ -272,7 +281,7 @@
       "priceLabel": "Please contact us for rates.",
       "billingPeriod": "Monthly",
       "installationFeePkr": 0,
-      "dataLimit": "Dedicated Carrier Grade",
+      "dataLimit": "Carrier Grade",
       "features": [
         "300 Mbps Carrier-Grade Optical Bandwidth",
         "Redundant Ring Architecture Fiber Loop",
@@ -285,8 +294,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 7,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "pkg_ent_500",
@@ -300,12 +309,12 @@
       "priceLabel": "Please contact us for rates.",
       "billingPeriod": "Monthly",
       "installationFeePkr": 0,
-      "dataLimit": "Dedicated Carrier Grade",
+      "dataLimit": "Carrier Grade",
       "features": [
-        "500 Mbps Dedicated Carrier-Grade Bandwidth",
+        "500 Mbps Carrier-Grade Bandwidth",
         "Redundant Multi-Path Fiber Routing",
         "Custom IP Subnet & BGP Peering",
-        "Dedicated NOC Lead & Account Engineer",
+        "NOC Lead & Account Engineer",
         "Customized Uptime SLA Contract"
       ],
       "routerIncluded": true,
@@ -313,8 +322,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 8,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     }
   ],
   "services": [
@@ -336,16 +345,16 @@
       ],
       "isActive": true,
       "displayOrder": 1,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
-      "id": "srv_dedicated_leased",
-      "title": "Dedicated Leased Lines & DIA",
-      "slug": "dedicated-leased-lines",
+      "id": "srv_leased",
+      "title": "Leased Lines & DIA",
+      "slug": "leased-lines",
       "category": "enterprise",
-      "shortDescription": "1:1 unshared dedicated internet access with guaranteed CIR, custom BGP peering, and 99.99% uptime SLA.",
-      "fullDescription": "Engineered for financial institutions, software houses, call centers, and multi-branch enterprises that cannot compromise on uptime. Our dedicated leased line service features redundant backhauls, low latency routes, and round-the-clock NOC monitoring.",
+      "shortDescription": "1:1 unshared internet access with guaranteed CIR, custom BGP peering, and 99.99% uptime SLA.",
+      "fullDescription": "Engineered for financial institutions, software houses, call centers, and multi-branch enterprises that cannot compromise on uptime. Our leased line service features redundant backhauls, low latency routes, and round-the-clock NOC monitoring.",
       "iconName": "Server",
       "badge": "Enterprise SLA",
       "features": [
@@ -357,8 +366,8 @@
       ],
       "isActive": true,
       "displayOrder": 2,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "srv_managed_network",
@@ -378,8 +387,8 @@
       ],
       "isActive": true,
       "displayOrder": 3,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "srv_networking_equipment",
@@ -399,8 +408,8 @@
       ],
       "isActive": true,
       "displayOrder": 4,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "srv_digital_web",
@@ -420,8 +429,8 @@
       ],
       "isActive": true,
       "displayOrder": 5,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     },
     {
       "id": "srv_tier3_support",
@@ -429,7 +438,7 @@
       "slug": "tier3-support",
       "category": "support",
       "shortDescription": "Round-the-clock network operations center with rapid-response fiber splicing and field repair teams.",
-      "fullDescription": "Our Network Operations Center (NOC) operates 24 hours a day, 365 days a year. With automated optical power anomaly detection and dedicated on-ground field technicians equipped with OTDR testers, we resolve physical anomalies in record time.",
+      "fullDescription": "Our Network Operations Center (NOC) operates 24 hours a day, 365 days a year. With automated optical power anomaly detection and on-ground field technicians equipped with OTDR testers, we resolve physical anomalies in record time.",
       "iconName": "Headphones",
       "badge": "24/7 Available",
       "features": [
@@ -441,8 +450,8 @@
       ],
       "isActive": true,
       "displayOrder": 6,
-      "createdAt": "2026-08-28T22:58:41.449Z",
-      "updatedAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z",
+      "updatedAt": "2026-08-29T18:52:00.420Z"
     }
   ],
   "shopProducts": [],
@@ -458,8 +467,8 @@
       "message": "Hello ABS Network team, I am moving into Sector F-10/2 and need a low-latency fiber connection for work and gaming. Can you verify fiber coverage on Street 14 and quote the earliest installation date?",
       "status": "new",
       "ipAddress": "103.255.4.12",
-      "createdAt": "2026-08-28T18:58:41.450Z",
-      "updatedAt": "2026-08-28T18:58:41.450Z"
+      "createdAt": "2026-08-29T14:52:00.420Z",
+      "updatedAt": "2026-08-29T14:52:00.420Z"
     },
     {
       "id": "sub_002",
@@ -469,13 +478,13 @@
       "subject": "100 Mbps Leased Line for Medical Diagnostic Center",
       "inquiryType": "sales",
       "packageInterest": "ABS Business Prime (100 Mbps)",
-      "message": "We require a high-availability dedicated fiber line with static IP addresses for our imaging center PACS server and patient portal. Please send a corporate proposal and SLA terms.",
+      "message": "We require a high-availability fiber line with static IP addresses for our imaging center PACS server and patient portal. Please send a corporate proposal and SLA terms.",
       "status": "in_review",
       "assignedToStaff": "Tariq Mehmood",
       "internalNotes": "Contacted client regarding site survey schedule. Proposal to be emailed today.",
       "ipAddress": "110.39.12.88",
-      "createdAt": "2026-08-28T00:58:41.450Z",
-      "updatedAt": "2026-08-28T14:58:41.450Z"
+      "createdAt": "2026-08-28T20:52:00.420Z",
+      "updatedAt": "2026-08-29T10:52:00.420Z"
     },
     {
       "id": "sub_003",
@@ -485,29 +494,29 @@
       "subject": "Enterprise Fiber Installation for Factory Campus",
       "inquiryType": "general",
       "packageInterest": "ABS Enterprise Apex (300 Mbps)",
-      "message": "Looking for a dedicated fiber connection and network setup for our factory campus in Bahria Town Phase 7. Need consultation on structured cabling and enterprise network design.",
+      "message": "Looking for a fiber connection and network setup for our factory campus in Bahria Town Phase 7. Need consultation on structured cabling and enterprise network design.",
       "status": "contacted",
       "assignedToStaff": "Tariq Mehmood",
       "internalNotes": "Site survey scheduled for Friday 3:00 PM.",
       "ipAddress": "39.40.180.201",
-      "createdAt": "2026-08-26T22:58:41.450Z",
-      "updatedAt": "2026-08-28T04:58:41.451Z"
+      "createdAt": "2026-08-27T18:52:00.420Z",
+      "updatedAt": "2026-08-29T00:52:00.420Z"
     }
   ],
   "shopOrders": [],
   "auditLogs": [
     {
-      "id": "aud_1787957924756_25a483114db4",
+      "id": "aud_1788029520704_028d1f8a8867",
       "action": "ADMIN_LOGIN",
       "entityType": "AdminSession",
-      "entityId": "sid_1787957924482_6ab30152ac1a",
+      "entityId": "sid_1788029520689_2282e5fa5280",
       "userId": "usr_admin_01",
       "userEmail": "admin@absnetwork.pk",
       "details": {
         "role": "SUPER_ADMIN"
       },
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-08-28T22:58:44.756Z"
+      "createdAt": "2026-08-29T18:52:00.704Z"
     },
     {
       "id": "aud_init_01",
@@ -520,19 +529,19 @@
         "message": "Initialized ABS Network database with fiber & networking shop architecture."
       },
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z"
     }
   ],
   "securityEvents": [
     {
-      "id": "sec_1787957924749_f4d4dd6ba463",
+      "id": "sec_1788029520700_6dc0a0cfb4cf",
       "eventType": "LOGIN_SUCCESS",
       "severity": "INFO",
       "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
       "userId": "usr_admin_01",
       "userEmail": "admin@absnetwork.pk",
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-08-28T22:58:44.749Z"
+      "createdAt": "2026-08-29T18:52:00.700Z"
     },
     {
       "id": "sec_001",
@@ -542,7 +551,7 @@
       "userId": "usr_admin_01",
       "userEmail": "admin@absnetwork.pk",
       "ipAddress": "127.0.0.1",
-      "createdAt": "2026-08-28T22:58:41.449Z"
+      "createdAt": "2026-08-29T18:52:00.420Z"
     }
   ]
 }

@@ -2,6 +2,7 @@ import { cookies, headers } from 'next/headers';
 import bcrypt from 'bcryptjs';
 import {
   getAdminUserWithHash,
+  getAdminUserBySupabaseUserId,
   createSession,
   getSession,
   revokeSession,
@@ -9,6 +10,15 @@ import {
   logAudit,
 } from '../db';
 import { AdminUser } from '../db/types';
+import {
+  SUPABASE_ACCESS_COOKIE,
+  SUPABASE_REFRESH_COOKIE,
+  SUPABASE_SESSION_MAX_AGE_SECONDS,
+  supabaseSignIn,
+  getSupabaseUserIdFromToken,
+  revokeSupabaseSession,
+  resolveAdminBySupabaseUserId,
+} from '../supabase-auth';
 
 export const SESSION_COOKIE_NAME = 'abs_admin_session_token';
 
@@ -142,7 +152,93 @@ export async function authenticateAdmin(email: string, pass: string): Promise<{ 
     };
   }
 
-  const user = getAdminUserWithHash(email);
+  const legacyUser = getAdminUserWithHash(email);
+
+  // Supabase-linked admin: Supabase Auth is the source of truth. For a linked
+  // account we never fall through to the legacy bcrypt path — a wrong password
+  // must not authenticate through a stale legacy hash.
+  if (legacyUser?.authUserId) {
+    const sb = await supabaseSignIn(email, pass);
+    if (!sb.ok) {
+      recordFailedAttempt(rateKey);
+      recordIpFailedAttempt(ip);
+      logSecurityEvent(
+        'LOGIN_FAILED',
+        'WARNING',
+        `Invalid password attempt (Supabase Auth) for account: ${email}`,
+        { id: legacyUser.id, email: legacyUser.email },
+        ip
+      );
+      return { success: false, error: 'Invalid email or password.' };
+    }
+
+    const admin = resolveAdminBySupabaseUserId(sb.userId);
+    if (!admin) {
+      recordFailedAttempt(rateKey);
+      recordIpFailedAttempt(ip);
+      logSecurityEvent(
+        'UNAUTHORIZED_ACCESS',
+        'WARNING',
+        `Authenticated Supabase user ${email} is not linked to any admin account.`,
+        { id: sb.userId },
+        ip
+      );
+      return { success: false, error: 'This account is not authorized to access the admin panel.' };
+    }
+
+    if (!admin.isActive) {
+      recordFailedAttempt(rateKey);
+      recordIpFailedAttempt(ip);
+      logSecurityEvent(
+        'LOGIN_FAILED',
+        'WARNING',
+        `Login attempt for disabled account: ${email}`,
+        { id: admin.id, email: admin.email },
+        ip
+      );
+      return { success: false, error: 'This account is disabled. Contact an administrator.' };
+    }
+
+    resetRateLimit(rateKey);
+    const cookieStore = await cookies();
+    const secure = await isSecureRequest();
+    cookieStore.set(SUPABASE_ACCESS_COOKIE, sb.accessToken, {
+      httpOnly: true,
+      secure,
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 60 * 60, // access token TTL; proxy refreshes via refresh token
+    });
+    cookieStore.set(SUPABASE_REFRESH_COOKIE, sb.refreshToken, {
+      httpOnly: true,
+      secure,
+      sameSite: 'lax',
+      path: '/',
+      maxAge: SUPABASE_SESSION_MAX_AGE_SECONDS,
+    });
+
+    logSecurityEvent(
+      'LOGIN_SUCCESS',
+      'INFO',
+      `User ${admin.email} (${admin.role}) signed in via Supabase Auth.`,
+      { id: admin.id, email: admin.email },
+      ip,
+      { supabaseUserId: sb.userId }
+    );
+    logAudit(
+      'ADMIN_LOGIN',
+      'SupabaseSession',
+      sb.userId,
+      { role: admin.role, provider: 'supabase' },
+      { id: admin.id, email: admin.email },
+      ip
+    );
+
+    const { passwordHash, ...safeUser } = admin;
+    return { success: true, user: { ...safeUser, passwordHash: '' } };
+  }
+
+  const user = legacyUser;
   if (!user || !user.isActive) {
     recordFailedAttempt(rateKey);
     recordIpFailedAttempt(ip);
@@ -207,6 +303,25 @@ export async function authenticateAdmin(email: string, pass: string): Promise<{ 
 
 export async function getCurrentAdmin(): Promise<{ user: AdminUser; token: string } | null> {
   const cookieStore = await cookies();
+
+  // Supabase-first: validate the access token(signature+expiry) against
+  // Supabase Auth, then resolve the admin role from the on-disk store.
+  const sbAccessToken = cookieStore.get(SUPABASE_ACCESS_COOKIE)?.value;
+  if (sbAccessToken) {
+    try {
+      const userId = await getSupabaseUserIdFromToken(sbAccessToken);
+      const sbUser = userId ? resolveAdminBySupabaseUserId(userId) : undefined;
+      if (sbUser && sbUser.isActive) {
+        const { passwordHash, ...safeUser } = sbUser;
+        return { user: { ...safeUser, passwordHash: '' }, token: sbAccessToken };
+      }
+      return null;
+    } catch {
+      // Missing/misconfigured Supabase env: fall through to legacy path.
+    }
+  }
+
+  // Legacy bcrypt-session fallback (admins not yet linked to Supabase Auth).
   const token = cookieStore.get(SESSION_COOKIE_NAME)?.value;
   if (!token) return null;
 
@@ -226,9 +341,39 @@ export async function getCurrentSession(): Promise<AdminUser | null> {
 }
 
 export async function logoutAdmin(): Promise<void> {
-  const current = await getCurrentAdmin();
+  const cookieStore = await cookies();
+  const sbAccessToken = cookieStore.get(SUPABASE_ACCESS_COOKIE)?.value;
   const ip = await getClientIp();
 
+  // Supabase session: revoke the refresh token server-side, then clear cookies.
+  if (sbAccessToken) {
+    const admin = resolveAdminBySupabaseUserId((await getSupabaseUserIdFromToken(sbAccessToken)) || '');
+    await revokeSupabaseSession(sbAccessToken);
+    cookieStore.delete(SUPABASE_ACCESS_COOKIE);
+    cookieStore.delete(SUPABASE_REFRESH_COOKIE);
+    if (admin) {
+      logSecurityEvent(
+        'LOGOUT',
+        'INFO',
+        `User ${admin.email} (${admin.role}) logged out.`,
+        { id: admin.id, email: admin.email },
+        ip,
+        { provider: 'supabase' }
+      );
+      logAudit(
+        'ADMIN_LOGOUT',
+        'SupabaseSession',
+        undefined,
+        {},
+        { id: admin.id, email: admin.email },
+        ip
+      );
+    }
+    return;
+  }
+
+  // Legacy bcrypt session.
+  const current = await getCurrentAdmin();
   if (current) {
     revokeSession(current.token, { id: current.user.id, email: current.user.email }, ip);
     logSecurityEvent(
@@ -248,6 +393,5 @@ export async function logoutAdmin(): Promise<void> {
     );
   }
 
-  const cookieStore = await cookies();
   cookieStore.delete(SESSION_COOKIE_NAME);
 }

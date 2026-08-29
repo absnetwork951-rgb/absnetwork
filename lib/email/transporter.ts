@@ -27,6 +27,9 @@ function createTransporter(): { transporter: Transporter; config: NonNullable<Re
     host: config.host,
     port: config.port,
     secure: config.secure,
+    // SMTP submission on 587 uses STARTTLS; require it so the connection is
+    // always upgraded to TLS before authenticating (never plaintext auth).
+    requireTLS: true,
     // Read directly from env so the SMTP password never lives on the config object.
     auth: { user: config.user, pass: process.env.SMTP_PASSWORD?.trim() ?? '' },
     connectionTimeout: 10_000,

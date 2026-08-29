@@ -4,7 +4,8 @@ import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
 import PageHeader from '@/components/public/PageHeader';
 import ShopClient from '@/components/public/ShopClient';
-import { getSiteSettings, getShopProducts } from '@/lib/db';
+import { getSiteSettings } from '@/lib/db';
+import { getPublicShopProducts } from '@/lib/supabase-shop';
 
 export const revalidate = 60;
 
@@ -17,9 +18,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ShopPage() {
+export default async function ShopPage() {
   const settings = getSiteSettings();
-  const products = getShopProducts(true);
+  const products = await getPublicShopProducts();
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">

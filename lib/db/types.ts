@@ -13,6 +13,8 @@ export interface AdminUser {
   passwordHash: string;
   role: AdminRole;
   isActive: boolean;
+  /** Supabase Auth user UUID when this admin authenticates via Supabase Auth. */
+  authUserId?: string;
   lastLoginAt?: string;
   createdAt: string;
   updatedAt: string;

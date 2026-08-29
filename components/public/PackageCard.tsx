@@ -17,10 +17,10 @@ const categoryLabels: Record<string, string> = {
 };
 
 const defaultTaglines: Record<string, string> = {
-  residential: 'Dedicated optical fiber with 24/7 prioritized carrier routing',
+  residential: 'Optical fiber with 24/7 prioritized carrier routing',
   gaming: 'Low-latency fiber routing engineered for competitive play',
-  business: '1:1 unshared dedicated internet with guaranteed CIR and priority NOC',
-  enterprise: 'Carrier-grade dedicated bandwidth with custom BGP peering and SLA support',
+  business: '1:1 unshared internet with guaranteed CIR and priority NOC',
+  enterprise: 'Carrier-grade bandwidth with custom BGP peering and SLA support',
 };
 
 export default function PackageCard({ pkg, onSelect }: PackageCardProps) {

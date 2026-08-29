@@ -23,6 +23,13 @@ const DB_DIR = DB_OVERRIDE
 const DB_FILE = DB_OVERRIDE || path.join(DB_DIR, 'abs_database.json');
 
 let cachedDb: DatabaseSchema | null = null;
+// Tracks the mtime of DB_FILE at the time `cachedDb` was loaded. Next.js runs
+// server actions and page renders in separate worker threads, each with its
+// own module-registry (and thus its own `cachedDb`). When another worker
+// writes the shared file, its mtime advances past ours; we detect that and
+// reload so a session/user/mutation written by one worker is visible to the
+// others. This prevents auth-session redirect loops and stale reads.
+let cachedDbMtimeMs = 0;
 
 // -------------------------------------------------------------
 // Cryptographically-secure ID / token generation (SEC-001)
@@ -47,17 +54,13 @@ function ensureDbDirectory() {
   }
 }
 
-export function getDatabase(): DatabaseSchema {
-  if (cachedDb) {
-    return cachedDb;
-  }
-
+/** Loads and migrates the DB from disk (no cache). */
+function loadDatabaseFromDisk(): DatabaseSchema {
   ensureDbDirectory();
 
   if (!fs.existsSync(DB_FILE)) {
     const seed = getInitialSeedData();
-    saveDatabase(seed);
-    cachedDb = seed;
+    fs.writeFileSync(DB_FILE, JSON.stringify(seed, null, 2), 'utf-8');
     return seed;
   }
 
@@ -124,15 +127,42 @@ export function getDatabase(): DatabaseSchema {
       };
     });
 
-    cachedDb = parsed;
     return parsed;
   } catch (error) {
     console.error('Error reading database file, re-initializing with seed:', error);
-    const seed = getInitialSeedData();
-    saveDatabase(seed);
-    cachedDb = seed;
-    return seed;
+    return getInitialSeedData();
   }
+}
+
+/** Returns the current mtime of DB_FILE (ms), or 0 when the file is absent. */
+function currentDbMtimeMs(): number {
+  try {
+    return fs.statSync(DB_FILE).mtimeMs;
+  } catch {
+    return 0;
+  }
+}
+
+export function getDatabase(): DatabaseSchema {
+  // Reload when the shared file was written by another worker after we cached
+  // the current copy (see cachedDbMtimeMs note above). `saveDatabase` keeps
+  // our own cache authoritative, so a same-worker write never triggers a
+  // wasteful reload here (mtime is refreshed in saveDatabase).
+  if (cachedDb) {
+    try {
+      if (fs.statSync(DB_FILE).mtimeMs > cachedDbMtimeMs) {
+        cachedDb = loadDatabaseFromDisk();
+        cachedDbMtimeMs = currentDbMtimeMs();
+      }
+    } catch {
+      // stat failed (file momentarily absent): fall through to cached copy.
+    }
+    return cachedDb;
+  }
+
+  cachedDb = loadDatabaseFromDisk();
+  cachedDbMtimeMs = currentDbMtimeMs();
+  return cachedDb;
 }
 
 export function saveDatabase(data: DatabaseSchema): void {
@@ -146,6 +176,7 @@ export function saveDatabase(data: DatabaseSchema): void {
     console.error('Error saving database to file:', err);
     fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
   }
+  cachedDbMtimeMs = currentDbMtimeMs();
 }
 
 // -------------------------------------------------------------
@@ -803,6 +834,15 @@ export function getAdminUserWithHash(email: string): AdminUser | undefined {
 export function getAdminUserById(id: string): AdminUser | undefined {
   const db = getDatabase();
   return db.users.find((u) => u.id === id);
+}
+
+/**
+ * Resolves the admin account (server-side source of truth: the on-disk DB)
+ * linked to a Supabase Auth user UUID via `authUserId`.
+ */
+export function getAdminUserBySupabaseUserId(uuid: string): AdminUser | undefined {
+  const db = getDatabase();
+  return db.users.find((u) => u.authUserId === uuid);
 }
 
 export function createAdminUser(

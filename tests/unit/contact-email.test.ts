@@ -33,8 +33,8 @@ afterAll(() => {
 
 function setSmtpEnv() {
   process.env.SMTP_HOST = 'mail.absnetwork.com.pk';
-  process.env.SMTP_PORT = '465';
-  process.env.SMTP_SECURE = 'true';
+  process.env.SMTP_PORT = '587';
+  process.env.SMTP_SECURE = 'false';
   process.env.SMTP_USER = 'info@absnetwork.com.pk';
   process.env.SMTP_PASSWORD = 'not-a-real-password';
   process.env.CONTACT_RECEIVER = 'ops@absnetwork.com.pk';
@@ -165,6 +165,7 @@ describe('SMTP config resolution', () => {
   it('defaults port 465 to secure=true', () => {
     setSmtpEnv();
     delete process.env.SMTP_PORT;
+    delete process.env.SMTP_SECURE;
     const config = getSmtpConfig()!;
     expect(config.port).toBe(465);
     expect(config.secure).toBe(true);
@@ -198,8 +199,9 @@ describe('sendContactEmail transport', () => {
     expect(createTransport).toHaveBeenCalledWith(
       expect.objectContaining({
         host: 'mail.absnetwork.com.pk',
-        port: 465,
-        secure: true,
+        port: 587,
+        secure: false,
+        requireTLS: true,
       }),
     );
     expect(createTransport).toHaveBeenCalledTimes(1);
