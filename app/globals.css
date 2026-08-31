@@ -519,3 +519,159 @@ html {
     line-height: 1.1;
   }
 }
+
+/* ===========================================================================
+   Admin Panel Appearance System
+   All values are scoped to the admin root ([data-admin-theme]). The default
+   (light) values reproduce the previous slate palette exactly, so the admin
+   looks unchanged until a mode/accent is switched. Set at runtime by
+   AdminThemeProvider via data-* attributes + inline CSS custom properties.
+   =========================================================================== */
+
+[data-admin-theme] {
+  /* Surfaces */
+  --admin-bg: #f8fafc;        /* slate-50   — page backdrop */
+  --admin-surface: #ffffff;   /* white      — cards / panels */
+  --admin-surface-alt: #f1f5f9; /* slate-100  — inset / subtle fills */
+  --admin-text: #0f172a;      /* slate-900  — primary text */
+  --admin-muted: #64748b;     /* slate-500  — secondary text */
+  --admin-faint: #94a3b8;     /* slate-400  — tertiary text */
+  --admin-border: #e2e8f0;    /* slate-200  — hairlines */
+  --admin-border-strong: #cbd5e1; /* slate-300 */
+
+  /* Sidebar */
+  --admin-sidebar-bg: #0f172a;     /* slate-900 */
+  --admin-sidebar-surface: #1e293b;/* slate-800 */
+  --admin-sidebar-text: #ffffff;
+  --admin-sidebar-muted: #94a3b8;  /* slate-400 */
+
+  /* Inputs */
+  --admin-input-bg: #f8fafc;
+  --admin-input-text: #0f172a;
+
+  /* Accent (default blue; overridden inline by AdminThemeProvider) */
+  --admin-accent: #2563eb;
+  --admin-accent-hover: #1d4ed8;
+  --admin-accent-soft: #eff6ff;
+  --admin-accent-border: #bfdbfe;
+
+  /* Geometry / motion (set inline) */
+  --admin-radius-sm: 8px;
+  --admin-radius-md: 12px;
+  --admin-radius-lg: 16px;
+  --admin-density-scale: 1;
+  --admin-motion: all 0.12s ease;
+}
+
+[data-admin-theme][data-admin-mode='dark'] {
+  --admin-bg: #0b1220;
+  --admin-surface: #101a2c;
+  --admin-surface-alt: #16223a;
+  --admin-text: #e2e8f0;
+  --admin-muted: #94a3b8;
+  --admin-faint: #64748b;
+  --admin-border: #1e293b;
+  --admin-border-strong: #334155;
+
+  --admin-sidebar-bg: #070b14;
+  --admin-sidebar-surface: #101a2c;
+  --admin-sidebar-text: #f1f5f9;
+  --admin-sidebar-muted: #94a3b8;
+
+  --admin-input-bg: #16223a;
+  --admin-input-text: #e2e8f0;
+
+  --admin-accent-soft: rgba(37, 99, 235, 0.16);
+  --admin-accent-border: rgba(37, 99, 235, 0.4);
+}
+
+/* Accent-tinted soft/border values react to the chosen accent hue at runtime */
+[data-admin-theme][data-admin-accent='indigo'] { --admin-accent-soft: #eef2ff; --admin-accent-border: #c7d2fe; }
+[data-admin-theme][data-admin-accent='violet'] { --admin-accent-soft: #f5f3ff; --admin-accent-border: #ddd6fe; }
+[data-admin-theme][data-admin-accent='emerald'] { --admin-accent-soft: #ecfdf5; --admin-accent-border: #a7f3d0; }
+[data-admin-theme][data-admin-accent='rose'] { --admin-accent-soft: #fff1f2; --admin-accent-border: #fecdd3; }
+[data-admin-theme][data-admin-accent='amber'] { --admin-accent-soft: #fffbeb; --admin-accent-border: #fde68a; }
+[data-admin-theme][data-admin-mode='dark'][data-admin-accent='indigo'] { --admin-accent-soft: rgba(99,102,241,0.16); --admin-accent-border: rgba(99,102,241,0.4); }
+[data-admin-theme][data-admin-mode='dark'][data-admin-accent='violet'] { --admin-accent-soft: rgba(139,92,246,0.16); --admin-accent-border: rgba(139,92,246,0.4); }
+[data-admin-theme][data-admin-mode='dark'][data-admin-accent='emerald'] { --admin-accent-soft: rgba(5,150,105,0.16); --admin-accent-border: rgba(5,150,105,0.4); }
+[data-admin-theme][data-admin-mode='dark'][data-admin-accent='rose'] { --admin-accent-soft: rgba(225,29,72,0.16); --admin-accent-border: rgba(225,29,72,0.4); }
+[data-admin-theme][data-admin-mode='dark'][data-admin-accent='amber'] { --admin-accent-soft: rgba(217,119,6,0.16); --admin-accent-border: rgba(217,119,6,0.4); }
+
+/* Admin surface helpers (used across admin components) */
+[data-admin-theme] .admin-surface { background-color: var(--admin-surface); border-color: var(--admin-border); color: var(--admin-text); }
+[data-admin-theme] .admin-surface-alt { background-color: var(--admin-surface-alt); }
+[data-admin-theme] .admin-text { color: var(--admin-text); }
+[data-admin-theme] .admin-muted { color: var(--admin-muted); }
+[data-admin-theme] .admin-faint { color: var(--admin-faint); }
+[data-admin-theme] .admin-border { border-color: var(--admin-border); }
+[data-admin-theme] .admin-accent { color: var(--admin-accent); }
+[data-admin-theme] .admin-accent-bg { background-color: var(--admin-accent); }
+[data-admin-theme] .admin-accent-soft { background-color: var(--admin-accent-soft); color: var(--admin-accent); }
+[data-admin-theme] .admin-accent-border { border-color: var(--admin-accent-border); }
+[data-admin-theme] .admin-input {
+  background-color: var(--admin-input-bg);
+  border-color: var(--admin-border);
+  color: var(--admin-input-text);
+}
+[data-admin-theme] .admin-sidebar { background-color: var(--admin-sidebar-bg); }
+[data-admin-theme] .admin-sidebar-surface { background-color: var(--admin-sidebar-surface); }
+[data-admin-theme] .admin-sidebar-text { color: var(--admin-sidebar-text); }
+[data-admin-theme] .admin-sidebar-muted { color: var(--admin-sidebar-muted); }
+
+/* Density: scale base font size for the whole admin root */
+[data-admin-theme][data-admin-density] { font-size: calc(var(--admin-density-scale, 1) * 100%); }
+
+/* Motion preference: full = more animation, balanced = subtle, reduced = none */
+[data-admin-theme][data-admin-motion='reduced'] .admin-motion { transition: none !important; animation: none !important; }
+[data-admin-theme][data-admin-motion='full'] .admin-motion { transition: var(--admin-motion), background-color 0.18s ease, color 0.18s ease; }
+[data-admin-theme] .admin-motion { transition: var(--admin-motion); }
+
+/* ---------------------------------------------------------------------------
+   Dark mode remap for the existing Tailwind utility classes used across admin
+   components. Scoped strictly to the dark admin root so public pages and the
+   light admin look are completely untouched. Requires !important because
+   Tailwind utilities otherwise win on specificity.
+   --------------------------------------------------------------------------- */
+[data-admin-theme][data-admin-mode='dark'] .bg-white,
+[data-admin-theme][data-admin-mode='dark'] .bg-slate-50 {
+  background-color: var(--admin-surface) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .bg-slate-100 {
+  background-color: var(--admin-surface-alt) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .text-slate-900 {
+  color: var(--admin-text) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .text-slate-800 {
+  color: var(--admin-text) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .text-slate-700 {
+  color: var(--admin-text) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .text-slate-600,
+[data-admin-theme][data-admin-mode='dark'] .text-slate-500 {
+  color: var(--admin-muted) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .text-slate-400 {
+  color: var(--admin-faint) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .border-slate-200,
+[data-admin-theme][data-admin-mode='dark'] .border-slate-200\/90,
+[data-admin-theme][data-admin-mode='dark'] .border-slate-300,
+[data-admin-theme][data-admin-mode='dark'] .border-slate-100 {
+  border-color: var(--admin-border) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] input,
+[data-admin-theme][data-admin-mode='dark'] textarea,
+[data-admin-theme][data-admin-mode='dark'] select {
+  background-color: var(--admin-input-bg) !important;
+  color: var(--admin-input-text) !important;
+  border-color: var(--admin-border) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .bg-blue-50 {
+  background-color: var(--admin-accent-soft) !important;
+  color: var(--admin-accent) !important;
+}
+[data-admin-theme][data-admin-mode='dark'] .border-blue-600 {
+  border-color: var(--admin-accent) !important;
+}

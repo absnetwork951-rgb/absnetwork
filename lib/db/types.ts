@@ -6,6 +6,28 @@ export type AdminRole =
   | 'SUPPORT_AGENT'
   | 'SECURITY_AUDITOR';
 
+export type AdminThemeMode = 'light' | 'dark' | 'system';
+export type AdminAccentPreset = 'blue' | 'indigo' | 'violet' | 'emerald' | 'rose' | 'amber';
+export type AdminDensity = 'comfortable' | 'compact' | 'spacious';
+export type AdminRadius = 'none' | 'sm' | 'md' | 'lg' | 'xl';
+export type AdminMotion = 'reduced' | 'balanced' | 'full';
+
+export interface AdminAppearancePreferences {
+  mode: AdminThemeMode;
+  accent: AdminAccentPreset;
+  density: AdminDensity;
+  radius: AdminRadius;
+  motion: AdminMotion;
+}
+
+export const DEFAULT_ADMIN_APPEARANCE: AdminAppearancePreferences = {
+  mode: 'system',
+  accent: 'blue',
+  density: 'comfortable',
+  radius: 'lg',
+  motion: 'balanced',
+};
+
 export interface AdminUser {
   id: string;
   name: string;
@@ -13,6 +35,8 @@ export interface AdminUser {
   passwordHash: string;
   role: AdminRole;
   isActive: boolean;
+  /** Per-admin UI appearance preferences (theme, accent, density, radius, motion). */
+  appearance?: AdminAppearancePreferences;
   /** Supabase Auth user UUID when this admin authenticates via Supabase Auth. */
   authUserId?: string;
   lastLoginAt?: string;

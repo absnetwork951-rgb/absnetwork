@@ -13,6 +13,8 @@ import {
   AdminSession,
   AuditLog,
   SecurityEvent,
+  AdminAppearancePreferences,
+  DEFAULT_ADMIN_APPEARANCE,
 } from './types';
 import { getInitialSeedData } from './seed';
 
@@ -992,6 +994,50 @@ export function deleteAdminUser(
   );
 
   return true;
+}
+
+export function getAdminUserAppearance(
+  id: string
+): AdminAppearancePreferences {
+  const user = getAdminUserById(id);
+  return user?.appearance ?? DEFAULT_ADMIN_APPEARANCE;
+}
+
+export function updateAdminUserAppearance(
+  id: string,
+  appearance: Partial<AdminAppearancePreferences>,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): AdminAppearancePreferences | null {
+  const db = getDatabase();
+  const index = db.users.findIndex((u) => u.id === id);
+  if (index === -1) return null;
+
+  const prev = db.users[index];
+  const merged: AdminAppearancePreferences = {
+    ...getAdminUserAppearance(id),
+    ...appearance,
+  };
+
+  const updated: AdminUser = {
+    ...prev,
+    appearance: merged,
+    updatedAt: new Date().toISOString(),
+  };
+
+  db.users[index] = updated;
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_UPDATED_APPEARANCE',
+    'AdminUser',
+    id,
+    { email: prev.email, appearance: merged },
+    actor,
+    ipAddress
+  );
+
+  return merged;
 }
 
 // -------------------------------------------------------------

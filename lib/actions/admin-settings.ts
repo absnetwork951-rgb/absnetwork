@@ -32,10 +32,10 @@ const SettingsSchema = z.object({
   heroSubheadline: z.string().min(10, 'Hero subheadline is required'),
   footerNotice: z.string().min(5, 'Footer notice is required'),
   shopBannerText: z.string().min(5, 'Shop banner text is required'),
-  statsFiberCoverageKm: z.coerce.number().min(0),
-  statsActiveSubscribers: z.coerce.number().min(0),
+  statsFiberCoverageKm: z.coerce.number().int().min(0),
+  statsActiveSubscribers: z.coerce.number().int().min(0),
   statsUptimeGuarantee: z.string().min(1),
-  statsShopProductCount: z.coerce.number().min(0),
+  statsShopProductCount: z.coerce.number().int().min(0),
 });
 
 export async function updateSettingsAction(formData: FormData) {

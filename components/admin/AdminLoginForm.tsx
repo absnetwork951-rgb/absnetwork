@@ -61,9 +61,9 @@ export default function AdminLoginForm() {
       </div>
 
       {/* Functional side — login form (larger portion) */}
-      <div className="relative flex items-center justify-center p-6 sm:p-10">
+      <div className="relative overflow-hidden flex items-center justify-center p-6 sm:p-10">
         {/* Ambient lighting */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-600/10 blur-3xl rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[min(600px,120vw)] h-[300px] bg-blue-600/10 blur-3xl rounded-full pointer-events-none" />
 
         <div className="w-full max-w-md relative z-10 space-y-8">
           {/* Brand Header */}

@@ -17,6 +17,50 @@ import type {
  * records and never recreates them.
  */
 
+interface RetryableResult {
+  error?: { message?: string } | null;
+}
+
+/**
+ * Transient Supabase rejections such as "JWT issued at future" are
+ * infra-level clock-skew failures: the presented credentials/token are valid,
+ * but the remote auth server momentarily disagrees with them on time, which
+ * self-resolves on the next attempt. They are NOT security failures and MUST
+ * NOT be treated as such. We only re-run the otherwise-validated request a
+ * bounded number of times so a single intermittent rejection does not blank
+ * the whole shop catalog. JWT validation stays fully intact — we never accept,
+ * trust, or ignore an invalid token.
+ */
+function isTransientSupabaseError(message: unknown): boolean {
+  const msg = String(message ?? '').toLowerCase().trim();
+  if (!msg) return false;
+  return (
+    msg.includes('jwt issued at future') ||
+    msg.includes('network error') ||
+    msg.includes('fetch failed') ||
+    msg.includes('socket hang up') ||
+    msg.includes('name or service not known') ||
+    msg.includes('econnreset') ||
+    msg.includes('econnrefused') ||
+    msg.includes('timeout')
+  );
+}
+
+async function withTransientRetry<T>(run: () => Promise<T>): Promise<T> {
+  const maxAttempts = 3;
+  let last: T | undefined;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const result = await run();
+    last = result;
+    const err = (result as RetryableResult | undefined)?.error;
+    if (!err || !isTransientSupabaseError(err.message)) return result;
+    if (attempt < maxAttempts) {
+      await new Promise((resolve) => setTimeout(resolve, 300 * attempt));
+    }
+  }
+  return last as T;
+}
+
 interface RawProductImage {
   product_id: string;
   url: string;
@@ -161,32 +205,38 @@ const PRODUCT_SELECT =
 async function loadShopProducts(activeOnly: boolean): Promise<ShopProduct[]> {
   const admin = getSupabaseAdmin();
 
-  let query = admin
-    .from('products')
-    .select(PRODUCT_SELECT)
-    .order('display_order');
-  if (activeOnly) {
-    query = query.eq('is_active', true);
-  }
+  const productResult = await withTransientRetry(async () => {
+    let query = admin
+      .from('products')
+      .select(PRODUCT_SELECT)
+      .order('display_order');
+    if (activeOnly) {
+      query = query.eq('is_active', true);
+    }
+    return await query;
+  });
 
-  const { data: productRows, error: productError } = await query;
-
+  const productError = productResult.error;
   if (productError) {
     console.error('[supabase-shop] Failed to load products:', productError.message);
     return [];
   }
+  const productRows = productResult.data;
 
-  const { data: imageRows, error: imageError } = await admin
-    .from('product_images')
-    .select('product_id, url, storage_path, is_primary, sort_order')
-    .order('sort_order');
+  const imageResult = await withTransientRetry(async () =>
+    await admin
+      .from('product_images')
+      .select('product_id, url, storage_path, is_primary, sort_order')
+      .order('sort_order')
+  );
 
+  const imageError = imageResult.error;
   if (imageError) {
     console.error('[supabase-shop] Failed to load product_images:', imageError.message);
   }
 
   const imagesByProduct: Record<string, ImageRow[]> = {};
-  for (const row of (imageRows ?? []) as RawProductImage[]) {
+  for (const row of (imageResult.data ?? []) as RawProductImage[]) {
     const bucket = (imagesByProduct[row.product_id] ??= []);
     bucket.push({
       url: row.url,
@@ -222,30 +272,35 @@ export async function getAllShopProducts(): Promise<ShopProduct[]> {
 export async function getShopProductById(id: string): Promise<ShopProduct | null> {
   const admin = getSupabaseAdmin();
 
-  const { data: productRow, error: productError } = await admin
-    .from('products')
-    .select(PRODUCT_SELECT)
-    .eq('id', id)
-    .maybeSingle();
+  const productResult = await withTransientRetry(async () =>
+    await admin
+      .from('products')
+      .select(PRODUCT_SELECT)
+      .eq('id', id)
+      .maybeSingle()
+  );
 
-  if (productError) {
-    console.error('[supabase-shop] Failed to load product:', productError.message);
+  if (productResult.error) {
+    console.error('[supabase-shop] Failed to load product:', productResult.error.message);
     return null;
   }
+  const productRow = productResult.data;
   if (!productRow) return null;
 
-  const { data: imageRows, error: imageError } = await admin
-    .from('product_images')
-    .select('product_id, url, storage_path, is_primary, sort_order')
-    .eq('product_id', id)
-    .order('sort_order');
+  const imageResult = await withTransientRetry(async () =>
+    await admin
+      .from('product_images')
+      .select('product_id, url, storage_path, is_primary, sort_order')
+      .eq('product_id', id)
+      .order('sort_order')
+  );
 
-  if (imageError) {
-    console.error('[supabase-shop] Failed to load product_images:', imageError.message);
+  if (imageResult.error) {
+    console.error('[supabase-shop] Failed to load product_images:', imageResult.error.message);
   }
 
   const imagesByProduct: Record<string, ImageRow[]> = {
-    [id]: ((imageRows ?? []) as RawProductImage[]).map((row) => ({
+    [id]: ((imageResult.data ?? []) as RawProductImage[]).map((row) => ({
       url: row.url,
       is_primary: row.is_primary,
       sort_order: row.sort_order,

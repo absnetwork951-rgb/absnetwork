@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import { Network, Shield, ShoppingCart, Eye, Scale } from 'lucide-react';
+import { Network, Shield, ShoppingCart, Eye, Scale, MessageCircle } from 'lucide-react';
 import { ShopProduct } from '@/lib/db/types';
+import { createWhatsAppInquiryUrl } from '@/lib/whatsapp';
 
 interface ShopProductCardProps {
   product: ShopProduct;
@@ -124,22 +125,37 @@ export default function ShopProductCard({
         </div>
       </div>
 
-      <div className="p-5 pt-0 grid grid-cols-2 gap-2 border-t border-slate-100">
-        <button
-          onClick={() => onViewDetails(product)}
-          className="py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 bg-slate-50 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 flex items-center justify-center gap-1.5 transition-all"
-        >
-          <Eye className="w-3.5 h-3.5 text-blue-600" />
-          <span>Details</span>
-        </button>
+      <div className="p-5 pt-0 border-t border-slate-100 space-y-2">
+        <div className="grid grid-cols-2 gap-2">
+          <button
+            onClick={() => onViewDetails(product)}
+            className="py-2.5 px-3 rounded-xl text-sm font-semibold text-slate-700 bg-slate-50 hover:bg-slate-100 hover:text-slate-900 border border-slate-200 flex items-center justify-center gap-1.5 transition-all"
+          >
+            <Eye className="w-3.5 h-3.5 text-blue-600" />
+            <span>Details</span>
+          </button>
 
-        <button
-          onClick={() => onInquire(product)}
-          className="py-2.5 px-3 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 flex items-center justify-center gap-1.5 transition-all shadow-sm"
+          <button
+            onClick={() => onInquire(product)}
+            className="py-2.5 px-3 rounded-xl text-sm font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 flex items-center justify-center gap-1.5 transition-all shadow-sm"
+          >
+            <ShoppingCart className="w-3.5 h-3.5" />
+            <span>Inquire</span>
+          </button>
+        </div>
+
+        <a
+          href={createWhatsAppInquiryUrl(
+            `Hi ABS Network, I am interested in ${product.name} (PKR ${currentPrice.toLocaleString()}). Please provide more details.`
+          )}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Inquire about ${product.name} on WhatsApp`}
+          className="py-2.5 px-3 rounded-xl text-sm font-semibold text-white bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 flex items-center justify-center gap-1.5 transition-all shadow-sm"
         >
-          <ShoppingCart className="w-3.5 h-3.5" />
-          <span>Inquire</span>
-        </button>
+          <MessageCircle className="w-3.5 h-3.5" />
+          <span>WhatsApp Inquiry</span>
+        </a>
       </div>
     </div>
   );

@@ -67,15 +67,15 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
     .toUpperCase();
 
   return (
-    <aside className="w-64 min-h-screen bg-slate-900 text-white flex flex-col shrink-0 sticky top-0 h-screen">
-      <div className="px-6 py-6 border-b border-slate-800">
+    <aside className="w-64 min-h-screen admin-sidebar text-white flex flex-col shrink-0 sticky top-0 h-screen" style={{ backgroundColor: 'var(--admin-sidebar-bg)' }}>
+      <div className="px-6 py-6 border-b" style={{ borderColor: 'var(--admin-border-strong, #1e293b)' }}>
         <Link href="/admin/dashboard" className="flex items-center gap-3 group">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center text-white font-black text-xs shadow-lg shadow-blue-950/50 ring-1 ring-white/10 group-hover:shadow-blue-900/60 transition-shadow">
             ABS
           </div>
           <div className="leading-tight">
             <div className="text-sm font-bold tracking-tight text-white">ABS Network</div>
-            <div className="text-xs text-slate-400">Admin Control</div>
+            <div className="text-xs" style={{ color: 'var(--admin-sidebar-muted)' }}>Admin Control</div>
           </div>
         </Link>
       </div>
@@ -88,7 +88,7 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
           if (visible.length === 0) return null;
           return (
             <div key={group.section} className="space-y-1">
-              <div className="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+              <div className="px-3 mb-1.5 text-[11px] font-semibold uppercase tracking-widest" style={{ color: 'var(--admin-sidebar-muted)' }}>
                 {group.section}
               </div>
               <div className="space-y-1">
@@ -102,8 +102,9 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
                       className={`group relative flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-150 focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                         active
                           ? 'bg-blue-600 text-white shadow-md shadow-blue-950/40'
-                          : 'text-slate-300 hover:bg-slate-800 hover:text-white'
+                          : 'hover:bg-slate-800 hover:text-white'
                       }`}
+                      style={active ? undefined : { color: 'var(--admin-sidebar-muted)' }}
                     >
                       <span
                         className={`w-1 h-4 rounded-full transition-colors ${
@@ -121,20 +122,21 @@ export default function AdminSidebar({ user }: AdminSidebarProps) {
         })}
       </nav>
 
-      <div className="px-4 py-4 border-t border-slate-800">
+      <div className="px-4 py-4 border-t" style={{ borderColor: 'var(--admin-border-strong, #1e293b)' }}>
         <div className="flex items-center gap-3 px-2">
           <div className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 text-blue-400 font-bold text-sm flex items-center justify-center shrink-0 ring-1 ring-white/5">
             {initials || 'A'}
           </div>
           <div className="min-w-0 flex-1 leading-tight">
             <div className="text-sm font-semibold text-white truncate">{user.name}</div>
-            <div className="text-xs text-slate-400 truncate capitalize">{user.role.replace(/_/g, ' ')}</div>
+            <div className="text-xs truncate capitalize" style={{ color: 'var(--admin-sidebar-muted)' }}>{user.role.replace(/_/g, ' ')}</div>
           </div>
         </div>
         <form action={logoutAction} className="mt-3">
           <button
             type="submit"
-            className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-colors focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            className="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900"
+            style={{ color: 'var(--admin-sidebar-muted)' }}
           >
             <LogOut className="shrink-0" style={{ width: 18, height: 18 }} />
             Sign out

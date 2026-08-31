@@ -78,7 +78,7 @@ export default function SettingsManagerClient({
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Section 1: Company Identity */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
+        <div className="admin-surface border admin-border rounded-2xl p-6 space-y-4 shadow-xs">
           <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
             <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <Building className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
@@ -94,6 +94,36 @@ export default function SettingsManagerClient({
                 type="text"
                 required
                 defaultValue={settings.companyName}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:border-blue-600 focus:outline-none rounded-xl"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-slate-700">Short Brand Name</label>
+              <input
+                name="shortName"
+                type="text"
+                defaultValue={settings.shortName}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:border-blue-600 focus:outline-none rounded-xl"
+              />
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-xs font-semibold text-slate-700">City</label>
+              <input
+                name="city"
+                type="text"
+                defaultValue={settings.city}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:border-blue-600 focus:outline-none rounded-xl"
+              />
+            </div>
+
+            <div className="space-y-1 sm:col-span-2">
+              <label className="text-xs font-semibold text-slate-700">Company Tagline</label>
+              <input
+                name="tagline"
+                type="text"
+                defaultValue={settings.tagline}
                 className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:border-blue-600 focus:outline-none rounded-xl"
               />
             </div>
@@ -141,7 +171,7 @@ export default function SettingsManagerClient({
         </div>
 
         {/* Section 2: Contact Numbers & Emails */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
+        <div className="admin-surface border admin-border rounded-2xl p-6 space-y-4 shadow-xs">
           <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
             <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <Phone className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
@@ -212,8 +242,40 @@ export default function SettingsManagerClient({
           </div>
         </div>
 
-        {/* Section 3: Live Statistics Counters & Shop Banner */}
-        <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
+        {/* Section 3: Hero & Footer Content */}
+        <div className="admin-surface border admin-border rounded-2xl p-6 space-y-4 shadow-xs">
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
+            <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <Globe className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
+            </div>
+            <h3 className="text-base font-bold text-slate-900">Hero &amp; Footer Content</h3>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="space-y-1 sm:col-span-2">
+              <label className="text-xs font-semibold text-slate-700">Hero Headline</label>
+              <input
+                name="heroHeadline"
+                type="text"
+                defaultValue={settings.heroHeadline}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:border-blue-600 focus:outline-none rounded-xl"
+              />
+            </div>
+
+            <div className="space-y-1 sm:col-span-2">
+              <label className="text-xs font-semibold text-slate-700">Footer Notice</label>
+              <textarea
+                name="footerNotice"
+                rows={2}
+                defaultValue={settings.footerNotice}
+                className="w-full px-4 py-2.5 bg-slate-50 border border-slate-300 text-slate-900 text-xs focus:border-blue-600 focus:outline-none resize-none rounded-xl"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Section 4: Live Statistics Counters & Shop Banner */}
+        <div className="admin-surface border admin-border rounded-2xl p-6 space-y-4 shadow-xs">
           <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
             <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
               <Activity className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />

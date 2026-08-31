@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
-import { Check, ArrowRight, Zap } from 'lucide-react';
+import { Check, ArrowRight, Zap, MessageCircle } from 'lucide-react';
 import { BroadbandPackage } from '@/lib/db/types';
 import { isContactPricing, getPackagePriceText } from '@/lib/db/pricing';
+import { createWhatsAppInquiryUrl } from '@/lib/whatsapp';
 
 interface PackageCardProps {
   pkg: BroadbandPackage;
@@ -38,6 +39,9 @@ export default function PackageCard({ pkg, onSelect }: PackageCardProps) {
       ? 'FREE SETUP INCLUDED WITH PLAN'
       : `INSTALLATION ${pkg.installationFeePkr.toLocaleString()} PKR`;
   const ctaLabel = isContact ? 'Get Custom Quote' : `Subscribe to ${pkg.name}`;
+  const whatsappMessage = isContact
+    ? `Hi ABS Network, I am interested in the ${pkg.name} package (${pkg.speedMbps} Mbps). Please provide more details and availability.`
+    : `Hi ABS Network, I am interested in the ${pkg.name} package (${pkg.speedMbps} Mbps, PKR ${pkg.pricePkr.toLocaleString()}). Please provide more details and availability.`;
 
   return (
     <div
@@ -111,7 +115,7 @@ export default function PackageCard({ pkg, onSelect }: PackageCardProps) {
           ))}
         </ul>
 
-        <div className="pt-2 mt-auto">
+        <div className="pt-2 mt-auto space-y-2">
           {onSelect ? (
             <button onClick={() => onSelect(pkg)} className="btn-primary w-full">
               <span>Inquire Now</span>
@@ -126,6 +130,17 @@ export default function PackageCard({ pkg, onSelect }: PackageCardProps) {
               <ArrowRight className="w-4 h-4" />
             </Link>
           )}
+
+          <a
+            href={createWhatsAppInquiryUrl(whatsappMessage)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Inquire about the ${pkg.name} package on WhatsApp`}
+            className="w-full inline-flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-sm font-semibold text-white bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 transition-all shadow-sm"
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span>WhatsApp Inquiry</span>
+          </a>
         </div>
       </div>
     </div>

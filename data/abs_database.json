@@ -34,8 +34,15 @@
       "role": "SUPER_ADMIN",
       "isActive": true,
       "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z",
-      "lastLoginAt": "2026-08-31T17:18:21.356Z"
+      "updatedAt": "2026-08-31T21:47:46.485Z",
+      "lastLoginAt": "2026-08-31T23:03:06.337Z",
+      "appearance": {
+        "mode": "system",
+        "accent": "blue",
+        "density": "comfortable",
+        "radius": "lg",
+        "motion": "balanced"
+      }
     },
     {
       "id": "usr_supabase_super_01",
@@ -46,7 +53,14 @@
       "isActive": true,
       "authUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
       "createdAt": "2026-08-28T23:36:41.780Z",
-      "updatedAt": "2026-08-28T23:36:41.780Z"
+      "updatedAt": "2026-08-31T23:34:33.425Z",
+      "appearance": {
+        "mode": "light",
+        "accent": "indigo",
+        "density": "spacious",
+        "radius": "xl",
+        "motion": "full"
+      }
     }
   ],
   "sessions": [
@@ -157,6 +171,69 @@
       "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36",
       "expiresAt": "2026-09-07T17:18:21.356Z",
       "createdAt": "2026-08-31T17:18:21.356Z"
+    },
+    {
+      "id": "sid_1788210446979_e54c7cd92465",
+      "userId": "usr_admin_01",
+      "token": "sess_52643596c8b24db3fcbc16e10706454449b0db294ce26a1d53ef69badc7e43d5",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-07T21:07:26.979Z",
+      "createdAt": "2026-08-31T21:07:26.979Z"
+    },
+    {
+      "id": "sid_1788210516876_0e2695576fae",
+      "userId": "usr_admin_01",
+      "token": "sess_d9e6ce6a5aebd3d450615b32c70ff123f505d6e2cc0292ee37982ca6a162b1eb",
+      "ipAddress": "::1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-07T21:08:36.876Z",
+      "createdAt": "2026-08-31T21:08:36.876Z"
+    },
+    {
+      "id": "sid_1788212849431_408a49bc0d7d",
+      "userId": "usr_admin_01",
+      "token": "sess_0d2e25fc9f1379e52d9aa375fbcd06fb47f3d0f185daadfd422ba5770defdca9",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-07T21:47:29.430Z",
+      "createdAt": "2026-08-31T21:47:29.430Z"
+    },
+    {
+      "id": "sid_1788213104135_f612997792f6",
+      "userId": "usr_admin_01",
+      "token": "sess_9c828738c317bd98fbf774b9a760f233deb68f9b6fae31f3acce9d653e53890f",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-07T21:51:44.131Z",
+      "createdAt": "2026-08-31T21:51:44.131Z"
+    },
+    {
+      "id": "sid_1788213179429_0f41794b7e14",
+      "userId": "usr_admin_01",
+      "token": "sess_f1b3d3a0ef729e77c5e64ec0dcaa147bfa2ef6f76264d96e8df23d06733427b4",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-07T21:52:59.428Z",
+      "createdAt": "2026-08-31T21:52:59.428Z"
+    },
+    {
+      "id": "sid_1788217334253_1bd77a771594",
+      "userId": "usr_admin_01",
+      "token": "sess_4b32ad544511339a7723cb1d33c3f8aa2fd81fb818010ae34f94d60fb52510aa",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-07T23:02:14.253Z",
+      "createdAt": "2026-08-31T23:02:14.253Z"
+    },
+    {
+      "id": "sid_1788217386337_a7dd2dfce0a2",
+      "userId": "usr_admin_01",
+      "token": "sess_c6521d892f1e253df2c680f708916ffa61c2b466a5ffd015255ca35691a5bce9",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.7922.34 Safari/537.36",
+      "expiresAt": "2026-09-07T23:03:06.337Z",
+      "createdAt": "2026-08-31T23:03:06.337Z"
     }
   ],
   "packages": [
@@ -183,8 +260,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 1,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     },
     {
       "id": "pkg_fiber_20",
@@ -210,8 +287,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 2,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     },
     {
       "id": "pkg_fiber_30",
@@ -236,8 +313,8 @@
       "isPopular": true,
       "isActive": true,
       "displayOrder": 3,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     },
     {
       "id": "pkg_fiber_50",
@@ -263,8 +340,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 4,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     },
     {
       "id": "pkg_biz_100",
@@ -291,8 +368,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 5,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     },
     {
       "id": "pkg_biz_200",
@@ -319,8 +396,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 6,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     },
     {
       "id": "pkg_ent_300",
@@ -347,8 +424,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 7,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     },
     {
       "id": "pkg_ent_500",
@@ -375,8 +452,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 8,
-      "createdAt": "2026-08-31T20:31:08.486Z",
-      "updatedAt": "2026-08-31T20:31:08.486Z"
+      "createdAt": "2026-08-31T23:34:40.907Z",
+      "updatedAt": "2026-08-31T23:34:40.907Z"
     }
   ],
   "services": [
@@ -557,6 +634,570 @@
   ],
   "shopOrders": [],
   "auditLogs": [
+    {
+      "id": "aud_1788219281179_49730a6a98e9",
+      "action": "ADMIN_LOGOUT",
+      "entityType": "SupabaseSession",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {},
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:34:41.180Z"
+    },
+    {
+      "id": "aud_1788219273428_6eefdc6070a4",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_supabase_super_01",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "email": "absnetwork951@gmail.com",
+        "appearance": {
+          "mode": "light",
+          "accent": "indigo",
+          "density": "spacious",
+          "radius": "xl",
+          "motion": "full"
+        }
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:34:33.429Z"
+    },
+    {
+      "id": "aud_1788219251597_c1f3dd24b9fb",
+      "action": "ADMIN_DELETED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "38afa899-0dcf-43db-a187-24cd09f0e294",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:34:11.598Z"
+    },
+    {
+      "id": "aud_1788219236051_341bb3e8fd5f",
+      "action": "ADMIN_CREATED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "38afa899-0dcf-43db-a187-24cd09f0e294",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon",
+        "category": "fiber_optics",
+        "pricePkr": 4000
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:33:56.051Z"
+    },
+    {
+      "id": "aud_1788219120415_d1e9f77c8bdb",
+      "action": "ADMIN_DELETED_PACKAGE",
+      "entityType": "BroadbandPackage",
+      "entityId": "28767913-d66a-4d44-ba67-6fa6e05e1036",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:32:00.415Z"
+    },
+    {
+      "id": "aud_1788219110983_89decadaf4c0",
+      "action": "ADMIN_CREATED_PACKAGE",
+      "entityType": "BroadbandPackage",
+      "entityId": "28767913-d66a-4d44-ba67-6fa6e05e1036",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon",
+        "speedMbps": 40,
+        "pricePkr": 3500
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:31:50.984Z"
+    },
+    {
+      "id": "aud_1788218338529_e9d549d2a22c",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_supabase_super_01",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "email": "absnetwork951@gmail.com",
+        "appearance": {
+          "mode": "light",
+          "accent": "blue",
+          "density": "spacious",
+          "radius": "xl",
+          "motion": "full"
+        }
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:18:58.530Z"
+    },
+    {
+      "id": "aud_1788218328799_537966afedc5",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_supabase_super_01",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "email": "absnetwork951@gmail.com",
+        "appearance": {
+          "mode": "dark",
+          "accent": "emerald",
+          "density": "spacious",
+          "radius": "xl",
+          "motion": "full"
+        }
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:18:48.800Z"
+    },
+    {
+      "id": "aud_1788218051647_b84a95c47c44",
+      "action": "ADMIN_DELETED_PACKAGE",
+      "entityType": "BroadbandPackage",
+      "entityId": "ec2a98c8-1879-4527-8016-4579394a9e5a",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:14:11.648Z"
+    },
+    {
+      "id": "aud_1788218039350_6abce9e1087a",
+      "action": "ADMIN_CREATED_PACKAGE",
+      "entityType": "BroadbandPackage",
+      "entityId": "ec2a98c8-1879-4527-8016-4579394a9e5a",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon",
+        "speedMbps": 40,
+        "pricePkr": 3500
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:13:59.350Z"
+    },
+    {
+      "id": "aud_1788217999867_e2f1e4bb626e",
+      "action": "ADMIN_LOGIN",
+      "entityType": "SupabaseSession",
+      "entityId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "role": "SUPER_ADMIN",
+        "provider": "supabase"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T23:13:19.868Z"
+    },
+    {
+      "id": "aud_1788217456758_29633d547030",
+      "action": "ADMIN_DELETED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "0c07d027-b391-4d1d-b814-3943eca56b6c",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "name": "E2E-SUPABASE-PRODUCT-1788217381067"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:04:16.758Z"
+    },
+    {
+      "id": "aud_1788217444589_22308f465a38",
+      "action": "ADMIN_UPDATED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "0c07d027-b391-4d1d-b814-3943eca56b6c",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "previousIsActive": false,
+        "isActive": true
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:04:04.589Z"
+    },
+    {
+      "id": "aud_1788217431023_cfd0f32cda9f",
+      "action": "ADMIN_UPDATED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "0c07d027-b391-4d1d-b814-3943eca56b6c",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "previousIsActive": true,
+        "isActive": false
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:03:51.023Z"
+    },
+    {
+      "id": "aud_1788217426366_573de6747a7a",
+      "action": "ADMIN_UPDATED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "0c07d027-b391-4d1d-b814-3943eca56b6c",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "name": "E2E-SUPABASE-PRODUCT-1788217381067",
+        "category": "fiber_optics",
+        "pricePkr": 8888
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:03:46.366Z"
+    },
+    {
+      "id": "aud_1788217401839_6d7ad395f1e5",
+      "action": "ADMIN_CREATED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "0c07d027-b391-4d1d-b814-3943eca56b6c",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "name": "E2E-SUPABASE-PRODUCT-1788217381067",
+        "category": "fiber_optics",
+        "pricePkr": 9999
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:03:21.839Z"
+    },
+    {
+      "id": "aud_1788217386389_c99935b32eda",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788217386337_a7dd2dfce0a2",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:03:06.389Z"
+    },
+    {
+      "id": "aud_1788217334281_0783ae28abc1",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788217334253_1bd77a771594",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:02:14.281Z"
+    },
+    {
+      "id": "aud_1788215071587_cf4445cd9fde",
+      "action": "ADMIN_LOGOUT",
+      "entityType": "SupabaseSession",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {},
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:24:31.588Z"
+    },
+    {
+      "id": "aud_1788214960091_c2021b33ccb1",
+      "action": "ADMIN_DELETED_PACKAGE",
+      "entityType": "BroadbandPackage",
+      "entityId": "e7a5392f-0bf2-4086-bb9b-738a1623a860",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon1"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:22:40.092Z"
+    },
+    {
+      "id": "aud_1788214952245_e731a37052d7",
+      "action": "ADMIN_DELETED_PACKAGE",
+      "entityType": "BroadbandPackage",
+      "entityId": "79efe13b-72eb-4f3e-8c6f-abc33c9e66f8",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:22:32.250Z"
+    },
+    {
+      "id": "aud_1788214931374_6ba9725db1d9",
+      "action": "ADMIN_DELETED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "600e1595-69b7-45d4-b4ac-5865fdda90b9",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon1"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:22:11.375Z"
+    },
+    {
+      "id": "aud_1788214921468_402effa8687c",
+      "action": "ADMIN_DELETED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "896eed41-6529-48b3-9a1f-98222d8e3fb4",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:22:01.470Z"
+    },
+    {
+      "id": "aud_1788214869461_ca4c0bb661f2",
+      "action": "ADMIN_UPDATED_SETTINGS",
+      "entityType": "SiteSettings",
+      "entityId": "global",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "statsFiberCoverageKm": 850,
+        "companyName": "ABS Network Broadband SMC Pvt Ltd"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:21:09.462Z"
+    },
+    {
+      "id": "aud_1788214853774_10f9023f91fa",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_supabase_super_01",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "email": "absnetwork951@gmail.com",
+        "appearance": {
+          "mode": "light",
+          "accent": "amber",
+          "density": "spacious",
+          "radius": "xl",
+          "motion": "full"
+        }
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:20:53.775Z"
+    },
+    {
+      "id": "aud_1788214840008_5f3d1807bf0b",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_supabase_super_01",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "email": "absnetwork951@gmail.com",
+        "appearance": {
+          "mode": "dark",
+          "accent": "amber",
+          "density": "spacious",
+          "radius": "xl",
+          "motion": "full"
+        }
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:20:40.012Z"
+    },
+    {
+      "id": "aud_1788214824612_69838e424174",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_supabase_super_01",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "email": "absnetwork951@gmail.com",
+        "appearance": {
+          "mode": "dark",
+          "accent": "amber",
+          "density": "spacious",
+          "radius": "xl",
+          "motion": "full"
+        }
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:20:24.612Z"
+    },
+    {
+      "id": "aud_1788214740393_84ba4a1dd11b",
+      "action": "ADMIN_CREATED_PRODUCT",
+      "entityType": "ShopProduct",
+      "entityId": "600e1595-69b7-45d4-b4ac-5865fdda90b9",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon1",
+        "category": "fiber_optics",
+        "pricePkr": 4000
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:19:00.393Z"
+    },
+    {
+      "id": "aud_1788214672526_07045e4004f2",
+      "action": "ADMIN_CREATED_PACKAGE",
+      "entityType": "BroadbandPackage",
+      "entityId": "e7a5392f-0bf2-4086-bb9b-738a1623a860",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "name": "alyon1",
+        "speedMbps": 40,
+        "pricePkr": 3498
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:17:52.527Z"
+    },
+    {
+      "id": "aud_1788214582683_2b1e898125de",
+      "action": "ADMIN_LOGIN",
+      "entityType": "SupabaseSession",
+      "entityId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "role": "SUPER_ADMIN",
+        "provider": "supabase"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T22:16:22.685Z"
+    },
+    {
+      "id": "aud_1788213179500_13058f33f077",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788213179429_0f41794b7e14",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:52:59.500Z"
+    },
+    {
+      "id": "aud_1788213104196_6233960b891c",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788213104135_f612997792f6",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:51:44.196Z"
+    },
+    {
+      "id": "aud_1788212866491_5e548f9f72c9",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_admin_01",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "email": "admin@absnetwork.pk",
+        "appearance": {
+          "mode": "system",
+          "accent": "blue",
+          "density": "comfortable",
+          "radius": "lg",
+          "motion": "balanced"
+        }
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:47:46.491Z"
+    },
+    {
+      "id": "aud_1788212861760_3c67b6be347a",
+      "action": "ADMIN_UPDATED_APPEARANCE",
+      "entityType": "AdminUser",
+      "entityId": "usr_admin_01",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "email": "admin@absnetwork.pk",
+        "appearance": {
+          "mode": "dark",
+          "accent": "violet",
+          "density": "comfortable",
+          "radius": "lg",
+          "motion": "balanced"
+        }
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:47:41.760Z"
+    },
+    {
+      "id": "aud_1788212854315_705df13fde6d",
+      "action": "ADMIN_UPDATED_SETTINGS",
+      "entityType": "SiteSettings",
+      "entityId": "global",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "statsFiberCoverageKm": 850,
+        "companyName": "ABS Network Broadband SMCVP Pvt Ltd"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:47:34.315Z"
+    },
+    {
+      "id": "aud_1788212849474_b5cc1d3f3149",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788212849431_408a49bc0d7d",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:47:29.475Z"
+    },
+    {
+      "id": "aud_1788210516909_a822da7bf7fa",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788210516876_0e2695576fae",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T21:08:36.909Z"
+    },
+    {
+      "id": "aud_1788210446995_3e01ed3a2d5c",
+      "action": "ADMIN_LOGIN",
+      "entityType": "AdminSession",
+      "entityId": "sid_1788210446979_e54c7cd92465",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "details": {
+        "role": "SUPER_ADMIN"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T21:07:26.995Z"
+    },
     {
       "id": "aud_1788208528706_a9810316c3f3",
       "action": "ADMIN_LOGOUT",
@@ -1016,6 +1657,128 @@
     }
   ],
   "securityEvents": [
+    {
+      "id": "sec_1788219281173_9985296af7da",
+      "eventType": "LOGOUT",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) logged out.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "provider": "supabase"
+      },
+      "createdAt": "2026-08-31T23:34:41.174Z"
+    },
+    {
+      "id": "sec_1788217999864_30e1aeb48309",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) signed in via Supabase Auth.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "supabaseUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0"
+      },
+      "createdAt": "2026-08-31T23:13:19.865Z"
+    },
+    {
+      "id": "sec_1788217386382_5623fc0a25c5",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:03:06.382Z"
+    },
+    {
+      "id": "sec_1788217334270_0c00c75c7c16",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T23:02:14.270Z"
+    },
+    {
+      "id": "sec_1788215071580_8881b7802888",
+      "eventType": "LOGOUT",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) logged out.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "provider": "supabase"
+      },
+      "createdAt": "2026-08-31T22:24:31.581Z"
+    },
+    {
+      "id": "sec_1788214582669_2b1dec9b8131",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) signed in via Supabase Auth.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "supabaseUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0"
+      },
+      "createdAt": "2026-08-31T22:16:22.672Z"
+    },
+    {
+      "id": "sec_1788213179452_58911cf7e1d5",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:52:59.452Z"
+    },
+    {
+      "id": "sec_1788213104148_81bb1f2e3b49",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:51:44.148Z"
+    },
+    {
+      "id": "sec_1788212849460_f98e037b8746",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "127.0.0.1",
+      "createdAt": "2026-08-31T21:47:29.460Z"
+    },
+    {
+      "id": "sec_1788210516891_db996da93d89",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T21:08:36.891Z"
+    },
+    {
+      "id": "sec_1788210446987_7230a3dafffe",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User admin@absnetwork.pk (SUPER_ADMIN) logged in successfully.",
+      "userId": "usr_admin_01",
+      "userEmail": "admin@absnetwork.pk",
+      "ipAddress": "::1",
+      "createdAt": "2026-08-31T21:07:26.987Z"
+    },
     {
       "id": "sec_1788208528701_506d28b6d134",
       "eventType": "LOGOUT",
