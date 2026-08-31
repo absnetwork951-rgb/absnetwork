@@ -1,6 +1,6 @@
 # ABS Network Broadband — Complete UI / UX Audit
 
-**Project:** ABS Network Broadband SMCVP Pvt Ltd — Next.js 15 ISP website (App Router), Tailwind CSS v4, lucide-react, motion (framer-motion)
+**Project:** ABS Network Broadband SMC-Pvt-Ltd — Next.js 15 ISP website (App Router), Tailwind CSS v4, lucide-react, motion (framer-motion)
 **Audit scope:** Every public page, every admin page, all shared components, design tokens, typography, spacing, color, accessibility, responsiveness, motion.
 **Primary complaint being addressed:** *The UI is crowded and needs polish + important configuration details.*
 

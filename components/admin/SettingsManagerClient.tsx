@@ -79,8 +79,10 @@ export default function SettingsManagerClient({
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Section 1: Company Identity */}
         <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
-          <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
-            <Building className="w-5 h-5 text-blue-600" />
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
+            <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <Building className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
+            </div>
             <h3 className="text-base font-bold text-slate-900">Corporate Identity</h3>
           </div>
 
@@ -140,8 +142,10 @@ export default function SettingsManagerClient({
 
         {/* Section 2: Contact Numbers & Emails */}
         <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
-          <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
-            <Phone className="w-5 h-5 text-blue-600" />
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
+            <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <Phone className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
+            </div>
             <h3 className="text-base font-bold text-slate-900">Contact &amp; Helplines</h3>
           </div>
 
@@ -210,8 +214,10 @@ export default function SettingsManagerClient({
 
         {/* Section 3: Live Statistics Counters & Shop Banner */}
         <div className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-4 shadow-xs">
-          <div className="flex items-center gap-2 border-b border-slate-200 pb-3">
-            <Activity className="w-5 h-5 text-blue-600" />
+          <div className="flex items-center gap-3 border-b border-slate-200 pb-3">
+            <div className="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+              <Activity className="w-4.5 h-4.5" style={{ width: 18, height: 18 }} />
+            </div>
             <h3 className="text-base font-bold text-slate-900">Live Metrics &amp; Shop Banner</h3>
           </div>
 

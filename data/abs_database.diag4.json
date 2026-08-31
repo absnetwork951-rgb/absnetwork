@@ -1,6 +1,6 @@
 {
   "settings": {
-    "companyName": "ABS Network Broadband SMCVP Pvt Ltd",
+    "companyName": "ABS Network Broadband SMC-Pvt-Ltd",
     "shortName": "ABS Network",
     "legalRegistration": "SMCVP-PVT-LTD-98421",
     "tagline": "Ultra-Fast Fiber Broadband & Professional Networking Solutions",
@@ -17,7 +17,7 @@
     "instagramUrl": "https://www.instagram.com/absnetwork",
     "heroHeadline": "Fast, Reliable Fiber Internet For Everyone",
     "heroSubheadline": "Experience ultra-high-speed fiber broadband engineered for modern homes and demanding enterprises. Buffer-free streaming, low-latency gaming, and rock-solid reliability backed by 24/7 support.",
-    "footerNotice": "ABS Network Broadband SMCVP Pvt Ltd is a licensed high-speed ISP and digital infrastructure provider committed to uninterrupted connectivity and professional networking solutions.",
+    "footerNotice": "ABS Network Broadband SMC-Pvt-Ltd is a licensed high-speed ISP and digital infrastructure provider committed to uninterrupted connectivity and professional networking solutions.",
     "shopBannerText": "Professional fiber optic and networking equipment for ISPs, enterprises, and home networks.",
     "statsFiberCoverageKm": 850,
     "statsActiveSubscribers": 28500,
@@ -117,12 +117,10 @@
       "features": [
         "15 Mbps Symmetric Fiber Speed",
         "Unlimited High-Speed Data (No FUP)",
-        "Dual-Band Wi-Fi 5 Gigabit Router Included",
         "Free Optical Fiber Installation",
         "24/7 Helpdesk Support"
       ],
       "routerIncluded": true,
-      "routerDetails": "Dual-Band AC1200 Gigabit ONT",
       "isPopular": false,
       "isActive": true,
       "displayOrder": 1,
@@ -150,7 +148,6 @@
         "24/7 Helpdesk Support"
       ],
       "routerIncluded": true,
-      "routerDetails": "Dual-Band AC1200 Gigabit ONT",
       "isPopular": false,
       "isActive": true,
       "displayOrder": 2,
@@ -173,12 +170,10 @@
       "features": [
         "30 Mbps Symmetric Fiber Speed",
         "Uncapped 4K Ultra-HD Streaming",
-        "Dual-Band Wi-Fi 5 Gigabit Gateway",
         "Priority Routing for Zoom & Teams",
         "Round-the-Clock Priority Phone Support"
       ],
       "routerIncluded": true,
-      "routerDetails": "Dual-Band High-Gain Gigabit Optical Gateway",
       "isPopular": true,
       "isActive": true,
       "displayOrder": 3,
@@ -225,9 +220,8 @@
       "priceLabel": "PKR 11,799 + TAX",
       "billingPeriod": "Monthly",
       "installationFeePkr": 0,
-      "dataLimit": "1:1 CIR",
       "features": [
-        "100 Mbps 1:1 Symmetrical CIR",
+        "100 Mbps",
         "2 Usable Public Static IPv4 Addresses",
         "Corporate Optical Fiber Direct Run",
         "Technical Account Manager",
@@ -253,9 +247,8 @@
       "priceLabel": "Please contact us for rates.",
       "billingPeriod": "Monthly",
       "installationFeePkr": 0,
-      "dataLimit": "1:1 CIR",
       "features": [
-        "200 Mbps 1:1 Bandwidth",
+        "200 Mbps Bandwidth",
         "Public Static IP Pool (Optional)",
         "Custom BGP Routing Options",
         "Priority NOC & Account Engineer",
@@ -339,7 +332,6 @@
       "features": [
         "True 100% Fiber to the Home (FTTH)",
         "Symmetrical Upload & Download Speeds",
-        "Dual-Band Wi-Fi Router with Optical ONT",
         "No Data Capping or Fair Usage Policies",
         "Automated 24/7 Line Quality Monitoring"
       ],
@@ -353,12 +345,12 @@
       "title": "Leased Lines & DIA",
       "slug": "leased-lines",
       "category": "enterprise",
-      "shortDescription": "1:1 unshared internet access with guaranteed CIR, custom BGP peering, and 99.99% uptime SLA.",
+      "shortDescription": "Unshared internet access, custom BGP peering, and 99.99% uptime SLA.",
       "fullDescription": "Engineered for financial institutions, software houses, call centers, and multi-branch enterprises that cannot compromise on uptime. Our leased line service features redundant backhauls, low latency routes, and round-the-clock NOC monitoring.",
       "iconName": "Server",
       "badge": "Enterprise SLA",
       "features": [
-        "1:1 Committed Information Rate (CIR)",
+        "Committed Information Rate",
         "Multi-Path Ring Redundancy Protection",
         "Public IP Subnets (/29, /28, /27)",
         "Custom BGP Peering & Routing Optimization",

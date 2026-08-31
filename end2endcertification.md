@@ -1,5 +1,5 @@
 # End-to-End Production Certification Specification
-## ABS Network Broadband SMCVP Pvt Ltd — Next.js 15 ISP Platform
+## ABS Network Broadband SMC-Pvt-Ltd — Next.js 15 ISP Platform
 
 - **Document type:** Executable, evidence-based Release Certification master plan
 - **Derived from:** `audit.md` (baseline) + full authoritative source inspection (this run)

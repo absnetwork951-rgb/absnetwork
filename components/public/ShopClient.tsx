@@ -5,6 +5,7 @@ import {
   Search,
   X,
   Network,
+  ChevronDown,
   ShieldCheck,
   ClipboardCheck,
   Truck,
@@ -31,6 +32,7 @@ const CATEGORIES = [
   { id: 'network_accessories', label: 'Network Accessories' },
   { id: 'tools_testing', label: 'Tools & Testing' },
   { id: 'rack_cabinet', label: 'Rack & Cabinet' },
+  { id: 'other', label: 'Other' },
 ];
 
 export default function ShopClient({
@@ -48,7 +50,13 @@ export default function ShopClient({
   const [compareList, setCompareList] = useState<ShopProduct[]>([]);
   const [showCompareModal, setShowCompareModal] = useState(false);
 
-  const brands = ['all', ...Array.from(new Set(initialProducts.map((p) => p.brand)))];
+  const brands = Array.from(
+    new Set(
+      initialProducts
+        .map((p) => p.brand)
+        .filter((b): b is string => typeof b === 'string' && b.trim() !== '')
+    )
+  ).sort((a, b) => a.localeCompare(b));
 
   const filteredProducts = initialProducts
     .filter((prod) => {
@@ -80,6 +88,12 @@ export default function ShopClient({
     selectedCategory !== 'all' ||
     selectedBrand !== 'all' ||
     stockOnly;
+
+  const activeFilterCount =
+    Number(searchTerm.trim() !== '') +
+    Number(selectedCategory !== 'all') +
+    Number(selectedBrand !== 'all') +
+    Number(stockOnly);
 
   const resetFilters = () => {
     setSearchTerm('');
@@ -126,31 +140,33 @@ export default function ShopClient({
             )}
           </div>
 
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 relative">
             <select
               value={selectedBrand}
               onChange={(e) => setSelectedBrand(e.target.value)}
               aria-label="Filter by brand"
-              className="input-base capitalize"
+              className="input-base capitalize appearance-none pr-10"
             >
               <option value="all">All Brands</option>
-              {brands.filter((b) => b !== 'all').map((b) => (
+              {brands.map((b) => (
                 <option key={b} value={b}>{b}</option>
               ))}
             </select>
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
 
-          <div className="md:col-span-3">
+          <div className="md:col-span-3 relative">
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
               aria-label="Sort products"
-              className="input-base"
+              className="input-base appearance-none pr-10"
             >
               <option value="featured">Featured & Recommended</option>
               <option value="price_asc">Price: Low to High</option>
               <option value="price_desc">Price: High to Low</option>
             </select>
+            <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           </div>
         </div>
 
@@ -206,32 +222,51 @@ export default function ShopClient({
       )}
 
       {initialProducts.length === 0 ? (
-        <div className="p-16 text-center bg-white border border-slate-200/90 rounded-2xl space-y-4 shadow-xs">
-          <Network className="w-12 h-12 text-slate-400 mx-auto" />
+        <div className="p-16 text-center bg-white border border-slate-200/90 rounded-2xl space-y-4 shadow-xs animate-in fade-in">
+          <div className="w-14 h-14 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center mx-auto">
+            <Network className="w-6 h-6 text-slate-400" />
+          </div>
           <h3 className="text-xl font-bold text-slate-900">Shop catalog is being stocked</h3>
           <p className="text-sm text-slate-500 max-w-md mx-auto">
             Our networking equipment range is being added. Please check back soon or contact us directly for availability.
           </p>
         </div>
       ) : filteredProducts.length === 0 ? (
-        <div className="p-16 text-center bg-white border border-slate-200/90 rounded-2xl space-y-4 shadow-xs">
-          <Search className="w-12 h-12 text-slate-400 mx-auto" />
+        <div className="p-16 text-center bg-white border border-slate-200/90 rounded-2xl space-y-4 shadow-xs animate-in fade-in">
+          <div className="w-14 h-14 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-center mx-auto">
+            <Search className="w-6 h-6 text-slate-400" />
+          </div>
           <h3 className="text-xl font-bold text-slate-900">No products match your filters</h3>
-          <p className="text-sm text-slate-500">Try different keywords or clear some filters.</p>
-          <button onClick={resetFilters} className="btn-secondary">
-            Reset All Filters
-          </button>
+          <p className="text-sm text-slate-500">Try different keywords, another category or brand, or clear some filters.</p>
+          <div className="pt-2">
+            <button onClick={resetFilters} className="btn-secondary btn-sm">
+              <X className="w-3.5 h-3.5" />
+              Reset All Filters
+            </button>
+          </div>
         </div>
       ) : (
         <div className="space-y-6">
-          <p className="text-sm text-slate-500" role="status">
-            Showing {filteredProducts.length} of {initialProducts.length} products
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-sm text-slate-500" role="status" aria-live="polite">
+              Showing <span className="font-semibold text-slate-900">{filteredProducts.length}</span> of{' '}
+              {initialProducts.length} products
+              {activeFilterCount > 0 && (
+                <span className="ml-2 inline-block text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                  {activeFilterCount} active {activeFilterCount === 1 ? 'filter' : 'filters'}
+                </span>
+              )}
+            </p>
             {isFiltering && (
-              <button onClick={resetFilters} className="ml-2 text-blue-600 hover:text-blue-700 font-semibold">
-                Clear filters
+              <button
+                onClick={resetFilters}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-full text-rose-600 bg-rose-50 border border-rose-200 hover:bg-rose-100 transition-colors"
+              >
+                <X className="w-3.5 h-3.5" />
+                Clear all filters
               </button>
             )}
-          </p>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredProducts.map((prod) => (
               <ShopProductCard

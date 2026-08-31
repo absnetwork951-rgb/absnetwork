@@ -155,20 +155,21 @@ function mapProduct(
   };
 }
 
-/**
- * Public shop products pulled directly from Supabase with their
- * `product_images` resolved to display-ready Storage URLs.
- */
-export async function getPublicShopProducts(): Promise<ShopProduct[]> {
+const PRODUCT_SELECT =
+  'id, slug, name, model, sku, price, compare_price, stock_status, stock_quantity, warranty_years, short_description, full_description, specifications, features, is_featured, is_active, display_order, category:product_categories(slug), brand:product_brands(name)';
+
+async function loadShopProducts(activeOnly: boolean): Promise<ShopProduct[]> {
   const admin = getSupabaseAdmin();
 
-  const { data: productRows, error: productError } = await admin
+  let query = admin
     .from('products')
-    .select(
-      'id, slug, name, model, sku, price, compare_price, stock_status, stock_quantity, warranty_years, short_description, full_description, specifications, features, is_featured, is_active, display_order, product_categories(slug), product_brands(name)'
-    )
-    .eq('is_active', true)
+    .select(PRODUCT_SELECT)
     .order('display_order');
+  if (activeOnly) {
+    query = query.eq('is_active', true);
+  }
+
+  const { data: productRows, error: productError } = await query;
 
   if (productError) {
     console.error('[supabase-shop] Failed to load products:', productError.message);
@@ -197,4 +198,59 @@ export async function getPublicShopProducts(): Promise<ShopProduct[]> {
   return (productRows as RawProduct[] | null ?? []).map((raw) =>
     mapProduct(raw, imagesByProduct)
   );
+}
+
+/**
+ * Public shop products pulled directly from Supabase with their
+ * `product_images` resolved to display-ready Storage URLs.
+ */
+export async function getPublicShopProducts(): Promise<ShopProduct[]> {
+  return loadShopProducts(true);
+}
+
+/**
+ * Full catalog (including inactive products) for the admin shop panel.
+ */
+export async function getAllShopProducts(): Promise<ShopProduct[]> {
+  return loadShopProducts(false);
+}
+
+/**
+ * Single product (any active state) plus its images, used by the admin
+ * editor and by the CMS write layer after creating/updating a product.
+ */
+export async function getShopProductById(id: string): Promise<ShopProduct | null> {
+  const admin = getSupabaseAdmin();
+
+  const { data: productRow, error: productError } = await admin
+    .from('products')
+    .select(PRODUCT_SELECT)
+    .eq('id', id)
+    .maybeSingle();
+
+  if (productError) {
+    console.error('[supabase-shop] Failed to load product:', productError.message);
+    return null;
+  }
+  if (!productRow) return null;
+
+  const { data: imageRows, error: imageError } = await admin
+    .from('product_images')
+    .select('product_id, url, storage_path, is_primary, sort_order')
+    .eq('product_id', id)
+    .order('sort_order');
+
+  if (imageError) {
+    console.error('[supabase-shop] Failed to load product_images:', imageError.message);
+  }
+
+  const imagesByProduct: Record<string, ImageRow[]> = {
+    [id]: ((imageRows ?? []) as RawProductImage[]).map((row) => ({
+      url: row.url,
+      is_primary: row.is_primary,
+      sort_order: row.sort_order,
+    })),
+  };
+
+  return mapProduct(productRow as RawProduct, imagesByProduct);
 }

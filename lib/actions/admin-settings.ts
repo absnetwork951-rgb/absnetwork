@@ -4,11 +4,16 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { getCurrentAdmin, getClientIp } from '../auth/session';
 import { hasPermission } from '../auth/rbac';
-import { updateSiteSettings } from '../db';
+import { logAudit } from '../db';
+import {
+  getSupabaseSettings,
+  updateSupabaseSettings,
+} from '../supabase-cms';
 
 const SettingsSchema = z.object({
   companyName: z.string().min(2, 'Company name is required'),
   shortName: z.string().min(2, 'Short name is required'),
+  legalRegistration: z.string().min(2, 'Legal registration is required'),
   tagline: z.string().min(5, 'Tagline is required'),
   phone: z.string().min(5, 'Phone is required'),
   supportPhone: z.string().min(5, 'Support phone is required'),
@@ -42,6 +47,7 @@ export async function updateSettingsAction(formData: FormData) {
   const rawData = {
     companyName: formData.get('companyName')?.toString().trim(),
     shortName: formData.get('shortName')?.toString().trim(),
+    legalRegistration: formData.get('legalRegistration')?.toString().trim(),
     tagline: formData.get('tagline')?.toString().trim(),
     phone: formData.get('phone')?.toString().trim(),
     supportPhone: formData.get('supportPhone')?.toString().trim(),
@@ -72,7 +78,25 @@ export async function updateSettingsAction(formData: FormData) {
   }
 
   const ip = await getClientIp();
-  const updated = updateSiteSettings(parsed.data, { id: current.user.id, email: current.user.email }, ip);
+
+  let updated;
+  try {
+    updated = await updateSupabaseSettings(parsed.data);
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Failed to update settings',
+    };
+  }
+
+  logAudit(
+    'ADMIN_UPDATED_SETTINGS',
+    'SiteSettings',
+    'global',
+    { statsFiberCoverageKm: updated.statsFiberCoverageKm, companyName: updated.companyName },
+    { id: current.user.id, email: current.user.email },
+    ip
+  );
 
   revalidatePath('/');
   revalidatePath('/packages');

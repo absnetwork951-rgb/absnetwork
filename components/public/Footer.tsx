@@ -70,7 +70,7 @@ export default function Footer({ settings }: FooterProps) {
                 <span className="text-lg font-bold tracking-tight text-white">
                   ABS<span className="text-blue-500">.NETWORK</span>
                 </span>
-                <span className="text-xs text-neutral-500">Broadband SMCVP Pvt Ltd</span>
+                <span className="text-xs text-neutral-500">Broadband SMC-Pvt-Ltd</span>
               </div>
             </Link>
 

@@ -56,12 +56,23 @@ function ensureDbDirectory() {
 
 /** Loads and migrates the DB from disk (no cache). */
 function loadDatabaseFromDisk(): DatabaseSchema {
-  ensureDbDirectory();
+  try {
+    ensureDbDirectory();
 
-  if (!fs.existsSync(DB_FILE)) {
-    const seed = getInitialSeedData();
-    fs.writeFileSync(DB_FILE, JSON.stringify(seed, null, 2), 'utf-8');
-    return seed;
+    if (!fs.existsSync(DB_FILE)) {
+      const seed = getInitialSeedData();
+      fs.writeFileSync(DB_FILE, JSON.stringify(seed, null, 2), 'utf-8');
+      return seed;
+    }
+  } catch (error) {
+    // Non-writable filesystem (e.g. read-only Cloud Run container) or a
+    // missing data/ directory must never 500 the app. Fall back to an
+    // in-memory seed so pages render; writes are kept in memory per worker.
+    console.error(
+      'Database directory/file is not writable; continuing with in-memory seed data:',
+      error instanceof Error ? error.message : error
+    );
+    return getInitialSeedData();
   }
 
   try {
@@ -166,15 +177,24 @@ export function getDatabase(): DatabaseSchema {
 }
 
 export function saveDatabase(data: DatabaseSchema): void {
-  ensureDbDirectory();
   cachedDb = data;
-  const tempFile = `${DB_FILE}.tmp.${Date.now()}`;
   try {
+    ensureDbDirectory();
+    const tempFile = `${DB_FILE}.tmp.${Date.now()}`;
     fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), 'utf-8');
     fs.renameSync(tempFile, DB_FILE);
-  } catch (err) {
-    console.error('Error saving database to file:', err);
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
+  } catch (firstErr) {
+    // rename can fail on some platforms when the destination exists; retry as
+    // a direct write. On a non-writable filesystem this also fails, in which
+    // case the change stays in memory and never 500s the caller.
+    try {
+      fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (secondErr) {
+      console.error(
+        'Database file is not writable; keeping changes in memory:',
+        secondErr instanceof Error ? secondErr.message : secondErr
+      );
+    }
   }
   cachedDbMtimeMs = currentDbMtimeMs();
 }

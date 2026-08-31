@@ -158,17 +158,36 @@ export default function OrdersManagerClient({
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
-                <th className="p-4 text-sm font-semibold">Order #</th>
-                <th className="p-4 text-sm font-semibold">Customer Name</th>
-                <th className="p-4 text-sm font-semibold">Product &amp; Qty</th>
-                <th className="p-4 text-sm font-semibold">Est. Total (PKR)</th>
-                <th className="p-4 text-sm font-semibold">Location</th>
-                <th className="p-4 text-sm font-semibold">Status</th>
-                <th className="p-4 text-sm font-semibold">Date</th>
-                <th className="p-4 text-sm font-semibold text-right">Actions</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Order #</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Customer</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Product &amp; Qty</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Est. Total (PKR)</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Location</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Status</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Date</th>
+                <th className="p-4 text-right text-[11px] font-semibold uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={8} className="p-12">
+                    <div className="mx-auto max-w-sm text-center space-y-2">
+                      <div className="w-12 h-12 mx-auto bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center">
+                        <ShoppingBag className="w-5 h-5 text-slate-400" />
+                      </div>
+                      <p className="text-sm font-semibold text-slate-700">
+                        {orders.length === 0 ? 'No shop orders yet' : 'No orders match your search'}
+                      </p>
+                      <p className="text-xs text-slate-500">
+                        {orders.length === 0
+                          ? 'Equipment inquiries placed via the public shop will appear here.'
+                          : 'Try different keywords or reset the status filter.'}
+                      </p>
+                    </div>
+                  </td>
+                </tr>
+              ) : null}
               {filtered.map((ord) => (
                 <tr key={ord.id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-4 font-bold text-blue-600 whitespace-nowrap text-sm">

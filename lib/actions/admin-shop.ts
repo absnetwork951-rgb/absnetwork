@@ -4,7 +4,14 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { getCurrentAdmin, getClientIp } from '../auth/session';
 import { hasPermission } from '../auth/rbac';
-import { createShopProduct, updateShopProduct, deleteShopProduct, getShopProductById } from '../db';
+import { logAudit } from '../db';
+import { getShopProductById } from '../supabase-shop';
+import {
+  createSupabaseShopProduct,
+  updateSupabaseShopProduct,
+  deleteSupabaseShopProduct,
+  syncShopProductCount,
+} from '../supabase-cms';
 
 const ShopProductSchema = z.object({
   name: z.string().min(2, 'Product name is required'),
@@ -30,6 +37,55 @@ const ShopProductSchema = z.object({
   displayOrder: z.coerce.number().default(1),
 });
 
+// The ShopManagerClient serializes images and specifications as JSON strings
+// (FormData values), while older callers may still use newline-delimited text.
+// Accept both so round-tripping through the editor never corrupts the data.
+function parseListInput(value: string): string[] {
+  const trimmed = (value || '').trim();
+  if (!trimmed) return [];
+  if (trimmed.startsWith('[')) {
+    try {
+      const parsed = JSON.parse(trimmed);
+      return Array.isArray(parsed)
+        ? parsed.filter((v): v is string => typeof v === 'string' && v.trim().length > 0)
+        : [];
+    } catch {
+      // fall through to newline parsing
+    }
+  }
+  return trimmed
+    .split('\n')
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
+function parseSpecificationsInput(value: string): Record<string, string> {
+  const trimmed = (value || '').trim();
+  if (!trimmed) return {};
+  if (trimmed.startsWith('{')) {
+    try {
+      const parsed = JSON.parse(trimmed) as Record<string, unknown>;
+      const out: Record<string, string> = {};
+      for (const [k, v] of Object.entries(parsed)) {
+        if (k && v !== null && v !== undefined) {
+          out[k] = typeof v === 'string' ? v : String(v);
+        }
+      }
+      return out;
+    } catch {
+      // fall through to newline parsing
+    }
+  }
+  const out: Record<string, string> = {};
+  for (const line of trimmed.split('\n')) {
+    const [k, ...rest] = line.split(':');
+    if (k && rest.length) {
+      out[k.trim()] = rest.join(':').trim();
+    }
+  }
+  return out;
+}
+
 export async function saveShopProductAction(formData: FormData) {
   const current = await getCurrentAdmin();
   if (!current || !hasPermission(current.user.role, 'manage_shop_products')) {
@@ -40,17 +96,10 @@ export async function saveShopProductAction(formData: FormData) {
   const rawFeatures = formData.get('features')?.toString() || '';
   const featuresList = rawFeatures.split('\n').map((f) => f.trim()).filter(Boolean);
 
-  const rawImages = formData.get('images')?.toString() || '';
-  const imagesList = rawImages.split('\n').map((img) => img.trim()).filter(Boolean);
-
-  const rawSpecs = formData.get('specifications')?.toString() || '';
-  const specsObj: Record<string, string> = {};
-  rawSpecs.split('\n').forEach((line) => {
-    const [k, ...v] = line.split(':');
-    if (k && v.length) {
-      specsObj[k.trim()] = v.join(':').trim();
-    }
-  });
+  const imagesList = parseListInput(formData.get('images')?.toString() || '');
+  const specsObj = parseSpecificationsInput(
+    formData.get('specifications')?.toString() || ''
+  );
 
   const rawData = {
     name: formData.get('name')?.toString().trim(),
@@ -72,7 +121,7 @@ export async function saveShopProductAction(formData: FormData) {
     features: featuresList,
     isFeatured: formData.get('isFeatured') === 'true' || formData.get('isFeatured') === 'on',
     isActive: formData.get('isActive') === 'true' || formData.get('isActive') === 'on',
-    images: imagesList.length > 0 ? imagesList : [],
+    images: imagesList,
     displayOrder: Number(formData.get('displayOrder')) || 1,
   };
 
@@ -84,10 +133,35 @@ export async function saveShopProductAction(formData: FormData) {
   const ip = await getClientIp();
 
   let resProd;
-  if (id) {
-    resProd = updateShopProduct(id, parsed.data, { id: current.user.id, email: current.user.email }, ip);
-  } else {
-    resProd = createShopProduct(parsed.data, { id: current.user.id, email: current.user.email }, ip);
+  try {
+    if (id) {
+      resProd = await updateSupabaseShopProduct(id, parsed.data);
+    } else {
+      resProd = await createSupabaseShopProduct(parsed.data);
+    }
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Failed to save product',
+    };
+  }
+  if (!resProd) {
+    return { success: false, error: 'Product not found' };
+  }
+
+  logAudit(
+    id ? 'ADMIN_UPDATED_PRODUCT' : 'ADMIN_CREATED_PRODUCT',
+    'ShopProduct',
+    resProd.id,
+    { name: resProd.name, category: resProd.category, pricePkr: resProd.pricePkr },
+    { id: current.user.id, email: current.user.email },
+    ip
+  );
+
+  try {
+    await syncShopProductCount();
+  } catch (syncErr) {
+    console.error('[admin-shop] Failed to sync product count:', syncErr);
   }
 
   revalidatePath('/shop');
@@ -105,7 +179,34 @@ export async function deleteShopProductAction(id: string) {
   }
 
   const ip = await getClientIp();
-  deleteShopProduct(id, { id: current.user.id, email: current.user.email }, ip);
+
+  let removedName = 'product';
+  try {
+    const existing = await getShopProductById(id);
+    removedName = existing?.name ?? removedName;
+    const ok = await deleteSupabaseShopProduct(id);
+    if (!ok) return { success: false, error: 'Product not found' };
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Failed to delete product',
+    };
+  }
+
+  logAudit(
+    'ADMIN_DELETED_PRODUCT',
+    'ShopProduct',
+    id,
+    { name: removedName },
+    { id: current.user.id, email: current.user.email },
+    ip
+  );
+
+  try {
+    await syncShopProductCount();
+  } catch (syncErr) {
+    console.error('[admin-shop] Failed to sync product count:', syncErr);
+  }
 
   revalidatePath('/shop');
   revalidatePath('/');
@@ -121,11 +222,35 @@ export async function toggleShopProductActiveAction(id: string) {
     return { success: false, error: 'Unauthorized: You do not have permission to edit shop products.' };
   }
 
-  const prod = getShopProductById(id);
-  if (!prod) return { success: false, error: 'Product not found' };
-
   const ip = await getClientIp();
-  updateShopProduct(id, { isActive: !prod.isActive }, { id: current.user.id, email: current.user.email }, ip);
+
+  let updatedProd;
+  try {
+    const prod = await getShopProductById(id);
+    if (!prod) return { success: false, error: 'Product not found' };
+    updatedProd = await updateSupabaseShopProduct(id, { isActive: !prod.isActive });
+    if (!updatedProd) return { success: false, error: 'Product not found' };
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Failed to update product',
+    };
+  }
+
+  logAudit(
+    'ADMIN_UPDATED_PRODUCT',
+    'ShopProduct',
+    id,
+    { previousIsActive: !updatedProd.isActive, isActive: updatedProd.isActive },
+    { id: current.user.id, email: current.user.email },
+    ip
+  );
+
+  try {
+    await syncShopProductCount();
+  } catch (syncErr) {
+    console.error('[admin-shop] Failed to sync product count:', syncErr);
+  }
 
   revalidatePath('/shop');
   revalidatePath('/');

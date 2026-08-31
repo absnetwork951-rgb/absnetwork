@@ -1,5 +1,5 @@
 -- =============================================================================
--- ABS Network Broadband SMCVP Pvt Ltd — Supabase CMS initial migration
+-- ABS Network Broadband SMC-Pvt-Ltd — Supabase CMS initial migration
 -- Next.js 15 / Supabase (PostgreSQL) — packages, services, shop, CMS data model
 -- ---------------------------------------------------------------------------
 -- This migration is intentionally written to run as a whole via:

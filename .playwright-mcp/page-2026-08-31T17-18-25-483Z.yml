@@ -1,0 +1,35 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - link "ABS Network Admin Control" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e10]:
+          - generic [ref=e11]: ABS Network
+          - generic [ref=e12]: Admin Control
+      - heading "Admin Portal Sign In" [level=1] [ref=e13]
+      - paragraph [ref=e14]: Secure administrative control portal for ABS Network Broadband SMC-Pvt-Ltd.
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - text: Admin Email
+        - textbox "Admin Email" [disabled] [ref=e19]:
+          - /placeholder: you@absnetwork.pk
+          - text: admin@absnetwork.pk
+      - generic [ref=e20]:
+        - text: Master Password
+        - generic [ref=e21]:
+          - textbox "Master Password" [disabled] [ref=e22]:
+            - /placeholder: ••••••••••••
+            - text: AdminPassword@2026!
+          - button "Show password" [ref=e23]
+          - generic [ref=e27]: Master password is currently hidden.
+      - button "Verifying credentials..." [disabled] [ref=e52]
+    - link "← Back to ABS Network public site" [ref=e33] [cursor=pointer]:
+      - /url: /
+  - button "Open Next.js Dev Tools" [ref=e43] [cursor=pointer]:
+    - generic [ref=e57]:
+      - text: Compiling
+      - generic [ref=e58]:
+        - generic [ref=e59]: .
+        - generic [ref=e60]: .
+        - generic [ref=e61]: .
+  - alert [ref=e51]

@@ -4,22 +4,24 @@ import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
 import PageHeader from '@/components/public/PageHeader';
 import PackagesClient from '@/components/public/PackagesClient';
-import { getSiteSettings, getPackages } from '@/lib/db';
+import { getSupabaseSettings, getSupabasePackages } from '@/lib/supabase-cms';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'ABS Network Broadband Packages | Symmetrical Gigabit Fiber',
-  description: 'Explore ultra-fast optical fiber broadband plans for home streaming, pro gaming, and business internet by ABS Network Broadband SMCVP Pvt Ltd.',
+  description: 'Explore ultra-fast optical fiber broadband plans for home streaming, pro gaming, and business internet by ABS Network Broadband SMC-Pvt-Ltd.',
   openGraph: {
     title: 'ABS Network Broadband Packages | Symmetrical Gigabit Fiber',
     description: 'High-speed fiber broadband packages with included Wi-Fi router, unlimited data, and zero throttling by ABS Network.',
   },
 };
 
-export default function PackagesPage() {
-  const settings = getSiteSettings();
-  const packages = getPackages(true);
+export default async function PackagesPage() {
+  const [settings, packages] = await Promise.all([
+    getSupabaseSettings(),
+    getSupabasePackages(true),
+  ]);
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">

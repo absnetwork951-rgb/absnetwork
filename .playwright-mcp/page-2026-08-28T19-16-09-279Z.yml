@@ -17,7 +17,7 @@
   - main [ref=f2e29]:
     - generic [ref=f2e32]:
       - generic [ref=f2e33]:
-        - generic [ref=f2e34]: Next-Gen Fiber Network • ABS Network Broadband SMCVP Pvt Ltd
+        - generic [ref=f2e34]: Next-Gen Fiber Network • ABS Network Broadband SMC-Pvt-Ltd
         - heading "Fast, Reliable Fiber Internet For Everyone" [level=1] [ref=f2e40]
         - paragraph [ref=f2e41]: Experience ultra-high-speed fiber broadband engineered for modern homes and demanding enterprises. Buffer-free streaming, low-latency gaming, and rock-solid reliability backed by 24/7 dedicated support.
         - generic [ref=f2e42]:
@@ -204,12 +204,12 @@
             - /url: /shop
       - generic [ref=f2e372]:
         - generic [ref=f2e373]:
-          - link "ABS.NETWORK Broadband SMCVP Pvt Ltd" [ref=f2e374] [cursor=pointer]:
+          - link "ABS.NETWORK Broadband SMC-Pvt-Ltd" [ref=f2e374] [cursor=pointer]:
             - /url: /
             - generic [ref=f2e378]:
               - generic [ref=f2e379]: ABS.NETWORK
-              - generic [ref=f2e380]: Broadband SMCVP Pvt Ltd
-          - paragraph [ref=f2e381]: ABS Network Broadband SMCVP Pvt Ltd is a licensed high-speed ISP and digital infrastructure provider committed to uninterrupted connectivity and professional networking solutions.
+              - generic [ref=f2e380]: Broadband SMC-Pvt-Ltd
+          - paragraph [ref=f2e381]: ABS Network Broadband SMC-Pvt-Ltd is a licensed high-speed ISP and digital infrastructure provider committed to uninterrupted connectivity and professional networking solutions.
         - generic [ref=f2e382]:
           - heading "Navigation" [level=4] [ref=f2e383]
           - list [ref=f2e384]:
@@ -257,7 +257,7 @@
             - listitem [ref=f2e423]:
               - generic [ref=f2e427]: 24/7 NOC Monitoring
       - generic [ref=f2e428]:
-        - paragraph [ref=f2e429]: © 2026 ABS Network Broadband SMCVP Pvt Ltd. All rights reserved.
+        - paragraph [ref=f2e429]: © 2026 ABS Network Broadband SMC-Pvt-Ltd. All rights reserved.
         - generic [ref=f2e430]:
           - generic [ref=f2e431]: "Registration #SMCVP-PVT-LTD-98421"
           - link "Admin Login" [ref=f2e432] [cursor=pointer]:

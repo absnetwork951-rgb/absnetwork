@@ -1,7 +1,7 @@
 # Agents.md - ABS Network Broadband Codebase Guide
 
 ## Project Overview
-ABS Network Broadband SMCVP Pvt Ltd - A Next.js 15 ISP website for a fiber broadband company in Islamabad, Pakistan. Features public-facing broadband packages, services, fiber/networking equipment shop, and a full admin panel with RBAC.
+ABS Network Broadband SMC-Pvt-Ltd - A Next.js 15 ISP website for a fiber broadband company in Islamabad, Pakistan. Features public-facing broadband packages, services, fiber/networking equipment shop, and a full admin panel with RBAC.
 
 ## Tech Stack
 - **Framework**: Next.js 15 (App Router)

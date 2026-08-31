@@ -176,16 +176,29 @@ export default function PackagesManagerClient({
           <table className="w-full text-left border-collapse text-xs">
             <thead>
               <tr className="border-b border-slate-200 text-slate-500 bg-slate-50/70">
-                <th className="p-4">Package</th>
-                <th className="p-4">Speed</th>
-                <th className="p-4">Price (PKR)</th>
-                <th className="p-4">Category</th>
-                <th className="p-4">Data Policy</th>
-                <th className="p-4">Status</th>
-                <th className="p-4 text-right">Actions</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Package</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Speed</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Price (PKR)</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Category</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Data Policy</th>
+                <th className="p-4 text-[11px] font-semibold uppercase tracking-wider">Status</th>
+                <th className="p-4 text-right text-[11px] font-semibold uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
+              {packages.length === 0 && (
+                <tr>
+                  <td colSpan={7} className="p-12">
+                    <div className="mx-auto max-w-sm text-center space-y-2">
+                      <div className="w-12 h-12 mx-auto bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center">
+                        <Wifi className="w-5 h-5 text-slate-400" />
+                      </div>
+                      <p className="text-sm font-semibold text-slate-700">No packages yet</p>
+                      <p className="text-xs text-slate-500">Click &quot;Add New Package&quot; to create your first fiber plan.</p>
+                    </div>
+                  </td>
+                </tr>
+              )}
               {packages.map((pkg) => (
                 <tr key={pkg.id} className="hover:bg-slate-50 transition-colors">
                   <td className="p-4">

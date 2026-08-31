@@ -12,13 +12,21 @@ import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
 import HeroSection from '@/components/public/HeroSection';
 import HomePackagesSection from '@/components/public/HomePackagesSection';
-import { getSiteSettings, getPackages } from '@/lib/db';
+import WhyChooseSection from '@/components/public/WhyChooseSection';
+import VisualCategoryCards from '@/components/public/VisualCategoryCards';
+import HomeShopSection from '@/components/public/HomeShopSection';
+import NetworkImageMosaic from '@/components/home/NetworkImageMosaic';
+import { getSupabaseSettings, getSupabasePackages } from '@/lib/supabase-cms';
+import { getPublicShopProducts } from '@/lib/supabase-shop';
 
 export const revalidate = 60;
 
-export default function HomePage() {
-  const settings = getSiteSettings();
-  const packages = getPackages(true);
+export default async function HomePage() {
+  const [settings, packages, shopProducts] = await Promise.all([
+    getSupabaseSettings(),
+    getSupabasePackages(true),
+    getPublicShopProducts(),
+  ]);
 
   const featuredPackages = packages.slice(0, 3);
 
@@ -110,6 +118,14 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <VisualCategoryCards />
+
+        <WhyChooseSection />
+
+        <HomeShopSection products={shopProducts} />
+
+        <NetworkImageMosaic />
 
         <section className="py-16 md:py-24 bg-slate-50 border-b border-slate-200">
           <div className="page-container">

@@ -29,7 +29,7 @@ Call log:
 - link "ABS NETWORK COMMAND CENTER":
   - /url: /
 - heading "Admin Portal Sign In" [level=1]
-- paragraph: Secure administrative control portal for ABS Network Broadband SMCVP Pvt Ltd.
+- paragraph: Secure administrative control portal for ABS Network Broadband SMC-Pvt-Ltd.
 - text: Admin Email
 - textbox "Admin Email":
   - /placeholder: you@absnetwork.pk

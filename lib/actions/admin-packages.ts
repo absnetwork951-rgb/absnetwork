@@ -4,7 +4,13 @@ import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { getCurrentAdmin, getClientIp } from '../auth/session';
 import { hasPermission } from '../auth/rbac';
-import { createPackage, updatePackage, deletePackage } from '../db';
+import { logAudit } from '../db';
+import {
+  createSupabasePackage,
+  updateSupabasePackage,
+  deleteSupabasePackage,
+  getSupabasePackageById,
+} from '../supabase-cms';
 
 const PackageSchema = z.object({
   name: z.string().min(2, 'Package name is required'),
@@ -76,11 +82,30 @@ export async function savePackageAction(formData: FormData) {
   const ip = await getClientIp();
 
   let resPkg;
-  if (id) {
-    resPkg = updatePackage(id, parsed.data, { id: current.user.id, email: current.user.email }, ip);
-  } else {
-    resPkg = createPackage(parsed.data, { id: current.user.id, email: current.user.email }, ip);
+  try {
+    if (id) {
+      resPkg = await updateSupabasePackage(id, parsed.data);
+    } else {
+      resPkg = await createSupabasePackage(parsed.data);
+    }
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Failed to save package',
+    };
   }
+  if (!resPkg) {
+    return { success: false, error: 'Package not found' };
+  }
+
+  logAudit(
+    id ? 'ADMIN_UPDATED_PACKAGE' : 'ADMIN_CREATED_PACKAGE',
+    'BroadbandPackage',
+    resPkg.id,
+    { name: resPkg.name, speedMbps: resPkg.speedMbps, pricePkr: resPkg.pricePkr },
+    { id: current.user.id, email: current.user.email },
+    ip
+  );
 
   revalidatePath('/packages');
   revalidatePath('/');
@@ -97,7 +122,30 @@ export async function deletePackageAction(id: string) {
   }
 
   const ip = await getClientIp();
-  deletePackage(id, { id: current.user.id, email: current.user.email }, ip);
+
+  let removedId: string | undefined;
+  let removedName = 'package';
+  try {
+    const existing = await getSupabasePackageById(id);
+    removedId = existing?.id;
+    removedName = existing?.name ?? removedName;
+    const ok = await deleteSupabasePackage(id);
+    if (!ok) return { success: false, error: 'Package not found' };
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Failed to delete package',
+    };
+  }
+
+  logAudit(
+    'ADMIN_DELETED_PACKAGE',
+    'BroadbandPackage',
+    removedId,
+    { name: removedName },
+    { id: current.user.id, email: current.user.email },
+    ip
+  );
 
   revalidatePath('/packages');
   revalidatePath('/');
@@ -113,12 +161,29 @@ export async function togglePackageActiveAction(id: string) {
     return { success: false, error: 'Unauthorized: You do not have permission to edit packages.' };
   }
 
-  const { getPackageById, updatePackage } = await import('../db');
-  const pkg = getPackageById(id);
-  if (!pkg) return { success: false, error: 'Package not found' };
-
   const ip = await getClientIp();
-  updatePackage(id, { isActive: !pkg.isActive }, { id: current.user.id, email: current.user.email }, ip);
+
+  let updatedPkg;
+  try {
+    const pkg = await getSupabasePackageById(id);
+    if (!pkg) return { success: false, error: 'Package not found' };
+    updatedPkg = await updateSupabasePackage(id, { isActive: !pkg.isActive });
+    if (!updatedPkg) return { success: false, error: 'Package not found' };
+  } catch (err) {
+    return {
+      success: false,
+      error: err instanceof Error ? err.message : 'Failed to update package',
+    };
+  }
+
+  logAudit(
+    'ADMIN_UPDATED_PACKAGE',
+    'BroadbandPackage',
+    id,
+    { previousIsActive: !updatedPkg.isActive, isActive: updatedPkg.isActive },
+    { id: current.user.id, email: current.user.email },
+    ip
+  );
 
   revalidatePath('/packages');
   revalidatePath('/');

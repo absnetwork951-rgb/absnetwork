@@ -1,6 +1,6 @@
 -- ===========================================================================
 -- 0002_admin_auth_link.sql
--- ABS Network Broadband SMCVP Pvt Ltd
+-- ABS Network Broadband SMC-Pvt-Ltd
 --
 -- Links Supabase Auth users to admin accounts (RBAC source of truth stays in
 -- the application's server-side admin store, resolved by auth_user_id).

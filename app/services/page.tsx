@@ -15,13 +15,13 @@ import {
 import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
 import PageHeader from '@/components/public/PageHeader';
-import { getSiteSettings, getServices } from '@/lib/db';
+import { getSupabaseSettings, getSupabaseServices } from '@/lib/supabase-cms';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'ABS Network Services | Internet, IT & Cloud Solutions',
-  description: 'Enterprise broadband, managed IT, cloud and 24/7 NOC support services by ABS Network Broadband SMCVP Pvt Ltd in Islamabad.',
+  description: 'Enterprise broadband, managed IT, cloud and 24/7 NOC support services by ABS Network Broadband SMC-Pvt-Ltd in Islamabad.',
   openGraph: {
     title: 'ABS Network Services | Internet, IT & Cloud Solutions',
     description: 'End-to-end connectivity, IT and cloud services with 24/7 NOC support.',
@@ -39,9 +39,11 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Cloud,
 };
 
-export default function ServicesPage() {
-  const settings = getSiteSettings();
-  const services = getServices(true);
+export default async function ServicesPage() {
+  const [settings, services] = await Promise.all([
+    getSupabaseSettings(),
+    getSupabaseServices(true),
+  ]);
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">

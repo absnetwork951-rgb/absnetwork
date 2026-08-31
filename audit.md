@@ -1,4 +1,4 @@
-# ABS Network Broadband SMCVP Pvt Ltd — Pre-Supabase Production & E2E Certification Audit
+# ABS Network Broadband SMC-Pvt-Ltd — Pre-Supabase Production & E2E Certification Audit
 
 - **Audit date:** 2026-08-27
 - **Audit type:** Static source + live runtime evidence-based audit (no code changes, no fixes, no Supabase)

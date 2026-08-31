@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Check, ArrowRight, Router, Zap } from 'lucide-react';
+import { Check, ArrowRight, Zap } from 'lucide-react';
 import { BroadbandPackage } from '@/lib/db/types';
 import { isContactPricing, getPackagePriceText } from '@/lib/db/pricing';
 
@@ -19,7 +19,7 @@ const categoryLabels: Record<string, string> = {
 const defaultTaglines: Record<string, string> = {
   residential: 'Optical fiber with 24/7 prioritized carrier routing',
   gaming: 'Low-latency fiber routing engineered for competitive play',
-  business: '1:1 unshared internet with guaranteed CIR and priority NOC',
+  business: 'Low-latency fiber routing engineered for competitive play',
   enterprise: 'Carrier-grade bandwidth with custom BGP peering and SLA support',
 };
 
@@ -109,14 +109,6 @@ export default function PackageCard({ pkg, onSelect }: PackageCardProps) {
               <span>{feature}</span>
             </li>
           ))}
-          {pkg.routerIncluded && (
-            <li className="flex items-start gap-2 text-sm text-slate-700">
-              <span className="w-4 h-4 mt-0.5 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center shrink-0">
-                <Router className="w-2.5 h-2.5" />
-              </span>
-              <span>{pkg.routerDetails || 'Optical Wi-Fi Router Included'}</span>
-            </li>
-          )}
         </ul>
 
         <div className="pt-2 mt-auto">

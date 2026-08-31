@@ -1,4 +1,4 @@
-# Supabase CMS — ABS Network Broadband SMCVP Pvt Ltd
+# Supabase CMS — ABS Network Broadband SMC-Pvt-Ltd
 
 ## Status (August 2026)
 

@@ -4,14 +4,14 @@ import Header from '@/components/public/Header';
 import Footer from '@/components/public/Footer';
 import PageHeader from '@/components/public/PageHeader';
 import ShopClient from '@/components/public/ShopClient';
-import { getSiteSettings } from '@/lib/db';
+import { getSupabaseSettings } from '@/lib/supabase-cms';
 import { getPublicShopProducts } from '@/lib/supabase-shop';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'ABS Network Shop | Cables, Routers, Switches & Accessories',
-  description: 'Shop professional-grade fiber optic cables, network switches, routers, patch panels, and networking tools at ABS Network Broadband SMCVP Pvt Ltd.',
+  description: 'Shop professional-grade fiber optic cables, network switches, routers, patch panels, and networking tools at ABS Network Broadband SMC-Pvt-Ltd.',
   openGraph: {
     title: 'ABS Network Shop',
     description: 'Professional networking equipment with manufacturer warranty and expert technical support.',
@@ -19,8 +19,10 @@ export const metadata: Metadata = {
 };
 
 export default async function ShopPage() {
-  const settings = getSiteSettings();
-  const products = await getPublicShopProducts();
+  const [settings, products] = await Promise.all([
+    getSupabaseSettings(),
+    getPublicShopProducts(),
+  ]);
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
