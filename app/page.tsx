@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import {
   Wifi,
@@ -13,6 +13,8 @@ import Footer from '@/components/public/Footer';
 import HeroSection from '@/components/public/HeroSection';
 import HomePackagesSection from '@/components/public/HomePackagesSection';
 import WhyChooseSection from '@/components/public/WhyChooseSection';
+import CoverageCheckSection from '@/components/public/CoverageCheckSection';
+import CoverageCheckSectionLoader from '@/components/public/CoverageCheckSectionLoader';
 import VisualCategoryCards from '@/components/public/VisualCategoryCards';
 import HomeShopSection from '@/components/public/HomeShopSection';
 import NetworkImageMosaic from '@/components/home/NetworkImageMosaic';
@@ -122,6 +124,10 @@ export default async function HomePage() {
         <VisualCategoryCards />
 
         <WhyChooseSection />
+
+        <Suspense fallback={<CoverageCheckSection areas={null} loadFailed={false} />}>
+          <CoverageCheckSectionLoader />
+        </Suspense>
 
         <HomeShopSection products={shopProducts} />
 

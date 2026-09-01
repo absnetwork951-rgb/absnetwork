@@ -15,7 +15,7 @@ export function getInitialSeedData(): DatabaseSchema {
     settings: {
       companyName: 'ABS Network Broadband SMC-Pvt-Ltd',
       shortName: 'ABS Network',
-      legalRegistration: 'SMCVP-PVT-LTD',
+      legalRegistration: 'SMC-PVT-LTD',
       tagline: 'Ultra-Fast Fiber Broadband & Professional Networking Solutions',
       phone: '+92 3224180930',
       supportPhone:'+92 3224180930',

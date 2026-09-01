@@ -4,6 +4,7 @@ export type Permission =
   | 'manage_packages'
   | 'manage_services'
   | 'manage_shop_products'
+  | 'manage_coverage_areas'
   | 'manage_orders'
   | 'manage_contact_submissions'
   | 'manage_users'
@@ -16,6 +17,7 @@ export const ROLE_PERMISSIONS: Record<AdminRole, Permission[]> = {
     'manage_packages',
     'manage_services',
     'manage_shop_products',
+    'manage_coverage_areas',
     'manage_orders',
     'manage_contact_submissions',
     'manage_users',
@@ -27,6 +29,7 @@ export const ROLE_PERMISSIONS: Record<AdminRole, Permission[]> = {
     'manage_packages',
     'manage_services',
     'manage_shop_products',
+    'manage_coverage_areas',
     'manage_orders',
     'manage_contact_submissions',
     'manage_users',
@@ -37,6 +40,7 @@ export const ROLE_PERMISSIONS: Record<AdminRole, Permission[]> = {
     'manage_packages',
     'manage_services',
     'manage_shop_products',
+    'manage_coverage_areas',
     'manage_settings',
     'view_activity_logs',
   ],

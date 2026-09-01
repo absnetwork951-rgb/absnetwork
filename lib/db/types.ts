@@ -134,6 +134,14 @@ export interface ShopProduct {
   updatedAt: string;
 }
 
+export interface CoverageArea {
+  id: string;
+  city: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface ContactSubmission {
   id: string;
   fullName: string;
@@ -265,6 +273,7 @@ export interface DatabaseSchema {
   packages: BroadbandPackage[];
   services: ServiceItem[];
   shopProducts: ShopProduct[];
+  coverageAreas?: CoverageArea[];
   contactSubmissions: ContactSubmission[];
   shopOrders: ShopInquiryOrder[];
   auditLogs: AuditLog[];

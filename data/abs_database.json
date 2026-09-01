@@ -2,7 +2,7 @@
   "settings": {
     "companyName": "ABS Network Broadband SMC-Pvt-Ltd",
     "shortName": "ABS Network",
-    "legalRegistration": "SMCVP-PVT-LTD",
+    "legalRegistration": "SMC-PVT-LTD",
     "tagline": "Ultra-Fast Fiber Broadband & Professional Networking Solutions",
     "phone": "+92 3224180930",
     "supportPhone": "+92 3224180930",
@@ -260,8 +260,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 1,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     },
     {
       "id": "pkg_fiber_20",
@@ -287,8 +287,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 2,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     },
     {
       "id": "pkg_fiber_30",
@@ -313,8 +313,8 @@
       "isPopular": true,
       "isActive": true,
       "displayOrder": 3,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     },
     {
       "id": "pkg_fiber_50",
@@ -340,8 +340,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 4,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     },
     {
       "id": "pkg_biz_100",
@@ -368,8 +368,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 5,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     },
     {
       "id": "pkg_biz_200",
@@ -396,8 +396,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 6,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     },
     {
       "id": "pkg_ent_300",
@@ -424,8 +424,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 7,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     },
     {
       "id": "pkg_ent_500",
@@ -452,8 +452,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 8,
-      "createdAt": "2026-08-31T23:34:40.907Z",
-      "updatedAt": "2026-08-31T23:34:40.907Z"
+      "createdAt": "2026-09-01T20:50:00.051Z",
+      "updatedAt": "2026-09-01T20:50:00.051Z"
     }
   ],
   "services": [
@@ -634,6 +634,124 @@
   ],
   "shopOrders": [],
   "auditLogs": [
+    {
+      "id": "aud_1788295828876_0261d162b713",
+      "action": "ADMIN_LOGOUT",
+      "entityType": "SupabaseSession",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {},
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:50:28.876Z"
+    },
+    {
+      "id": "aud_1788295818078_8c13e5b2cc99",
+      "action": "ADMIN_DELETED_COVERAGE_AREA",
+      "entityType": "CoverageArea",
+      "entityId": "37a2b2ab-63c6-4460-90f3-6574c779f569",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "city": "Lahore",
+        "name": "Ameen Park 500"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:50:18.079Z"
+    },
+    {
+      "id": "aud_1788295800562_c3fedaf71423",
+      "action": "ADMIN_CREATED_COVERAGE_AREA",
+      "entityType": "CoverageArea",
+      "entityId": "fb2f5277-3512-4f89-bde9-8dec35505a71",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "city": "Lahore",
+        "name": "Ameen Park"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:50:00.562Z"
+    },
+    {
+      "id": "aud_1788295755912_a59f13ce5c41",
+      "action": "ADMIN_LOGIN",
+      "entityType": "SupabaseSession",
+      "entityId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "role": "SUPER_ADMIN",
+        "provider": "supabase"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:49:15.912Z"
+    },
+    {
+      "id": "aud_1788295486812_7043f6407ef3",
+      "action": "ADMIN_LOGIN",
+      "entityType": "SupabaseSession",
+      "entityId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "role": "SUPER_ADMIN",
+        "provider": "supabase"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:44:46.813Z"
+    },
+    {
+      "id": "aud_1788295484637_552d77358d56",
+      "action": "ADMIN_LOGIN",
+      "entityType": "SupabaseSession",
+      "entityId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "role": "SUPER_ADMIN",
+        "provider": "supabase"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:44:44.638Z"
+    },
+    {
+      "id": "aud_1788295413912_a35b2388cd12",
+      "action": "ADMIN_LOGOUT",
+      "entityType": "SupabaseSession",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {},
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:43:33.913Z"
+    },
+    {
+      "id": "aud_1788295392546_d11022fc2104",
+      "action": "ADMIN_UPDATED_COVERAGE_AREA",
+      "entityType": "CoverageArea",
+      "entityId": "37a2b2ab-63c6-4460-90f3-6574c779f569",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "city": "Lahore",
+        "name": "Ameen Park 500"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:43:12.547Z"
+    },
+    {
+      "id": "aud_1788295316474_42d995b23089",
+      "action": "ADMIN_LOGIN",
+      "entityType": "SupabaseSession",
+      "entityId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "details": {
+        "role": "SUPER_ADMIN",
+        "provider": "supabase"
+      },
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:41:56.475Z"
+    },
     {
       "id": "aud_1788219281179_49730a6a98e9",
       "action": "ADMIN_LOGOUT",
@@ -1154,7 +1272,7 @@
       "userEmail": "admin@absnetwork.pk",
       "details": {
         "statsFiberCoverageKm": 850,
-        "companyName": "ABS Network Broadband SMCVP Pvt Ltd"
+        "companyName": "ABS Network Broadband SMC Pvt Ltd"
       },
       "ipAddress": "127.0.0.1",
       "createdAt": "2026-08-31T21:47:34.315Z"
@@ -1657,6 +1775,114 @@
     }
   ],
   "securityEvents": [
+    {
+      "id": "sec_1788295828873_13dcbc79c5fb",
+      "eventType": "LOGOUT",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) logged out.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "provider": "supabase"
+      },
+      "createdAt": "2026-09-01T20:50:28.873Z"
+    },
+    {
+      "id": "sec_1788295755909_9fa95bc557fd",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) signed in via Supabase Auth.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "supabaseUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0"
+      },
+      "createdAt": "2026-09-01T20:49:15.909Z"
+    },
+    {
+      "id": "sec_1788295486793_035e8125ec26",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) signed in via Supabase Auth.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "supabaseUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0"
+      },
+      "createdAt": "2026-09-01T20:44:46.796Z"
+    },
+    {
+      "id": "sec_1788295484633_94bfd7099bc5",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) signed in via Supabase Auth.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "supabaseUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0"
+      },
+      "createdAt": "2026-09-01T20:44:44.634Z"
+    },
+    {
+      "id": "sec_1788295467877_ebb06f681b88",
+      "eventType": "LOGIN_FAILED",
+      "severity": "WARNING",
+      "description": "Invalid password attempt (Supabase Auth) for account: absnetwork951@gmail.com",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:44:27.878Z"
+    },
+    {
+      "id": "sec_1788295460026_44360600e6c9",
+      "eventType": "LOGIN_FAILED",
+      "severity": "WARNING",
+      "description": "Invalid password attempt (Supabase Auth) for account: absnetwork951@gmail.com",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:44:20.027Z"
+    },
+    {
+      "id": "sec_1788295449008_14b5e12f66a7",
+      "eventType": "LOGIN_FAILED",
+      "severity": "WARNING",
+      "description": "Invalid password attempt (Supabase Auth) for account: absnetwork951@gmail.com",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "createdAt": "2026-09-01T20:44:09.009Z"
+    },
+    {
+      "id": "sec_1788295413906_d01fbcea08c2",
+      "eventType": "LOGOUT",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) logged out.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "provider": "supabase"
+      },
+      "createdAt": "2026-09-01T20:43:33.907Z"
+    },
+    {
+      "id": "sec_1788295316471_1f52b694572f",
+      "eventType": "LOGIN_SUCCESS",
+      "severity": "INFO",
+      "description": "User absnetwork951@gmail.com (SUPER_ADMIN) signed in via Supabase Auth.",
+      "userId": "usr_supabase_super_01",
+      "userEmail": "absnetwork951@gmail.com",
+      "ipAddress": "::1",
+      "metadata": {
+        "supabaseUserId": "32a4f677-0c9f-418a-9b95-ef0c3368f0a0"
+      },
+      "createdAt": "2026-09-01T20:41:56.471Z"
+    },
     {
       "id": "sec_1788219281173_9985296af7da",
       "eventType": "LOGOUT",

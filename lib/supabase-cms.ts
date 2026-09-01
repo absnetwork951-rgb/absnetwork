@@ -343,7 +343,7 @@ export async function deleteSupabaseService(id: string): Promise<boolean> {
 const DEFAULT_SETTINGS: SiteSettings = {
   companyName: 'ABS Network Broadband SMC-Pvt-Ltd',
   shortName: 'ABS Network',
-  legalRegistration: 'SMCVP-PVT-LTD',
+  legalRegistration: 'SMC-PVT-LTD',
   tagline: 'Fiber-optic broadband for Islamabad & Rawalpindi',
   phone: '+92 51 111 227 227',
   supportPhone: '+92 51 111 227 227',
