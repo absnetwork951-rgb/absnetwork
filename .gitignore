@@ -1,6 +1,8 @@
 node_modules/
 .next/
-coverage/
+# Test-coverage output lives at the repo root only; keeping this anchored so
+# it never ignores a source directory named "coverage" (e.g. app/admin/coverage).
+/coverage/
 .DS_Store
 *.log
 .env*
