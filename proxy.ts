@@ -23,7 +23,7 @@ function isExpired(payload: { exp?: number } | null): boolean {
   return payload.exp * 1000 < Date.now();
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isLoginPage = pathname === '/admin/login' || pathname.startsWith('/admin/login');
   const method = request.method;

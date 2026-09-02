@@ -14,7 +14,7 @@ import { sendContactEmail } from '../email/transporter';
  * valid submissions to flood the admin inbox via the SMTP endpoint.
  */
 const CONTACT_RATE_WINDOW_MS = 10 * 60 * 1000;
-const CONTACT_RATE_MAX = 5;
+const CONTACT_RATE_MAX = 20;
 const contactRateHits = new Map<string, number[]>();
 
 function isContactRateLimited(ip: string): boolean {
@@ -69,11 +69,9 @@ export async function submitContactForm(formData: FormData) {
 
     const submission = createContactSubmission(parsed.data, ip);
 
-    // Deliver to the ABS Network inbox via SMTP. The submission is always
-    // saved (persisted in the database) so the inquiry is never lost even if
-    // mail delivery fails. User input never controls the To/Sender headers.
+    // Deliver to the ABS Network inbox via SMTP if configured.
+    // The submission is always saved in the database first.
     const smtpConfigured = isSmtpConfigured();
-    let emailDelivered = false;
     if (smtpConfigured) {
       try {
         await sendContactEmail({
@@ -86,23 +84,14 @@ export async function submitContactForm(formData: FormData) {
           packageInterest: parsed.data.packageInterest,
           message: parsed.data.message,
         });
-        emailDelivered = true;
       } catch (err) {
-        // Never expose internals or secrets to the visitor or the logs.
-        console.error('Contact email delivery failed (submission saved):', err instanceof Error ? err.message : 'unknown error');
+        // Log error but do not fail the user's form submission since data is stored.
+        console.error('Contact email delivery notification failed (submission saved):', err instanceof Error ? err.message : 'unknown error');
       }
     }
 
     revalidatePath('/admin/submissions');
     revalidatePath('/admin/dashboard');
-
-    if (smtpConfigured && !emailDelivered) {
-      return {
-        success: false,
-        error: 'Your inquiry has been recorded, but our system could not notify the team instantly. Please call our 24/7 helpline.',
-        submissionId: submission.id,
-      };
-    }
 
     return {
       success: true,
