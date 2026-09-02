@@ -73,7 +73,7 @@ export default async function HomePage() {
           </div>
         </section>
 
-        <section className="py-16 md:py-24 bg-white border-b border-slate-200">
+        <section className="section-lazy py-16 md:py-24 bg-white border-b border-slate-200">
           <div className="page-container space-y-12">
             <div className="max-w-3xl space-y-3">
               <span className="eyebrow">
@@ -146,13 +146,13 @@ export default async function HomePage() {
 
         <NetworkImageMosaic />
 
-        <section className="py-16 md:py-24 bg-slate-50 border-b border-slate-200">
+        <section className="section-lazy py-16 md:py-24 bg-slate-50 border-b border-slate-200">
           <div className="page-container">
             <HomePackagesSection packages={featuredPackages} totalCount={packages.length} />
           </div>
         </section>
 
-        <section className="py-16 md:py-24 bg-slate-50">
+        <section className="section-lazy py-16 md:py-24 bg-slate-50">
           <div className="page-container">
             <div className="bg-white border border-slate-200 rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-xl">
               <div className="absolute -right-16 -top-16 w-64 h-64 rounded-full border-[24px] border-blue-500/10 pointer-events-none" />

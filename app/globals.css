@@ -207,6 +207,12 @@ html {
   -webkit-backdrop-filter: blur(12px);
 }
 
+/* Rendering performance optimization for below-the-fold sections */
+.section-lazy {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
 /* Gradient backgrounds */
 .bg-gradient-hero {
   background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 50%, #F8FAFC 100%);

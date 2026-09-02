@@ -1,4 +1,5 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { getSiteSettings } from '@/lib/db';
 import {
@@ -8,7 +9,22 @@ import {
   websiteJsonLd,
 } from '@/lib/seo';
 
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  preload: true,
+});
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#2563EB',
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: 'ABS Network Broadband SMC-Pvt-Ltd | Fiber Optic Internet & Networking Equipment',
     template: '%s | ABS Network Broadband SMC-Pvt-Ltd',
@@ -78,8 +94,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const siteLd = websiteJsonLd(settings);
 
   return (
-    <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
-      <body className="bg-white text-slate-800 antialiased min-h-screen selection:bg-blue-600 selection:text-white font-sans" suppressHydrationWarning>
+    <html lang="en" className={`scroll-smooth ${inter.variable}`} data-scroll-behavior="smooth">
+      <head>
+        <link rel="preconnect" href="https://tkbuoouqbiaieuyyopiy.supabase.co" />
+        <link rel="dns-prefetch" href="https://tkbuoouqbiaieuyyopiy.supabase.co" />
+      </head>
+      <body className={`${inter.className} bg-white text-slate-800 antialiased min-h-screen selection:bg-blue-600 selection:text-white font-sans`} suppressHydrationWarning>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}

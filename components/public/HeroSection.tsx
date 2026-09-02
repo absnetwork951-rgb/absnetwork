@@ -37,13 +37,19 @@ export default function HeroSection({ settings }: HeroSectionProps) {
     settings?.heroSubheadline ||
     'Experience ultra-high-speed fiber broadband engineered for modern homes and demanding enterprises. Buffer-free streaming, low-latency gaming, and rock-solid reliability backed by 24/7 dedicated support.';
 
+  const [mounted, setMounted] = useState(false);
+
   useEffect(() => {
-    if (prefersReducedMotion || HERO_SLIDES.length <= 1) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || prefersReducedMotion || HERO_SLIDES.length <= 1) return;
     const id = setInterval(() => {
       setActive((prev) => (prev + 1) % HERO_SLIDES.length);
     }, SLIDE_INTERVAL);
     return () => clearInterval(id);
-  }, [prefersReducedMotion]);
+  }, [mounted, prefersReducedMotion]);
 
   const fadeUp = {
     initial: prefersReducedMotion ? false : { opacity: 0, y: 16 },
@@ -56,6 +62,8 @@ export default function HeroSection({ settings }: HeroSectionProps) {
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
         {HERO_SLIDES.map((src, i) => {
           const isActive = i === active;
+          // During SSR / initial load, only render the first slide to maximize LCP
+          if (!mounted && i > 0) return null;
           const offset = i < active ? -36 : 36;
           return (
             <motion.div
@@ -74,7 +82,9 @@ export default function HeroSection({ settings }: HeroSectionProps) {
                 alt=""
                 fill
                 priority={i === 0}
+                loading={i === 0 ? 'eager' : 'lazy'}
                 sizes="100vw"
+                quality={85}
                 className="object-cover"
               />
             </motion.div>

@@ -2,15 +2,18 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  compress: true,
   typescript: {
     ignoreBuildErrors: false,
   },
-  // Allow access to remote image placeholders.
+  // High-performance image optimization configuration
   images: {
-    // Render SVG assets from the trusted ABS Supabase Storage bucket
-    // (`product-images`). SVGs are enabled with a restrictive CSP that
-    // blocks inline scripts/styles — they are served with the
-    // image/svg+xml content type from our own project's storage bucket.
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 31536000,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Render SVG assets from trusted ABS Supabase Storage bucket
     dangerouslyAllowSVG: true,
     contentSecurityPolicy:
       "default-src 'self'; script-src 'none'; sandbox;",
@@ -38,7 +41,26 @@ const nextConfig: NextConfig = {
   output: 'standalone',
   transpilePackages: ['motion'],
   experimental: {
-    optimizePackageImports: ['lucide-react', 'motion/react'],
+    optimizePackageImports: [
+      'lucide-react',
+      'motion',
+      'motion/react',
+      'clsx',
+      'tailwind-merge',
+    ],
+  },
+  async headers() {
+    return [
+      {
+        source: '/:all*(svg|jpg|png|webp|avif|woff2)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ];
   },
   webpack: (config, { dev }) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.

@@ -79,6 +79,8 @@ export default function WhyChooseSection() {
               alt="ABS Network high-speed fiber broadband connectivity for homes and businesses"
               width={800}
               height={600}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={85}
               className="relative z-10 w-full h-auto aspect-[4/3] object-cover rounded-2xl border border-slate-200 shadow-xl"
             />
           </div>
@@ -93,6 +95,8 @@ export default function WhyChooseSection() {
               alt="ABS Network reliable fiber optic internet infrastructure"
               width={800}
               height={600}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={85}
               className="relative z-10 w-full h-auto aspect-[4/3] object-cover rounded-2xl border border-slate-200 shadow-xl"
             />
           </div>

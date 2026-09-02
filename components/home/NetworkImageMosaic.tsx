@@ -11,7 +11,7 @@ export default function NetworkImageMosaic() {
               alt="ABS Network high-speed fiber optic broadband network infrastructure"
               fill
               sizes="(max-width: 768px) 100vw, 66vw"
-              priority
+              quality={85}
               className="object-cover"
             />
           </div>
