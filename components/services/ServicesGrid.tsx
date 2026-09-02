@@ -1,60 +1,52 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { SERVICES_DATA, ServiceItemData } from '@/data/services-data';
+import type { ServiceItem } from '@/lib/db/types';
+import { SERVICE_CATEGORIES } from '@/lib/db/service-categories';
 import ServicesCategoryNav from './ServicesCategoryNav';
 import ServiceCard from './ServiceCard';
 import { Network, Search } from 'lucide-react';
 
 interface ServicesGridProps {
-  initialServices?: ServiceItemData[];
+  services?: ServiceItem[];
 }
 
-export default function ServicesGrid({ initialServices }: ServicesGridProps) {
+export default function ServicesGrid({ services = [] }: ServicesGridProps) {
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const services = initialServices && initialServices.length > 0 ? initialServices : SERVICES_DATA;
-
-  // Compute counts per category
-  const serviceCounts = useMemo(() => {
+  const itemCounts = useMemo(() => {
     const counts: Record<string, number> = { all: services.length };
     services.forEach((s) => {
-      counts[s.categorySlug] = (counts[s.categorySlug] || 0) + 1;
+      counts[s.category] = (counts[s.category] || 0) + 1;
     });
     return counts;
   }, [services]);
 
-  // Filter services by category and optional search query
   const filteredServices = useMemo(() => {
     return services.filter((service) => {
       const matchesCategory =
-        activeCategory === 'all' || service.categorySlug === activeCategory;
-
+        activeCategory === 'all' || service.category === activeCategory;
       if (!matchesCategory) return false;
-
       if (!searchQuery.trim()) return true;
-
       const q = searchQuery.toLowerCase();
-      const inTitle = service.title.toLowerCase().includes(q);
-      const inDesc = service.shortDescription.toLowerCase().includes(q);
-      const inCap = service.capabilities.some((c) => c.toLowerCase().includes(q));
-
-      return inTitle || inDesc || inCap;
+      return (
+        service.title.toLowerCase().includes(q) ||
+        service.shortDescription.toLowerCase().includes(q) ||
+        (service.capabilities || []).some((c) => c.toLowerCase().includes(q))
+      );
     });
   }, [services, activeCategory, searchQuery]);
 
   return (
     <div id="services-catalog" className="space-y-8">
-      {/* Category Navigation Bar */}
       <ServicesCategoryNav
         activeCategory={activeCategory}
         onSelectCategory={setActiveCategory}
-        serviceCounts={serviceCounts}
+        serviceCounts={itemCounts}
       />
 
       <div className="page-container space-y-8">
-        {/* Filter / Search Status Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4">
           <div>
             <span className="eyebrow">
@@ -69,7 +61,6 @@ export default function ServicesGrid({ initialServices }: ServicesGridProps) {
             </p>
           </div>
 
-          {/* Quick Search */}
           <div className="relative w-full sm:w-72">
             <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
@@ -90,7 +81,6 @@ export default function ServicesGrid({ initialServices }: ServicesGridProps) {
           </div>
         </div>
 
-        {/* Services Cards Grid */}
         {filteredServices.length === 0 ? (
           <div className="p-12 text-center bg-slate-50 rounded-2xl border border-slate-200 space-y-3">
             <Network className="w-8 h-8 text-slate-400 mx-auto" />

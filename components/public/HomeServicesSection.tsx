@@ -3,35 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import {
-  ArrowRight,
-  CheckCircle2,
-  MessageSquare,
-  Network,
-  Globe,
-  Server,
-  Cpu,
-  Wrench,
-  ShieldCheck,
-  Code,
-  Video,
-  type LucideIcon,
-} from 'lucide-react';
-import { HOMEPAGE_FEATURED_SERVICES } from '@/data/services-data';
+import { ArrowRight, CheckCircle2, MessageSquare } from 'lucide-react';
+import type { ServiceItem } from '@/lib/db/types';
 import { getWhatsAppLink } from '@/lib/whatsapp';
+import { svcIcon } from '@/components/services/service-icons';
 
-const ICON_MAP: Record<string, LucideIcon> = {
-  Network,
-  Globe,
-  Server,
-  Cpu,
-  Wrench,
-  ShieldCheck,
-  Code,
-  Video,
-};
+interface HomeServicesSectionProps {
+  services?: ServiceItem[];
+}
 
-export default function HomeServicesSection() {
+export default function HomeServicesSection({ services = [] }: HomeServicesSectionProps) {
   return (
     <section className="py-16 md:py-24 bg-white border-b border-slate-200">
       <div className="page-container space-y-12">
@@ -59,11 +40,18 @@ export default function HomeServicesSection() {
           </Link>
         </div>
 
-        {/* 8 Featured Service Cards Grid */}
+        {/* Featured Service Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {HOMEPAGE_FEATURED_SERVICES.map((service) => {
-            const Icon = ICON_MAP[service.iconName] || Network;
-            const whatsappUrl = getWhatsAppLink(service.whatsappMessage);
+          {services.map((service) => {
+            const Icon = svcIcon(service.iconName);
+            const whatsappUrl = getWhatsAppLink(
+              service.whatsappMessage ||
+                `Hello ABS Network, I am interested in your ${service.title} services.`,
+              '923224180930'
+            );
+            const capabilities = service.capabilities?.length
+              ? service.capabilities
+              : service.features || [];
 
             return (
               <div
@@ -72,14 +60,20 @@ export default function HomeServicesSection() {
               >
                 {/* Visual Header */}
                 <div className="relative h-40 w-full bg-slate-900 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.imageAlt || service.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                  />
+                  {service.imageUrl ? (
+                    <Image
+                      src={service.imageUrl}
+                      alt={service.imageAlt || `${service.title} - ABS Network`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
+                      <Icon className="w-12 h-12 text-white/20" />
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
 
                   {/* Badge */}
@@ -99,18 +93,18 @@ export default function HomeServicesSection() {
 
                 {/* Card Body */}
                 <div className="p-5 flex-1 flex flex-col justify-between space-y-4">
-                  <div className="space-y-2">
+                  <Link href={`/services/${service.slug}`} className="space-y-2 block">
                     <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug">
                       {service.title}
                     </h3>
                     <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
                       {service.shortDescription}
                     </p>
-                  </div>
+                  </Link>
 
                   {/* Key points */}
                   <ul className="space-y-1.5 pt-1 border-t border-slate-100 text-xs text-slate-700">
-                    {service.capabilities.slice(0, 3).map((cap, idx) => (
+                    {capabilities.slice(0, 3).map((cap, idx) => (
                       <li key={idx} className="flex items-start gap-1.5">
                         <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
                         <span className="leading-snug text-[11px] text-slate-600">{cap}</span>
@@ -131,9 +125,9 @@ export default function HomeServicesSection() {
                       <span>Inquire Now</span>
                     </a>
                     <Link
-                      href="/services"
+                      href={`/services/${service.slug}`}
                       className="p-2 rounded-xl border border-slate-200 hover:border-blue-500 hover:bg-blue-50/50 text-slate-600 hover:text-blue-600 transition-colors flex items-center justify-center"
-                      title="View on Services page"
+                      title="View service details"
                     >
                       <ArrowRight className="w-4 h-4" />
                     </Link>

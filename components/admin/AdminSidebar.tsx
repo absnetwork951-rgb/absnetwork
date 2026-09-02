@@ -10,6 +10,7 @@ import {
   ShieldCheck,
   MapPin,
   LogOut,
+  Layers,
   type LucideIcon,
 } from 'lucide-react';
 import { hasPermission, type Permission } from '@/lib/auth/rbac';
@@ -40,6 +41,7 @@ const NAV_ITEMS: { section: string; items: NavItem[] }[] = [
     section: 'Management',
     items: [
       { href: '/admin/packages', label: 'Packages', icon: Wifi, permission: 'manage_packages' },
+      { href: '/admin/services', label: 'Services', icon: Layers, permission: 'manage_services' },
       { href: '/admin/shop', label: 'Shop Products', icon: ShoppingBag, permission: 'manage_shop_products' },
       { href: '/admin/coverage', label: 'Coverage Areas', icon: MapPin, permission: 'manage_coverage_areas' },
       { href: '/admin/orders', label: 'Orders', icon: ShoppingBag, permission: 'manage_orders' },

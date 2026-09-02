@@ -21,6 +21,7 @@ import HomeShopSection from '@/components/public/HomeShopSection';
 import NetworkImageMosaic from '@/components/home/NetworkImageMosaic';
 import { getSupabaseSettings, getSupabasePackages } from '@/lib/supabase-cms';
 import { getPublicShopProducts } from '@/lib/supabase-shop';
+import { getHomepageServices } from '@/lib/services';
 
 export const revalidate = 60;
 
@@ -32,6 +33,7 @@ export default async function HomePage() {
   ]);
 
   const featuredPackages = packages.slice(0, 3);
+  const homepageServices = getHomepageServices();
 
   const stats = [
     { label: 'Fiber Network', value: `${settings.statsFiberCoverageKm}`, unit: 'KM' },
@@ -124,7 +126,7 @@ export default async function HomePage() {
 
         <VisualCategoryCards />
 
-        <HomeServicesSection />
+        <HomeServicesSection services={homepageServices} />
 
         <WhyChooseSection />
 

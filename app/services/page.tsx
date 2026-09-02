@@ -7,7 +7,9 @@ import ServicesGrid from '@/components/services/ServicesGrid';
 import WhyChooseServices from '@/components/services/WhyChooseServices';
 import HowWeWork from '@/components/services/HowWeWork';
 import ServicesCTA from '@/components/services/ServicesCTA';
-import { getSupabaseSettings } from '@/lib/supabase-cms';
+import { getSiteSettings } from '@/lib/db';
+import { getPublishedServices } from '@/lib/services';
+import { absoluteUrl } from '@/lib/seo';
 
 export const revalidate = 60;
 
@@ -31,12 +33,16 @@ export const metadata: Metadata = {
     'Managed IT Support',
     'Web Development and Digital Solutions',
   ],
+  alternates: {
+    canonical: absoluteUrl('/services'),
+  },
   openGraph: {
     title: 'IT, Networking & Digital Services | ABS Network',
     description:
       'ABS Network provides networking, internet infrastructure, Cisco and MikroTik configuration, server administration, IT support, cybersecurity, Wi-Fi, structured cabling, CCTV, and digital technology services.',
     type: 'website',
-    url: 'https://www.absnetwork.com.pk/services',
+    url: absoluteUrl('/services'),
+    siteName: 'ABS Network',
   },
   twitter: {
     card: 'summary_large_image',
@@ -47,7 +53,8 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage() {
-  const settings = await getSupabaseSettings();
+  const settings = getSiteSettings();
+  const services = getPublishedServices();
 
   return (
     <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-blue-600 selection:text-white">
@@ -59,7 +66,7 @@ export default async function ServicesPage() {
 
         {/* 2. Interactive Category Filter & Services Grid */}
         <section className="py-12 md:py-16 bg-white">
-          <ServicesGrid />
+          <ServicesGrid services={services} />
         </section>
 
         {/* 3. Why Businesses Choose ABS Network */}
