@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { createElement } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -44,7 +44,7 @@ export default function ServiceCard({ service, whatsappOnly = false }: ServiceCa
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
-            <Icon className="w-14 h-14 text-white/20" />
+            {createElement(Icon, { className: 'w-14 h-14 text-white/20' })}
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
@@ -61,7 +61,7 @@ export default function ServiceCard({ service, whatsappOnly = false }: ServiceCa
         </div>
 
         <div className="absolute -bottom-3 right-5 w-11 h-11 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md group-hover:bg-blue-700 group-hover:scale-110 transition-all">
-          <Icon className="w-5 h-5" />
+          {createElement(Icon, { className: 'w-5 h-5' })}
         </div>
       </div>
 

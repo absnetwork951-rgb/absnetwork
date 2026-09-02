@@ -97,12 +97,13 @@ function loadDatabaseFromDisk(): DatabaseSchema {
       parsed.settings.statsShopProductCount = parsed.shopProducts?.length || 0;
       delete (parsed.settings as any).statsSolarKwhInstalled;
     }
+    if (!parsed.shopProducts || parsed.shopProducts.length === 0) {
+      parsed.shopProducts = getInitialSeedData().shopProducts;
+    }
     if (!parsed.settings.shopBannerText) {
       parsed.settings.shopBannerText = 'Professional fiber optic and networking equipment for ISPs, enterprises, and home networks.';
     }
-    if (parsed.settings.statsShopProductCount === undefined) {
-      parsed.settings.statsShopProductCount = parsed.shopProducts?.length || 0;
-    }
+    parsed.settings.statsShopProductCount = parsed.shopProducts?.length || 0;
 
     // ---- Package catalog & pricing migration ---------------------------
     // Replaces the legacy seed package set with the official 8-tier catalog,
@@ -140,8 +141,46 @@ function loadDatabaseFromDisk(): DatabaseSchema {
       };
     });
 
-    // ---- Services CMS migration -------------------------------------------
-  // Upgrades legacy service rows (old `ServiceItem` shape: `isActive`, no
+    // ---- Services catalog migration ---------------------------------------
+  // Replaces the legacy 6-service seed set (old `ServiceItem` shape) with the
+  // official 15-service CMS catalog from seed.ts so the public site, admin
+  // editor, sitemap, and LLM docs all share the same rich, published set.
+  // The replacement only triggers when the services array is EXACTLY the
+  // legacy seed (no new marker service and no admin-added/custom rows), so
+  // real admin edits or additions are never wiped.
+  const LEGACY_SEED_SERVICE_SLUGS = [
+    'fiber-broadband',
+    'leased-lines',
+    'managed-network-solutions',
+    'networking-equipment-sales',
+    'web-digital-services',
+    'tier3-support',
+  ];
+  const hasNewSeedServices = (parsed.services || []).some(
+    (s) => s.id === 'srv_network_design'
+  );
+  const looksLikeLegacySeed =
+    (parsed.services || []).length === LEGACY_SEED_SERVICE_SLUGS.length &&
+    (parsed.services || []).every(
+      (s) =>
+        LEGACY_SEED_SERVICE_SLUGS.includes(s.slug) && s.isPublished === undefined
+    );
+  if (!hasNewSeedServices && looksLikeLegacySeed) {
+    parsed.services = getInitialSeedData().services;
+    // Persist the catalog swap so the on-disk DB reflects the new seed on the
+    // very next read/restart (idempotent: a later load sees the marker and
+    // skips this block). Tolerates read-only filesystems.
+    try {
+      fs.writeFileSync(DB_FILE, JSON.stringify(parsed, null, 2), 'utf-8');
+    } catch (e) {
+      console.error(
+        'Could not persist service catalog migration to disk:',
+        e instanceof Error ? e.message : e
+      );
+    }
+  }
+
+  // Upgrades any legacy service rows (old `ServiceItem` shape: `isActive`, no
   // featured/publish/SEO fields) to the current CMS shape so the public site,
   // sitemap, and admin editor all read the same rich structure.
   parsed.services = (parsed.services || []).map((s) => {

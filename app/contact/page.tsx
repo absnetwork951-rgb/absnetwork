@@ -14,12 +14,16 @@ import Footer from '@/components/public/Footer';
 import PageHeader from '@/components/public/PageHeader';
 import ContactForm from '@/components/public/ContactForm';
 import { getSupabaseSettings } from '@/lib/supabase-cms';
+import { getSiteUrl } from '@/lib/seo';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'Contact ABS Network Broadband | 24/7 Helpline & Sales Desk',
   description: 'Contact ABS Network Broadband SMC-Pvt-Ltd for new fiber connections, dedicated corporate leased lines, enterprise networking solutions, and 24/7 NOC technical support.',
+  alternates: {
+    canonical: getSiteUrl() + '/contact',
+  },
   openGraph: {
     title: 'Contact ABS Network Broadband | 24/7 Support & Sales',
     description: 'Get in touch with ABS Network support and sales teams across Islamabad & Rawalpindi.',

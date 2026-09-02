@@ -332,7 +332,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'ABS Network engineers design robust network architectures that keep your business online and efficient. Our team plans LAN/WAN topologies, IP addressing, subnetting, and full VLAN architectures, with comprehensive documentation and mapping delivered at every stage.',
         iconName: 'Network',
         badge: 'Core Infrastructure',
-        imageUrl: '/net2.jpg',
+        imageUrl: '/images/services/network-design.jpg',
         imageAlt: 'Enterprise Network Architecture and Topology Planning',
         capabilities: [
           'LAN/WAN design & topology planning',
@@ -367,7 +367,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Complete office network deployment handled by certified engineers. We install structured cabling, network racks, patch panels, and switches, then test and label every drop for a clean, reliable, and maintainable network.',
         iconName: 'Building2',
         badge: 'On-Site Deployment',
-        imageUrl: '/net1.jpg',
+        imageUrl: '/images/services/office-it.jpg',
         imageAlt: 'Office Network Installation and Structured Rack Management',
         capabilities: [
           'Complete office network deployment',
@@ -399,7 +399,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Zero-downtime internet begins with redundant connectivity. ABS Network designs multi-WAN internet infrastructure with automatic failover, load balancing, and bandwidth queue management so your business stays online even when a single link fails.',
         iconName: 'Globe',
         badge: 'Zero Downtime',
-        imageUrl: '/hero3.jpg',
+        imageUrl: '/images/services/fiber-infrastructure.jpg',
         imageAlt: 'Enterprise Internet Infrastructure and Multi-WAN Failover',
         capabilities: [
           'ISP connectivity & dedicated fiber routing',
@@ -434,7 +434,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'When your network is slow or unstable, ABS Network engineers diagnose and resolve the root cause fast. We fix packet loss, DNS and DHCP issues, IP conflicts, Wi-Fi interference, and tune throughput and latency for peak performance.',
         iconName: 'Activity',
         badge: 'Rapid Resolution',
-        imageUrl: '/net.jpg',
+        imageUrl: '/images/services/network-design.jpg',
         imageAlt: 'Network Troubleshooting and Packet Analysis',
         capabilities: [
           'Slow network & bandwidth bottleneck resolution',
@@ -466,7 +466,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Our certified engineers configure and manage Cisco Catalyst switches, ISR/ASR routers, VLANs, trucks, Inter-VLAN routing, static routing, OSPF, EIGRP, NAT, and ACLs. We also harden and optimize your Cisco environment for performance and security.',
         iconName: 'Cpu',
         badge: 'Certified Engineers',
-        imageUrl: '/images/shop/switches.jpg',
+        imageUrl: '/images/services/cisco.jpg',
         imageAlt: 'Cisco Router and Switch Enterprise Configuration',
         capabilities: [
           'Cisco switch & router configuration',
@@ -509,7 +509,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'MikroTik is the backbone of cost-effective ISP and enterprise routing. ABS Network specializes in RouterOS configuration, PPPoE servers, hotspot portals, multi-WAN PCC load balancing, queue management, VPN tunnels, and firewall filter rules.',
         iconName: 'Router',
         badge: 'RouterOS Specialists',
-        imageUrl: '/images/shop/routers.jpg',
+        imageUrl: '/images/services/mikrotik.jpg',
         imageAlt: 'MikroTik RouterOS Configuration and Bandwidth Management',
         capabilities: [
           'RouterOS configuration, PPPoE server/client & DHCP',
@@ -550,7 +550,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Reliable Windows Server management keeps your business identity and file services running. ABS Network installs and migrates Windows Server, manages Active Directory Domain Services, enforces Group Policy, and configures DNS, DHCP, IIS, and Remote Desktop Services.',
         iconName: 'Server',
         badge: 'Systems Engineering',
-        imageUrl: '/why.jpg',
+        imageUrl: '/images/services/servers.jpg',
         imageAlt: 'Windows Server and Active Directory Domain Management',
         capabilities: [
           'Windows Server installation, migration & patching',
@@ -589,7 +589,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'ABS Network deploys and hardens Linux servers running Ubuntu, Debian, and RHEL/Rocky. We configure Nginx and Apache reverse proxies, Docker containers, MySQL and PostgreSQL databases, SSL automation, firewalls, and automated backups.',
         iconName: 'Terminal',
         badge: 'DevOps & SysAdmin',
-        imageUrl: '/hero4.jpg',
+        imageUrl: '/images/services/servers.jpg',
         imageAlt: 'Linux Server Administration and Container Infrastructure',
         capabilities: [
           'Ubuntu, Debian & RHEL/CentOS server deployment',
@@ -625,7 +625,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Your on-site IT engineering team. ABS Network provides complete office IT setup, computer, printer, and scanner configuration, hardware repairs, Windows troubleshooting, email and Wi-Fi setup, and preventive maintenance with on-demand SLA support.',
         iconName: 'Wrench',
         badge: 'On-Site & Remote',
-        imageUrl: '/why1.jpg',
+        imageUrl: '/images/services/it-support.jpg',
         imageAlt: 'On-Site IT Engineering and Office Support',
         capabilities: [
           'Complete office IT hardware & software setup',
@@ -666,7 +666,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Protect your infrastructure with a defense-in-depth strategy. ABS Network configures MikroTik and Cisco firewall rules, network segmentation and secure VLANs, encrypted remote-access and site-to-site VPNs, endpoint security, and performs security audits.',
         iconName: 'ShieldCheck',
         badge: 'Infrastructure Hardening',
-        imageUrl: '/hero2.jpg',
+        imageUrl: '/images/services/cybersecurity.jpg',
         imageAlt: 'Network Security, Firewalls and Enterprise Hardening',
         capabilities: [
           'MikroTik & Cisco firewall rule configuration',
@@ -705,7 +705,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'High-density enterprise Wi-Fi that just works. ABS Network deploys Access Points with seamless 802.11k/v/r roaming, RF channel optimization, guest portals with isolated VLANS, and long-range Point-to-Point and Point-to-Multipoint wireless links.',
         iconName: 'Wifi',
         badge: 'High Density',
-        imageUrl: '/images/shop/abs-ac1200-ceiling-access-point.jpg',
+        imageUrl: '/images/services/wifi.jpg',
         imageAlt: 'Enterprise Wi-Fi Access Points and Long Range Wireless Links',
         capabilities: [
           'High-density office & campus Wi-Fi deployment',
@@ -740,7 +740,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'A reliable network starts with a clean physical plant. ABS Network installs certified Cat5e, Cat6, and Cat6A copper drops, fiber optic backbones and splicing, server racks and cabinets, wire management, and Fluke/OTDR certified testing with precise labeling.',
         iconName: 'Cable',
         badge: 'Physical Plant',
-        imageUrl: '/images/shop/fiber optics cable.jpg',
+        imageUrl: '/images/services/structured-cabling.jpg',
         imageAlt: 'Structured Cabling and Fiber Optic Infrastructure',
         capabilities: [
           'Cat5e, Cat6 & Cat6A high-bandwidth copper drops',
@@ -776,7 +776,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Protect your premises with IP surveillance infrastructure. ABS Network installs HD IP cameras, designs PoE switch layouts, configures NVR storage and RAID, sets up encrypted remote viewing, and integrates access control and biometric security.',
         iconName: 'Video',
         badge: 'IP Surveillance',
-        imageUrl: '/images/shop/rack&cabinet.jpg',
+        imageUrl: '/images/services/cctv.jpg',
         imageAlt: 'IP CCTV Surveillance and Physical Security Networking',
         capabilities: [
           'IP CCTV camera placement & PoE network layout',
@@ -811,7 +811,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Accelerate your digital transformation. ABS Network builds high-performance corporate websites and web applications, designs UI/UX systems and responsive interfaces, delivers technical SEO and performance tuning, and manages DevOps, CI/CD, and cloud deployments.',
         iconName: 'Code',
         badge: 'Digital Engineering',
-        imageUrl: '/hero.jpg',
+        imageUrl: '/images/services/digital-services.jpg',
         imageAlt: 'Custom Web Development and Digital Solutions',
         capabilities: [
           'Corporate websites, landing pages & web apps',
@@ -848,7 +848,7 @@ export function getInitialSeedData(): DatabaseSchema {
         fullDescription: 'Stay ahead of problems with a managed IT retainer. ABS Network provides proactive 24/7 network and server monitoring, preventive monthly maintenance and patching, guaranteed on-site and remote SLA response times, and strategic IT consulting.',
         iconName: 'Headphones',
         badge: '24/7 SLA Support',
-        imageUrl: '/hero1.jpg',
+        imageUrl: '/images/services/managed-it.jpg',
         imageAlt: 'Managed IT and Network Operations Support',
         capabilities: [
           '24/7 proactive network & server monitoring',
@@ -876,8 +876,1048 @@ export function getInitialSeedData(): DatabaseSchema {
         updatedAt: now,
       },
     ],
-    shopProducts: [],
-    contactSubmissions: [
+    shopProducts: [
+      {
+            "id": "demo_router_ax3000",
+            "name": "ABS AX3000 Dual-Band Wi-Fi 6 Fiber Router",
+            "slug": "abs-ax3000-wifi-6-router",
+            "category": "routers",
+            "brand": "ABS Network",
+            "model": "AX3000-FT",
+            "sku": "ABS-AX3000-FT",
+            "pricePkr": 8999,
+            "salePricePkr": 6999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 25,
+            "warrantyYears": 1,
+            "shortDescription": "Dual-band Wi-Fi 6 router with gigabit fiber WAN passthrough for homes and small offices.",
+            "fullDescription": "The ABS AX3000 delivers simultaneous 2.4 GHz and 5 GHz bands with GameFast QoS, gigabit LAN ports and a dedicated fiber WAN slot. Ideal as a gateway for ABS GPON fiber installations.",
+            "specifications": {
+                  "Standards": "IEEE 802.11ax / ac / a / b / g / n",
+                  "Bands": "2.4 GHz + 5 GHz (AX3000)",
+                  "Throughput": "574 Mbps + 2402 Mbps",
+                  "LAN Ports": "4 x Gigabit Ethernet",
+                  "WAN": "1 x Gigabit + SFP (fiber)",
+                  "QoS": "GameFast priority queue"
+            },
+            "features": [
+                  "Wi-Fi 6 dual-band up to 3000 Mbps",
+                  "Fiber SFP WAN port for GPON gateways",
+                  "4 x Gigabit LAN ports",
+                  "Dedicated GameFast gaming QoS",
+                  "Parental controls and guest Wi-Fi"
+            ],
+            "isFeatured": true,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-ax3000-wifi-6-router.jpg"
+            ],
+            "displayOrder": 1,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_ont_gpon",
+            "name": "ABS GPON ONT 1GE Optical Network Terminal",
+            "slug": "abs-gpon-ont-1ge",
+            "category": "optical_devices",
+            "brand": "ABS Network",
+            "model": "ONT-1GE-G",
+            "sku": "ABS-ONT-1GE-G",
+            "pricePkr": 3999,
+            "salePricePkr": 2499,
+            "stockStatus": "in_stock",
+            "stockQuantity": 40,
+            "warrantyYears": 1,
+            "shortDescription": "Single-port GPON ONT (Optical Network Terminal) with 1 GE port for FTTH broadband.",
+            "fullDescription": "Compact GPON ONT providing true fiber-to-the-home connectivity with a single gigabit LAN port, low power consumption, and TR-069 remote management compatibility.",
+            "specifications": {
+                  "Standard": "ITU-T G.984 (GPON)",
+                  "Wavelength": "1490 nm down / 1310 nm up",
+                  "LAN Port": "1 x Gigabit Ethernet",
+                  "Power": "12V / 0.5A DC adapter",
+                  "Management": "TR-069, OMCI"
+            },
+            "features": [
+                  "GPON FTTH optical network terminal",
+                  "1 x Gigabit Ethernet RJ-45 port",
+                  "TR-069 / OMCI remote management",
+                  "LED status indicators",
+                  "Wall-mountable design"
+            ],
+            "isFeatured": true,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-gpon-ont-1ge.jpg"
+            ],
+            "displayOrder": 2,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_switch_24g",
+            "name": "ABS 24-Port Gigabit Managed L2+ Switch",
+            "slug": "abs-24port-gigabit-managed-switch",
+            "category": "network_switches",
+            "brand": "ABS Network",
+            "model": "SW-24G-M",
+            "sku": "ABS-SW-24G-M",
+            "pricePkr": 45999,
+            "salePricePkr": 39999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 8,
+            "warrantyYears": 2,
+            "shortDescription": "24-port managed gigabit switch with 4 SFP uplinks for enterprise and ISP distribution.",
+            "fullDescription": "Layer-2+ managed switch with full VLAN, QoS, link aggregation, and 4 combo SFP fiber uplinks. Ideal for MDUs, offices and ISP access-layer deployments.",
+            "specifications": {
+                  "Ports": "24 x 10/100/1000 Mbps + 4 x SFP",
+                  "Switching Capacity": "56 Gbps",
+                  "VLAN": "802.1Q up to 4096 groups",
+                  "Management": "Web / CLI / SNMP",
+                  "Fanless": "No (active cooling)"
+            },
+            "features": [
+                  "24 gigabit ports + 4 SFP uplinks",
+                  "Full Layer-2+ switching feature set",
+                  "802.1Q VLAN and port isolation",
+                  "SNMP / CLI / web management",
+                  "Rack-mountable 1U chassis"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-24port-gigabit-managed-switch.jpg"
+            ],
+            "displayOrder": 3,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_ap_ac1200",
+            "name": "ABS AC1200 Dual-Band Ceiling Access Point",
+            "slug": "abs-ac1200-ceiling-access-point",
+            "category": "routers",
+            "brand": "ABS Network",
+            "model": "AP-AC1200-C",
+            "sku": "ABS-AP-AC1200-C",
+            "pricePkr": 10999,
+            "salePricePkr": 8999,
+            "stockStatus": "low_stock",
+            "stockQuantity": 5,
+            "warrantyYears": 1,
+            "shortDescription": "802.11ac dual-band ceiling access point with PoE for offices and MDUs.",
+            "fullDescription": "PoE-powered ceiling access point delivering up to 1200 Mbps, 802.3af PoE, and centralized controller support — suited for offices, hotels and multi-dwelling units.",
+            "specifications": {
+                  "Standard": "IEEE 802.11ac wave 2",
+                  "Throughput": "300 + 867 Mbps (AC1200)",
+                  "Power": "802.3af PoE",
+                  "Mount": "Ceiling / wall",
+                  "Management": "Controller + standalone"
+            },
+            "features": [
+                  "Dual-band 802.11ac up to 1200 Mbps",
+                  "802.3af PoE powered (no separate PSU)",
+                  "Ceiling and wall mounting",
+                  "Part of scalable controller mesh"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-ac1200-ceiling-access-point.jpg"
+            ],
+            "displayOrder": 4,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_cat6_cable",
+            "name": "ABS Cat6 UTP LAN Cable (305 m Box)",
+            "slug": "abs-cat6-utp-lan-cable-305m",
+            "category": "network_cables",
+            "brand": "ABS Network",
+            "model": "CAT6-UTP-305",
+            "sku": "ABS-CAT6-305",
+            "pricePkr": 7950,
+            "stockStatus": "in_stock",
+            "stockQuantity": 30,
+            "warrantyYears": 1,
+            "shortDescription": "Category 6 UTP bulk cable, 24 AWG, PVC jacket, 305 m pull box — certified for Gigabit runs.",
+            "fullDescription": "High-performance Cat6 UTP cable engineered for Gigabit Ethernet and PoE deployments, with 23-24 AWG solid copper conductors and reduced crosstalk for reliable structured cabling.",
+            "specifications": {
+                  "Category": "Cat6 UTP",
+                  "Length": "305 m (1000 ft) box",
+                  "Conductor": "24 AWG solid bare copper",
+                  "Jacket": "PVC / LSZH option",
+                  "Bandwidth": "250 MHz"
+            },
+            "features": [
+                  "Certified 250 MHz Cat6 performance",
+                  "Solid copper for stable PoE",
+                  "Pull box with sequential markings",
+                  "Ideal for structured cabling"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-cat6-utp-lan-cable-305m.jpg"
+            ],
+            "displayOrder": 5,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_fiber_patch_sc",
+            "name": "ABS Single-Mode SC-SC Fiber Patch Cord (2 m)",
+            "slug": "abs-sm-sc-sc-fiber-patch-2m",
+            "category": "fiber_optics",
+            "brand": "ABS Network",
+            "model": "SM-SCSC-2",
+            "sku": "ABS-SM-SCSC-2",
+            "pricePkr": 650,
+            "stockStatus": "in_stock",
+            "stockQuantity": 120,
+            "warrantyYears": 1,
+            "shortDescription": "G.652D single-mode duplex fiber patch cord with SC connectors, 2 m — for ONT and switch links.",
+            "fullDescription": "Low-loss G.652D single-mode patch cord terminated with SC/UPC connectors, ideal for ONT-to-router, patch panel and switch interconnects in fiber networks.",
+            "specifications": {
+                  "Fiber": "G.652D single-mode",
+                  "Connector": "SC-SC (UPC)",
+                  "Length": "2 m",
+                  "Insertion Loss": "< 0.3 dB",
+                  "Jacket": "LSZH"
+            },
+            "features": [
+                  "Low insertion loss (< 0.3 dB)",
+                  "Duplex single-mode construction",
+                  "SC/UPC connectors both ends",
+                  "Dropbox-friendly bend radius"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-sm-sc-sc-fiber-patch-2m.jpg"
+            ],
+            "displayOrder": 6,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_fiber_kit",
+            "name": "ABS Fiber Connector & Adapter Kit (SC/LC)",
+            "slug": "abs-fiber-connector-adapter-kit",
+            "category": "fiber_accessories",
+            "brand": "ABS Network",
+            "model": "FC-KIT-SCLC",
+            "sku": "ABS-FC-KIT-SCLC",
+            "pricePkr": 1200,
+            "stockStatus": "in_stock",
+            "stockQuantity": 60,
+            "warrantyYears": 1,
+            "shortDescription": "Field termination kit with SC/LC connectors, adapters, and cleaning tools for fiber splicing and patching.",
+            "fullDescription": "Complete accessory set for terminating and joining fiber — SC and LC connectors, duplex adapters, caps, and cleaning accessories for maintenance teams and home installs.",
+            "specifications": {
+                  "Includes": "SC + LC connectors, adapters",
+                  "Polish": "UPC / APC",
+                  "Use": "Field termination & patching",
+                  "Case": "Hard storage case"
+            },
+            "features": [
+                  "SC and LC connector assortment",
+                  "Duplex adapters for panel patching",
+                  "Includes cleaning and safety tools",
+                  "Hard carry case"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-fiber-connector-adapter-kit.jpg"
+            ],
+            "displayOrder": 7,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_poe_adapter",
+            "name": "ABS 48V PoE Power Adapter (802.3af/at)",
+            "slug": "abs-48v-poe-power-adapter",
+            "category": "network_accessories",
+            "brand": "OEM Compatible",
+            "model": "POE-48V-1P",
+            "sku": "ABS-POE-48V-1P",
+            "pricePkr": 1799,
+            "salePricePkr": 1450,
+            "stockStatus": "in_stock",
+            "stockQuantity": 45,
+            "warrantyYears": 1,
+            "shortDescription": "Single-port 802.3af/at PoE injector/adapter (48 V) for access points, cameras and switches.",
+            "fullDescription": "Compact PoE power adapter injecting 48 V @ 30 W to a single network port — powers access points, IP cameras, and small switches without a PoE switch.",
+            "specifications": {
+                  "Standard": "IEEE 802.3af / 802.3at",
+                  "Output": "48V DC, up to 30 W",
+                  "Data": "10/100/1000 Mbps pass-through",
+                  "Input": "100-240V AC"
+            },
+            "features": [
+                  "802.3af/at compliant injection",
+                  "Gigabit data pass-through",
+                  "LED power and link indicators",
+                  "Slim wall-plug design"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/shop/abs-48v-poe-power-adapter.jpg"
+            ],
+            "displayOrder": 8,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_router_wifi7",
+            "name": "ABS Wi-Fi 7 Dual-Band Fiber Gateway",
+            "slug": "abs-wifi7-dual-band-fiber-gateway",
+            "category": "routers",
+            "brand": "ABS Network",
+            "model": "GW-WIFI7",
+            "sku": "ABS-GW-WIFI7",
+            "pricePkr": 18999,
+            "salePricePkr": 15999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 18,
+            "warrantyYears": 1,
+            "shortDescription": "Next-generation Wi-Fi 7 dual-band gateway tuned for 2.5 Gbps fiber plans and heavy multi-device homes.",
+            "fullDescription": "The ABS GW-WIFI7 brings Wi-Fi 7 multi-link operation to residential fiber with a 2.5 GbE WAN/LAN port, MU-MIMO and OFDMA scheduling, plus a dedicated gaming priority queue. Pairs natively with ABS GPON ONTs.",
+            "specifications": {
+                  "Standards": "IEEE 802.11be (Wi-Fi 7) backward compatible",
+                  "Bands": "2.4 GHz + 5 GHz (BE6500 class)",
+                  "WAN/LAN": "1 x 2.5 GbE + 3 x Gigabit LAN",
+                  "Security": "WPA3-Personal / Enterprise",
+                  "Management": "ABS Cloud app + web UI"
+            },
+            "features": [
+                  "Wi-Fi 7 dual-band, backward compatible",
+                  "2.5 GbE WAN port for high-tier fiber",
+                  "MU-MIMO + OFDMA for crowded homes",
+                  "Dedicated gaming and streaming QoS",
+                  "WPA3 security with guest network"
+            ],
+            "isFeatured": true,
+            "isActive": true,
+            "images": [
+                  "/images/services/wifi.jpg",
+                  "/images/services/mikrotik.jpg"
+            ],
+            "displayOrder": 9,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_router_tp_ax55",
+            "name": "TP-Link Archer AX55 AX3000 Wi-Fi 6 Router",
+            "slug": "tp-link-archer-ax55-ax3000-router",
+            "category": "routers",
+            "brand": "TP-Link",
+            "model": "Archer AX55",
+            "sku": "TPL-AX55",
+            "pricePkr": 21000,
+            "salePricePkr": 17999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 12,
+            "warrantyYears": 1,
+            "shortDescription": "AX3000 dual-band Wi-Fi 6 router with gigabit ports — a proven upgrade for fiber homes.",
+            "fullDescription": "The TP-Link Archer AX55 delivers AX3000 speeds across 2.4 GHz and 5 GHz with OFDMA, four gigabit LAN ports and robust home coverage. Includes TP-Link HomeShield security and easy app control.",
+            "specifications": {
+                  "Standards": "IEEE 802.11ax",
+                  "Throughput": "574 Mbps + 2402 Mbps (AX3000)",
+                  "LAN Ports": "4 x Gigabit Ethernet",
+                  "USB": "1 x USB 3.0",
+                  "Security": "WPA3 + HomeShield"
+            },
+            "features": [
+                  "AX3000 dual-band Wi-Fi 6",
+                  "4 gigabit LAN + gigabit WAN",
+                  "OFDMA with better multi-device efficiency",
+                  "HomeShield security suite",
+                  "TP-Link app setup and VPN client"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/wifi.jpg",
+                  "/images/services/mikrotik.jpg"
+            ],
+            "displayOrder": 10,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_router_lte_failover",
+            "name": "ABS 4G/LTE Failover Router for Fiber Backup",
+            "slug": "abs-4g-lte-failover-router",
+            "category": "routers",
+            "brand": "ABS Network",
+            "model": "LTE-FBR-1",
+            "sku": "ABS-LTE-FBR-1",
+            "pricePkr": 14500,
+            "salePricePkr": 12499,
+            "stockStatus": "pre_order",
+            "stockQuantity": 6,
+            "warrantyYears": 1,
+            "shortDescription": "Automatic 4G/LTE failover router that keeps business lines alive if fiber drops.",
+            "fullDescription": "Dual-WAN router with a built-in 4G/LTE modem that automatically fails over to cellular when the fiber uplink goes down. Gigabit Ethernet WAN, dual antennas and remote SIM management for business continuity.",
+            "specifications": {
+                  "WAN": "1 x Gigabit Ethernet + 1 x 4G/LTE",
+                  "Bands": "LTE FDD/TDD (B1/B3/B5/B7/B8/B20/B28/B40)",
+                  "Antennas": "2 x external 5 dBi",
+                  "LAN": "4 x Gigabit Ethernet",
+                  "Failover": "Automatic < 5 s"
+            },
+            "features": [
+                  "Automatic fiber-to-LTE failover",
+                  "Gigabit Ethernet WAN + LAN",
+                  "External antennas for weak coverage",
+                  "Remote monitoring dashboard",
+                  "Business continuity for shops and offices"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/wifi.jpg",
+                  "/images/services/mikrotik.jpg"
+            ],
+            "displayOrder": 11,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_switch_8g_poe",
+            "name": "ABS 8-Port Gigabit PoE+ Managed Switch",
+            "slug": "abs-8port-gigabit-poe-plus-switch",
+            "category": "network_switches",
+            "brand": "ABS Network",
+            "model": "SW-8G-POE+",
+            "sku": "ABS-SW-8G-POE",
+            "pricePkr": 18500,
+            "salePricePkr": 15999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 20,
+            "warrantyYears": 2,
+            "shortDescription": "8-port gigabit switch with 8x PoE+ (120 W budget) for cameras, APs and IP phones.",
+            "fullDescription": "Managed L2 switch offering 8 gigabit ports with 802.3at/af PoE+ injection and a 120 W budget — ideal for powering access points and CCTV on small business networks. Web/CLI managed with VLAN and QoS.",
+            "specifications": {
+                  "Ports": "8 x 10/100/1000 Mbps + 2 x SFP",
+                  "PoE": "802.3af/at, 120 W budget",
+                  "Switching Capacity": "20 Gbps",
+                  "Management": "Web / CLI / SNMP",
+                  "Mount": "Desktop / wall / rack kit"
+            },
+            "features": [
+                  "8 PoE+ gigabit ports, 120 W budget",
+                  "2 SFP fiber uplinks",
+                  "802.1Q VLAN and QoS",
+                  "Fanless quiet operation",
+                  "Rack and wall mounting kit included"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/cisco.jpg",
+                  "/images/services/network-design.jpg"
+            ],
+            "displayOrder": 12,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_switch_ubnt_lite8",
+            "name": "Ubiquiti UniFi Switch Lite 8 PoE",
+            "slug": "ubiquiti-unifi-switch-lite-8-poe",
+            "category": "network_switches",
+            "brand": "Ubiquiti",
+            "model": "USW-Lite-8-PoE",
+            "sku": "UBNT-USW-LITE-8-POE",
+            "pricePkr": 31500,
+            "salePricePkr": 27999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 9,
+            "warrantyYears": 1,
+            "shortDescription": "8-port PoE UniFi switch managed from the UniFi Network console — perfect for UniFi AP fleets.",
+            "fullDescription": "Silent, fanless UniFi Switch Lite 8 PoE powers UniFi access points and cameras, managed centrally from the UniFi Network application. Four PoE+ ports, 52 W budget and a 1 Gbps SFP uplink.",
+            "specifications": {
+                  "Ports": "8 x GbE (4 PoE+) + 1 x SFP",
+                  "PoE Budget": "52 W (802.3af/at)",
+                  "Management": "UniFi Network console",
+                  "Switching": "Non-blocking design",
+                  "Mount": "Desktop / 1U rack ears"
+            },
+            "features": [
+                  "Managed in UniFi Network dashboard",
+                  "4 x PoE+ with 52 W budget",
+                  "Fanless and silent",
+                  "SFP uplink for fiber aggregation",
+                  "Auto-discovery of UniFi devices"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/cisco.jpg",
+                  "/images/services/network-design.jpg"
+            ],
+            "displayOrder": 13,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_ont_huawei_stick",
+            "name": "Huawei MA5671A GPON ONT Stick",
+            "slug": "huawei-ma5671a-gpon-ont-stick",
+            "category": "optical_devices",
+            "brand": "Huawei",
+            "model": "MA5671A",
+            "sku": "HUA-MA5671A",
+            "pricePkr": 5500,
+            "salePricePkr": 4499,
+            "stockStatus": "low_stock",
+            "stockQuantity": 4,
+            "warrantyYears": 1,
+            "shortDescription": "SFP-class GPON ONT module that turns any SFP router/switch port into a fiber WAN.",
+            "fullDescription": "The Huawei MA5671A plugs directly into an SFP port and terminates a GPON line without an external ONT. A favorite of power users and ISPs for replacing carrier ONTs on advanced routers.",
+            "specifications": {
+                  "Standard": "ITU-T G.984 (GPON)",
+                  "Form Factor": "SFP (SC/PC)",
+                  "Wavelength": "1310 nm TX / 1490 nm RX",
+                  "Speed": "2.5 Gbps down / 1.25 Gbps up",
+                  "Compatibility": "Needs SFP-capable router/switch"
+            },
+            "features": [
+                  "Bridges GPON into an SFP slot",
+                  "No separate ONT power supply",
+                  "PON power budget Class B+/C+",
+                  "TR-069 / OMCI manageable",
+                  "Needs compatible SFP WAN gateway"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/fiber-infrastructure.jpg"
+            ],
+            "displayOrder": 14,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_ont_wifi6",
+            "name": "ABS GPON Home Gateway Wi-Fi 6 ONT",
+            "slug": "abs-gpon-home-gateway-wifi6-ont",
+            "category": "optical_devices",
+            "brand": "ABS Network",
+            "model": "ONT-W6-4GE",
+            "sku": "ABS-ONT-W6-4GE",
+            "pricePkr": 4200,
+            "salePricePkr": 3799,
+            "stockStatus": "in_stock",
+            "stockQuantity": 35,
+            "warrantyYears": 1,
+            "shortDescription": "All-in-one GPON ONT with built-in Wi-Fi 6 router, 4 gigabit LAN ports and voice capability.",
+            "fullDescription": "A compact FTTH gateway combining a GPON ONT, a Wi-Fi 6 access point and a 4-port gigabit router. Includes OMCI/TR-069 management and wall-mount housing — ideal for single-box fiber installs.",
+            "specifications": {
+                  "Standard": "ITU-T G.984 GPON",
+                  "Wi-Fi": "Wi-Fi 6 AX1800 dual-band",
+                  "LAN": "4 x Gigabit Ethernet + USB",
+                  "Voice": "1 x FXS POTS (SIP)",
+                  "Management": "TR-069 / OMCI"
+            },
+            "features": [
+                  "GPON ONT, router and Wi-Fi in one",
+                  "Wi-Fi 6 dual-band AX1800",
+                  "4 gigabit LAN ports",
+                  "Optional SIP voice port",
+                  "TR-069 remote provisioning"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/fiber-infrastructure.jpg"
+            ],
+            "displayOrder": 15,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_cat6_patch_lead",
+            "name": "ABS Cat6 RJ45 Patch Leads (10-Pack, 1 m)",
+            "slug": "abs-cat6-rj45-patch-lead-10pack-1m",
+            "category": "network_cables",
+            "brand": "ABS Network",
+            "model": "PT6-CM-24-10",
+            "sku": "ABS-PT6-1M-10",
+            "pricePkr": 2499,
+            "stockStatus": "in_stock",
+            "stockQuantity": 55,
+            "warrantyYears": 1,
+            "shortDescription": "Ten 1 m Cat6 snagless patch leads with 24 AWG stranded copper for patching racks and desks.",
+            "fullDescription": "Stranded 24 AWG Cat6 patch cords with snagless boots and gold-plated RJ45 contacts. Certified to 250 MHz for gigabit and PoE patching between switches, panels and endpoints.",
+            "specifications": {
+                  "Category": "Cat6, 250 MHz",
+                  "Length": "1 m (10 piece pack)",
+                  "Conductor": "24 AWG stranded bare copper",
+                  "Connector": "RJ45 gold-plated, snagless",
+                  "Color": "Assorted"
+            },
+            "features": [
+                  "Snagless gold-plated RJ45 boots",
+                  "Stranded copper for flexible patching",
+                  "Gigabit + PoE certified",
+                  "10-piece value pack"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/structured-cabling.jpg"
+            ],
+            "displayOrder": 16,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_cat5e_cable",
+            "name": "ABS Cat5e UTP Bulk Cable (305 m Box)",
+            "slug": "abs-cat5e-utp-bulk-cable-305m",
+            "category": "network_cables",
+            "brand": "ABS Network",
+            "model": "CAT5E-UTP-305",
+            "sku": "ABS-CAT5E-305",
+            "pricePkr": 4950,
+            "stockStatus": "in_stock",
+            "stockQuantity": 40,
+            "warrantyYears": 1,
+            "shortDescription": "Cat5e UTP bulk cable in a 305 m box — economical Gigabit-rated cabling for homes and offices.",
+            "fullDescription": "Reliable Cat5e UTP bulk cable, 24 AWG solid copper, PVC jacket, in a 305 m pull box. Fully Gigabit and PoE capable, ideal for low-cost structured cabling and long patch-run projects.",
+            "specifications": {
+                  "Category": "Cat5e UTP (100 MHz)",
+                  "Length": "305 m (1000 ft) box",
+                  "Conductor": "24 AWG solid bare copper",
+                  "Jacket": "PVC (CM)",
+                  "Color": "Grey"
+            },
+            "features": [
+                  "Certified 100 MHz Cat5e",
+                  "Solid copper conductors",
+                  "305 m box with length markings",
+                  "Gigabit and PoE capable"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/structured-cabling.jpg"
+            ],
+            "displayOrder": 17,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_om3_patch",
+            "name": "ABS OM3 LC-LC Duplex Fiber Patch Cord (3 m)",
+            "slug": "abs-om3-lc-lc-duplex-fiber-patch-3m",
+            "category": "fiber_optics",
+            "brand": "ABS Network",
+            "model": "OM3-LLC-3",
+            "sku": "ABS-OM3-LLC-3",
+            "pricePkr": 950,
+            "stockStatus": "in_stock",
+            "stockQuantity": 90,
+            "warrantyYears": 1,
+            "shortDescription": "OM3 laser-optimized multimode duplex patch cord, LC-LC, 3 m — ready for 10G fiber links.",
+            "fullDescription": "Laser-optimized OM3 multimode fiber with low-loss LC/UPC connectors. Purpose-built for 10 Gigabit Ethernet to 300 m and ideal for switch-to-panel patching in data centers and MDUs.",
+            "specifications": {
+                  "Fiber": "OM3 50/125 µm (3000 MHz·km)",
+                  "Connector": "LC-LC duplex (UPC)",
+                  "Length": "3 m",
+                  "Insertion Loss": "< 0.25 dB",
+                  "Jacket": "LSZH aqua"
+            },
+            "features": [
+                  "10G-ready OM3 multimode fiber",
+                  "Low-loss LC/UPC duplex ends",
+                  "Aqua LSZH jacket",
+                  "3 m server/patch length"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/fiber-infrastructure.jpg"
+            ],
+            "displayOrder": 18,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_armored_drop",
+            "name": "ABS Armored Single-Mode Drop Cable (1 km)",
+            "slug": "abs-armored-sm-drop-cable-1km",
+            "category": "fiber_optics",
+            "brand": "ABS Network",
+            "model": "SM-DROP-1K",
+            "sku": "ABS-SM-DROP-1K",
+            "pricePkr": 13500,
+            "stockStatus": "in_stock",
+            "stockQuantity": 12,
+            "warrantyYears": 1,
+            "shortDescription": "Steel-armored G.652D single-mode drop cable with messenger — field-proven for FTTH outdoor drops.",
+            "fullDescription": "G.652D fiber with steel armor and a messenger wire for aerial FTTH drops, plus a 3 mm breakout for indoor termination. Supplied on a 1 km drum with sequential length markings for installers and ISPs.",
+            "specifications": {
+                  "Fiber": "G.652D single-mode, 2 fibers",
+                  "Armor": "Corrugated steel tape",
+                  "Messenger": "Integrated support wire",
+                  "Length": "1 km drum",
+                  "Use": "Aerial/outdoor FTTH drop"
+            },
+            "features": [
+                  "Steel-armored for rodent/crush resistance",
+                  "Integrated messenger for aerial spans",
+                  "1 km drum with length marks",
+                  "3 mm breakout for indoor entry"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/fiber-infrastructure.jpg"
+            ],
+            "displayOrder": 19,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_splice_tray",
+            "name": "ABS Fiber Splice Closure & Tray Kit",
+            "slug": "abs-fiber-splice-closure-tray-kit",
+            "category": "fiber_accessories",
+            "brand": "ABS Network",
+            "model": "SPL-KIT-12",
+            "sku": "ABS-SPL-KIT-12",
+            "pricePkr": 2150,
+            "stockStatus": "in_stock",
+            "stockQuantity": 30,
+            "warrantyYears": 1,
+            "shortDescription": "Weatherproof splice closure with 6 splice trays, holders and protection sleeves for FTTH splicing.",
+            "fullDescription": "In-line splice closure (up to 12 fibers) with gel-sealed ports, a splice tray organizer and heat-shrink protection sleeves — everything a technician needs for outdoor FTTH splices.",
+            "specifications": {
+                  "Capacity": "Up to 12 splices (6 trays)",
+                  "Protection": "Heat-shrink + sleeve holders",
+                  "Sealing": "Gel / O-ring weatherproof",
+                  "Ports": "4 cable entry ports",
+                  "Mount": "Pole / aerial / manhole"
+            },
+            "features": [
+                  "Weatherproof in-line closure",
+                  "6 splice trays included",
+                  "Heat-shrink and sleeve protection",
+                  "4 entry ports for drop cabling"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/fiber-infrastructure.jpg"
+            ],
+            "displayOrder": 20,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_keystone_kit",
+            "name": "ABS Cat6 Keystone Jack + Faceplate Kit",
+            "slug": "abs-cat6-keystone-jack-faceplate-kit",
+            "category": "network_accessories",
+            "brand": "ABS Network",
+            "model": "KST6-FP-04",
+            "sku": "ABS-KST6-FP-04",
+            "pricePkr": 1650,
+            "stockStatus": "in_stock",
+            "stockQuantity": 70,
+            "warrantyYears": 1,
+            "shortDescription": "Cat6 shielded keystone jack with wall faceplate and punch-down tool set for tidy wall drops.",
+            "fullDescription": "Complete wall-outlet kit: a Cat6 tool-less/shielded keystone jack, single-gang faceplate, wall screws and a mini punch-down tool. Produces clean, rattle-free wall terminations on structured cabling.",
+            "specifications": {
+                  "Jack": "Cat6 shielded tool-less keystone",
+                  "Faceplate": "Single-gang 1-port white",
+                  "Termination": "110 / Krone punch-down",
+                  "Includes": "Patch cable tie, screws",
+                  "Color": "White"
+            },
+            "features": [
+                  "Tool-less Cat6 keystone option",
+                  "Clean single-gang wall plate",
+                  "Mini punch-down tool included",
+                  "Works with ABS structured cable"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/structured-cabling.jpg"
+            ],
+            "displayOrder": 21,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_crimp_kit",
+            "name": "ABS RJ45 Crimping & Termination Tool Kit",
+            "slug": "abs-rj45-crimping-termination-tool-kit",
+            "category": "tools_testing",
+            "brand": "ABS Network",
+            "model": "CRIMP-KIT-8P",
+            "sku": "ABS-CRIMP-KIT-8P",
+            "pricePkr": 4999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 25,
+            "warrantyYears": 1,
+            "shortDescription": "Professional RJ45/RJ11 crimper with stripper, cutter and tester — the installer's standard kit.",
+            "fullDescription": "All-in-one crimping kit for RJ45/RJ11 plugs, including a ratchet crimper, cable stripper, cutting tool, 50 connectors and a handy canvas pouch. The go-to kit for cable termination jobs.",
+            "specifications": {
+                  "Crimper": "Ratchet type RJ45/RJ11/RJ12",
+                  "Includes": "Stripper, cutter, 50x RJ45",
+                  "Body": "Zinc alloy, ergonomic grip",
+                  "Testing": "LED continuity tester included",
+                  "Case": "Canvas tool pouch"
+            },
+            "features": [
+                  "Ratchet crimper with die sets",
+                  "50 RJ45 connectors included",
+                  "Stripper, cutter and tester bundled",
+                  "Hard-wearing canvas pouch"
+            ],
+            "isFeatured": true,
+            "isActive": true,
+            "images": [
+                  "/images/services/it-support.jpg"
+            ],
+            "displayOrder": 22,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_opm_vfl",
+            "name": "ABS Optical Power Meter + VFL Tester",
+            "slug": "abs-optical-power-meter-vfl-tester",
+            "category": "tools_testing",
+            "brand": "ABS Network",
+            "model": "OPM-VFL-01",
+            "sku": "ABS-OPM-VFL-01",
+            "pricePkr": 27999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 14,
+            "warrantyYears": 1,
+            "shortDescription": "Calibrated optical power meter with 10 mW visual fault locator for FTTH install and repair.",
+            "fullDescription": "Dual-function OPM/VFL tester measuring 850/1300/1310/1490/1550 nm and locating breaks with a 10 mW red laser. Backlit LCD, auto-power-off and rechargeable battery for field technicians.",
+            "specifications": {
+                  "OPM Wavelengths": "850/1300/1310/1490/1550 nm",
+                  "Range": "-70 to +10 dBm, ±0.35 dB",
+                  "VFL": "10 mW, 650 nm laser",
+                  "Connector": "FC/SC interchangeable adapters",
+                  "Power": "Rechargeable Li-Ion, auto-off"
+            },
+            "features": [
+                  "Calibrated power meter ±0.35 dB",
+                  "10 mW VFL for fiber tracing",
+                  "Interchangeable FC/SC adapters",
+                  "Backlit LCD and auto power off",
+                  "Rechargeable with carry case"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/it-support.jpg"
+            ],
+            "displayOrder": 23,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_otdr",
+            "name": "ABS OTDR Fiber Analyzer (1310/1550 nm)",
+            "slug": "abs-otdr-fiber-analyzer-1310-1550",
+            "category": "tools_testing",
+            "brand": "ABS Network",
+            "model": "OTDR-1310",
+            "sku": "ABS-OTDR-1310",
+            "pricePkr": 420000,
+            "salePricePkr": 385000,
+            "stockStatus": "on_order",
+            "stockQuantity": 2,
+            "warrantyYears": 1,
+            "shortDescription": "Touchscreen OTDR with 1310/1550 nm lasers, event analysis and integrated OPM/VFL for fiber commissioning.",
+            "fullDescription": "Professional OTDR measuring single-mode networks with dynamic range up to 40 dB, automatic event map (loss, reflectance, events, sections) and a 7-inch touchscreen — built for FTTH and metro fiber commissioning.",
+            "specifications": {
+                  "Wavelengths": "1310 nm / 1550 nm",
+                  "Dynamic Range": "Up to 40 dB",
+                  "Event Dead Zone": "< 1 m",
+                  "Display": "7-inch touchscreen",
+                  "Extras": "OPM + VFL + TLS on board"
+            },
+            "features": [
+                  "1310/1550 nm with 40 dB range",
+                  "Automatic event and splice analysis",
+                  "1 m event dead zone",
+                  "Integrated OPM and VFL",
+                  "Field-ready rugged touchscreen"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/it-support.jpg"
+            ],
+            "displayOrder": 24,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_rack_12u",
+            "name": "ABS 12U Wall-Mount Server Rack Cabinet",
+            "slug": "abs-12u-wall-mount-rack-cabinet",
+            "category": "rack_cabinet",
+            "brand": "ABS Network",
+            "model": "RC-12U-WM",
+            "sku": "ABS-RC-12U-WM",
+            "pricePkr": 43000,
+            "salePricePkr": 38500,
+            "stockStatus": "in_stock",
+            "stockQuantity": 6,
+            "warrantyYears": 1,
+            "shortDescription": "12U ventilated wall-mount cabinet with glass door for MDU and office equipment corners.",
+            "fullDescription": "Wall-mount 19-inch cabinet (12U) with a tempered glass front door, ventilated sides, removable panels and a built-in patch slot. Holds switches, ONTs and small patch panels securely out of the way.",
+            "specifications": {
+                  "Capacity": "12U, 19-inch",
+                  "Mount": "Wall, pre-drilled M6",
+                  "Door": "Tempered glass, key lock",
+                  "Ventilation": "Perforated sides + roof fan slot",
+                  "Depth": "400 mm"
+            },
+            "features": [
+                  "12U tempered-glass wall cabinet",
+                  "Pre-drilled M6 rack rails",
+                  "Key-locked glass door",
+                  "Removable side panels for access",
+                  "400 mm depth suits switches + patch panels"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/servers.jpg"
+            ],
+            "displayOrder": 25,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_patch_panel",
+            "name": "ABS 24-Port Shielded Cat6 Patch Panel (1U)",
+            "slug": "abs-24port-shielded-cat6-patch-panel-1u",
+            "category": "rack_cabinet",
+            "brand": "ABS Network",
+            "model": "PP-6-24-1U",
+            "sku": "ABS-PP-6-24-1U",
+            "pricePkr": 6899,
+            "stockStatus": "in_stock",
+            "stockQuantity": 18,
+            "warrantyYears": 1,
+            "shortDescription": "1U 24-port shielded Cat6 punch-down patch panel with rear cable bar for tidy racks.",
+            "fullDescription": "24-port Cat6 FTP patch panel in a 1U steel frame with a rear cable manager and numbered front ports. Punch-down (110/Krone) termination with clear labels for structured cabling.",
+            "specifications": {
+                  "Ports": "24 x RJ45 8P8C",
+                  "Category": "Cat6 shielded (FTP)",
+                  "Form Factor": "1U, 19-inch steel",
+                  "Termination": "110 / Krone punch-down",
+                  "Cable Bar": "Integrated rear organizer"
+            },
+            "features": [
+                  "24 shielded Cat6 ports",
+                  "Punch-down rear termination",
+                  "Numbered ports with label spaces",
+                  "Integrated rear cable bar"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/servers.jpg"
+            ],
+            "displayOrder": 26,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_cable_mgmt",
+            "name": "ABS 1U Horizontal Cable Manager (D-Ring)",
+            "slug": "abs-1u-horizontal-cable-manager-dring",
+            "category": "rack_cabinet",
+            "brand": "ABS Network",
+            "model": "CM-1U-DR",
+            "sku": "ABS-CM-1U-DR",
+            "pricePkr": 2250,
+            "stockStatus": "in_stock",
+            "stockQuantity": 22,
+            "warrantyYears": 1,
+            "shortDescription": "1U D-ring horizontal cable manager that keeps patch leads neat between panels and switches.",
+            "fullDescription": "Steel 1U horizontal cable management panel with D-rings and spring-loaded covers for tidy front patching. Protects leads from snags and maintains bends at the correct radius.",
+            "specifications": {
+                  "Form Factor": "1U, 19-inch",
+                  "Type": "D-ring with snap cover",
+                  "Material": "Cold-rolled steel",
+                  "Finish": "Black powder coat",
+                  "Includes": "Rack screws"
+            },
+            "features": [
+                  "Snap-on covers for clean finish",
+                  "D-rings preserve bend radius",
+                  "Tool-free cover removal",
+                  "Matches ABS patch panels"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/servers.jpg"
+            ],
+            "displayOrder": 27,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      },
+      {
+            "id": "demo_media_converter",
+            "name": "ABS Gigabit Media Converter Kit (SC, MM)",
+            "slug": "abs-gigabit-media-converter-kit-sc-mm",
+            "category": "other",
+            "brand": "ABS Network",
+            "model": "MC-1000-SC",
+            "sku": "ABS-MC-1000-SC",
+            "pricePkr": 5999,
+            "stockStatus": "in_stock",
+            "stockQuantity": 26,
+            "warrantyYears": 1,
+            "shortDescription": "Copper-to-fiber gigabit media converter kit with SC multimode port for long building runs.",
+            "fullDescription": "A matched pair of 10/100/1000 media converters (plus power supplies) extends copper LAN runs over multimode fiber via SC connectors to 550 m. Plug-and-play with no configuration.",
+            "specifications": {
+                  "Ports": "1 x 10/100/1000 RJ45 + 1 x SC MM",
+                  "Fiber": "Multimode 62.5/125 or 50/125 µm",
+                  "Distance": "Up to 550 m",
+                  "Power": "2 x 5V DC adapters",
+                  "Extras": "DIN rail + wall brackets"
+            },
+            "features": [
+                  "Pair of 10/100/1000 converters",
+                  "Extends copper runs over fiber",
+                  "Plug-and-play, link-auto senses",
+                  "Two PSUs and mounting brackets"
+            ],
+            "isFeatured": false,
+            "isActive": true,
+            "images": [
+                  "/images/services/network-design.jpg"
+            ],
+            "displayOrder": 28,
+            "createdAt": "2026-01-01T00:00:00.000Z",
+            "updatedAt": "2026-01-01T00:00:00.000Z"
+      }
+],
+        contactSubmissions: [
       {
         id: 'sub_001',
         fullName: 'Muhammad Kamran',

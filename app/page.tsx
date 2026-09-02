@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   Wifi,
@@ -22,8 +23,15 @@ import NetworkImageMosaic from '@/components/home/NetworkImageMosaic';
 import { getSupabaseSettings, getSupabasePackages } from '@/lib/supabase-cms';
 import { getPublicShopProducts } from '@/lib/supabase-shop';
 import { getHomepageServices } from '@/lib/services';
+import { getSiteUrl } from '@/lib/seo';
 
 export const revalidate = 60;
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: getSiteUrl(),
+  },
+};
 
 export default async function HomePage() {
   const [settings, packages, shopProducts] = await Promise.all([

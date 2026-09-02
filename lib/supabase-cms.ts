@@ -2,6 +2,7 @@ import 'server-only';
 import { getSupabaseAdmin } from './supabase-admin';
 import { getPublicClient } from './supabase-public';
 import { getShopProductById } from './supabase-shop';
+import { getPackages } from './db';
 import type {
   BroadbandPackage,
   ServiceItem,
@@ -151,16 +152,15 @@ export async function getSupabasePackages(
   activeOnly = false
 ): Promise<BroadbandPackage[]> {
   const client = activeOnly ? getPublicClient() : getSupabaseAdmin();
-  if (!client) return [];
+  if (!client) return getPackages(activeOnly);
   const { data, error } = await client
     .from('packages')
     .select('*')
     .order('display_order');
-  if (error) {
-    console.error('[supabase-cms] Failed to load packages:', error.message);
-    return [];
+  if (error || !data || data.length === 0) {
+    return getPackages(activeOnly);
   }
-  return (data as Record<string, any>[] | null ?? []).map(mapPackage);
+  return (data as Record<string, any>[]).map(mapPackage);
 }
 
 export async function getSupabasePackageById(

@@ -35,15 +35,7 @@ export function serviceRelativeUrl(slug: string): string {
   return `/services/${slug}`;
 }
 
-/** Generates a clean, SEO-friendly slug from a title. */
-export function slugify(value: string): string {
-  const slug = (value || '')
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-  return slug || 'service';
-}
+export { slugify } from './slug';
 
 /** Generates a permanent redirect URL response for a canonical service slug. */
 export function permanentRedirectUrl(slug: string): string {

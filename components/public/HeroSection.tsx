@@ -121,14 +121,19 @@ export default function HeroSection({ settings }: HeroSectionProps) {
           <motion.div
             {...fadeUp}
             transition={{ ...fadeUp.animate.transition, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
+            className="flex flex-col sm:flex-row items-center gap-3.5 justify-center lg:justify-start"
           >
-            <Link href="/packages" className="btn-primary btn-lg w-full sm:w-auto">
-              <span>Get Started</span>
+            <a
+              href="https://wa.me/923224180930?text=Hello%20ABS%20Network%2C%20I%20would%20like%20to%20talk%20to%20an%20engineer%20regarding%20our%20IT%20and%20networking%20requirements."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary btn-lg w-full sm:w-auto"
+            >
+              <span>Talk to an Engineer</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link href="/packages" className="btn-secondary btn-lg w-full sm:w-auto">
-              <span>Explore Packages</span>
+            </a>
+            <Link href="/services" className="btn-secondary btn-lg w-full sm:w-auto">
+              <span>Explore Services</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>

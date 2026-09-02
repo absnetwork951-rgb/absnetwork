@@ -128,13 +128,18 @@ export default function Header({ settings }: HeaderProps) {
               href="/shop"
               className="btn-secondary btn-sm"
             >
-              <Network className="w-4 h-4 text-blue-500" />
+              <Network className="w-4 h-4 text-blue-600" />
               <span>Shop Equipment</span>
             </Link>
-            <Link href="/contact" className="btn-primary btn-sm">
-              <span>Check Availability</span>
+            <a
+              href="https://wa.me/923224180930?text=Hello%20ABS%20Network%2C%20I%20would%20like%20to%20talk%20to%20an%20engineer%20regarding%20our%20IT%20and%20networking%20requirements."
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary btn-sm"
+            >
+              <span>Talk to an Engineer</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </div>
 
           <button
@@ -178,13 +183,22 @@ export default function Header({ settings }: HeaderProps) {
           </nav>
 
           <div className="page-container pb-6 space-y-2.5">
+            <a
+              href="https://wa.me/923224180930?text=Hello%20ABS%20Network%2C%20I%20would%20like%20to%20talk%20to%20an%20engineer%20regarding%20our%20IT%20and%20networking%20requirements."
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="btn-primary w-full text-center"
+            >
+              <span>Talk to an Engineer (WhatsApp)</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
             <Link
               href="/contact"
               onClick={() => setMobileOpen(false)}
-              className="btn-primary w-full"
+              className="btn-secondary w-full text-center"
             >
-              <span>Check Availability</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Check Coverage &amp; Contact</span>
             </Link>
             <div className="flex items-center justify-between pt-3 px-1">
               <a href={`tel:${settings.phone}`} className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-blue-600">

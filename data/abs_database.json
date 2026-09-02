@@ -260,8 +260,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 1,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
       "id": "pkg_fiber_20",
@@ -287,8 +287,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 2,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
       "id": "pkg_fiber_30",
@@ -313,8 +313,8 @@
       "isPopular": true,
       "isActive": true,
       "displayOrder": 3,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
       "id": "pkg_fiber_50",
@@ -340,8 +340,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 4,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
       "id": "pkg_biz_100",
@@ -368,8 +368,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 5,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
       "id": "pkg_biz_200",
@@ -396,8 +396,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 6,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
       "id": "pkg_ent_300",
@@ -424,8 +424,8 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 7,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
       "id": "pkg_ent_500",
@@ -452,135 +452,614 @@
       "isPopular": false,
       "isActive": true,
       "displayOrder": 8,
-      "createdAt": "2026-09-01T20:50:00.051Z",
-      "updatedAt": "2026-09-01T20:50:00.051Z"
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     }
   ],
   "services": [
     {
-      "id": "srv_fiber_broadband",
-      "title": "Ultra-Fast Fiber Broadband",
-      "slug": "fiber-broadband",
-      "category": "broadband",
-      "shortDescription": "Direct GPON fiber-to-the-home connectivity with zero packet drop and true symmetrical speeds.",
-      "fullDescription": "ABS Network delivers genuine optical fiber to your doorstep. Backed by multi-homed upstream carrier links, our FTTH network delivers uninterrupted 4K streaming, instant downloads, and crystal-clear video conferences with zero bandwidth throttling.",
-      "iconName": "Zap",
-      "badge": "Core Service",
-      "features": [
-        "True 100% Fiber to the Home (FTTH)",
-        "Symmetrical Upload & Download Speeds",
-        "No Data Capping or Fair Usage Policies",
-        "Automated 24/7 Line Quality Monitoring"
+      "id": "srv_network_design",
+      "title": "Network Design & Architecture",
+      "slug": "network-design-architecture",
+      "category": "networking",
+      "shortDescription": "High-performance LAN/WAN topology planning, VLAN segmentation, and enterprise infrastructure blueprints built for resilience and scalability.",
+      "fullDescription": "ABS Network engineers design robust network architectures that keep your business online and efficient. Our team plans LAN/WAN topologies, IP addressing, subnetting, and full VLAN architectures, with comprehensive documentation and mapping delivered at every stage.",
+      "iconName": "Network",
+      "badge": "Core Infrastructure",
+      "imageUrl": "/net2.jpg",
+      "imageAlt": "Enterprise Network Architecture and Topology Planning",
+      "capabilities": [
+        "LAN/WAN design & topology planning",
+        "IP addressing, subnetting & VLAN architecture",
+        "Network segmentation & traffic isolation",
+        "Comprehensive network documentation & mapping"
       ],
-      "isActive": true,
+      "features": [
+        "LAN/WAN design & topology planning",
+        "IP addressing, subnetting & VLAN architecture",
+        "Network segmentation & traffic isolation",
+        "Comprehensive network documentation & mapping"
+      ],
+      "ctaLabel": "Design My Network",
+      "whatsappMessage": "Hello ABS Network, I am interested in your Network Design & Architecture services. I would like to discuss my requirements.",
+      "isFeatured": true,
+      "isPublished": true,
       "displayOrder": 1,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "seoTitle": "Network Design & Architecture Services | ABS Network",
+      "seoDescription": "Professional LAN/WAN design, VLAN segmentation, and enterprise network architecture engineered for resilience and scalability by ABS Network.",
+      "seoKeywords": [
+        "network design",
+        "LAN WAN",
+        "VLAN",
+        "network architecture",
+        "ISB networking"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
-      "id": "srv_leased",
-      "title": "Leased Lines & DIA",
-      "slug": "leased-lines",
-      "category": "enterprise",
-      "shortDescription": "1:1 unshared internet access with guaranteed bandwidth, custom BGP peering, and 99.99% uptime SLA.",
-      "fullDescription": "Engineered for financial institutions, software houses, call centers, and multi-branch enterprises that cannot compromise on uptime. Our leased line service features redundant backhauls, low latency routes, and round-the-clock NOC monitoring.",
-      "iconName": "Server",
-      "badge": "Enterprise SLA",
-      "features": [
-        "1:1 Committed Information Rate",
-        "Multi-Path Ring Redundancy Protection",
-        "Public IP Subnets (/29, /28, /27)",
-        "Custom BGP Peering & Routing Optimization",
-        "Signed Service Level Agreement (SLA)"
+      "id": "srv_office_network",
+      "title": "Office Network Installation",
+      "slug": "office-network-installation",
+      "category": "networking",
+      "shortDescription": "End-to-end office networking rollout including rack assembly, patch panel dressing, switch configuration, and certified cable testing.",
+      "fullDescription": "Complete office network deployment handled by certified engineers. We install structured cabling, network racks, patch panels, and switches, then test and label every drop for a clean, reliable, and maintainable network.",
+      "iconName": "Building2",
+      "badge": "On-Site Deployment",
+      "imageUrl": "/net1.jpg",
+      "imageAlt": "Office Network Installation and Structured Rack Management",
+      "capabilities": [
+        "Complete office network deployment",
+        "Structured cabling, patch panels & rack setup",
+        "Switch & access point installation",
+        "Cable testing, labeling & clean management"
       ],
-      "isActive": true,
+      "features": [
+        "Complete office network deployment",
+        "Structured cabling, patch panels & rack setup",
+        "Switch & access point installation",
+        "Cable testing, labeling & clean management"
+      ],
+      "ctaLabel": "Request Site Survey",
+      "whatsappMessage": "Hello ABS Network, I need complete Office Network Installation and deployment support.",
+      "isFeatured": false,
+      "isPublished": true,
       "displayOrder": 2,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
-      "id": "srv_managed_network",
-      "title": "Managed IT & Network Solutions",
-      "slug": "managed-network-solutions",
-      "category": "it",
-      "shortDescription": "Complete office Wi-Fi meshing, structured cabling, VPN interconnects, and enterprise firewall deployment.",
-      "fullDescription": "From greenfield office cabling to multi-site SD-WAN interconnections, ABS Network handles your complete physical and logical network infrastructure. We deploy enterprise-grade access points, switches, and UTM firewalls.",
-      "iconName": "ShieldCheck",
-      "badge": "Full Turnkey",
-      "features": [
-        "Cat6A / Optical Fiber Structured Cabling",
-        "Zero-Handoff High-Density Office Wi-Fi",
-        "Site-to-Site WireGuard / IPsec VPNs",
-        "Next-Gen Firewall & Content Filtering",
-        "Scheduled On-Site Preventive Maintenance"
-      ],
-      "isActive": true,
-      "displayOrder": 3,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
-    },
-    {
-      "id": "srv_networking_equipment",
-      "title": "Fiber & Networking Equipment Sales",
-      "slug": "networking-equipment-sales",
-      "category": "it",
-      "shortDescription": "Professional-grade fiber optic cables, switches, routers, ONTs, and structured cabling equipment for ISPs and enterprises.",
-      "fullDescription": "ABS Network supplies enterprise-grade networking and fiber optic equipment from trusted global brands. Whether you need fiber patch panels, managed switches, enterprise access points, or structured cabling kits, we provide competitive pricing with manufacturer-backed warranties.",
-      "iconName": "Router",
-      "badge": "Equipment Sales",
-      "features": [
-        "Fiber Optic Patch Panels & Splice Closures",
-        "Managed & Unmanaged Enterprise Switches",
-        "Wi-Fi 6/7 Enterprise Access Points",
-        "GPON ONTs, OLTs & Optical Splitters",
-        "Cat6A/6/5E Structured Cabling Kits"
-      ],
-      "isActive": true,
-      "displayOrder": 4,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
-    },
-    {
-      "id": "srv_digital_web",
-      "title": "Web & Digital Services",
-      "slug": "web-digital-services",
-      "category": "it",
-      "shortDescription": "High-performance web development, custom cloud hosting, API integrations, and SEO engineering.",
-      "fullDescription": "Accelerate your digital transformation with our bespoke web and software engineering team. We craft high-speed Next.js web applications, secure cloud infrastructure, responsive enterprise portals, and search optimization.",
+      "id": "srv_internet_infra",
+      "title": "Internet Infrastructure & Multi-WAN",
+      "slug": "internet-infrastructure",
+      "category": "internet",
+      "shortDescription": "Redundant ISP connectivity, dedicated fiber links, automated failover, dynamic load balancing, and bandwidth queue management.",
+      "fullDescription": "Zero-downtime internet begins with redundant connectivity. ABS Network designs multi-WAN internet infrastructure with automatic failover, load balancing, and bandwidth queue management so your business stays online even when a single link fails.",
       "iconName": "Globe",
-      "badge": "Digital Scale",
-      "features": [
-        "Modern Next.js / React Web Applications",
-        "High-Speed Cloud Hosting & CDN Deployment",
-        "API Integrations & Payment Gateway Setup",
-        "Technical SEO & Core Web Vitals Optimization",
-        "Ongoing Security Updates & Maintenance"
+      "badge": "Zero Downtime",
+      "imageUrl": "/hero3.jpg",
+      "imageAlt": "Enterprise Internet Infrastructure and Multi-WAN Failover",
+      "capabilities": [
+        "ISP connectivity & dedicated fiber routing",
+        "Multi-WAN load balancing & automatic failover",
+        "Bandwidth management & traffic shaping",
+        "Real-time network latency & uptime monitoring"
       ],
-      "isActive": true,
-      "displayOrder": 5,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "features": [
+        "ISP connectivity & dedicated fiber routing",
+        "Multi-WAN load balancing & automatic failover",
+        "Bandwidth management & traffic shaping",
+        "Real-time network latency & uptime monitoring"
+      ],
+      "ctaLabel": "Optimize Internet",
+      "whatsappMessage": "Hello ABS Network, I am interested in your Internet Infrastructure and Multi-WAN failover solutions.",
+      "isFeatured": true,
+      "isPublished": true,
+      "displayOrder": 3,
+      "seoTitle": "Internet Infrastructure & Multi-WAN Solutions | ABS Network",
+      "seoDescription": "Redundant ISP connectivity, dedicated fiber links, automated failover, and load balancing for zero-downtime enterprise internet.",
+      "seoKeywords": [
+        "multi-wan",
+        "internet infrastructure",
+        "failover",
+        "load balancing",
+        "ISP connectivity"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     },
     {
-      "id": "srv_tier3_support",
-      "title": "24/7 Tier-3 NOC & Field Support",
-      "slug": "tier3-support",
-      "category": "support",
-      "shortDescription": "Round-the-clock network operations center with rapid-response fiber splicing and field repair teams.",
-      "fullDescription": "Our Network Operations Center (NOC) operates 24 hours a day, 365 days a year. With automated optical power anomaly detection and on-ground field technicians equipped with OTDR testers, we resolve physical anomalies in record time.",
-      "iconName": "Headphones",
-      "badge": "24/7 Available",
-      "features": [
-        "Real-Time Fiber Line Telemetry & Monitoring",
-        "Average Under-15-Minute Support Ticket Response",
-        "Equipped On-Ground Splicing & Restoration Teams",
-        "Direct WhatsApp, Phone & Portal Ticketing",
-        "Proactive Storm & Grid Disruption Alerts"
+      "id": "srv_troubleshooting",
+      "title": "Network Troubleshooting & Optimization",
+      "slug": "network-troubleshooting",
+      "category": "networking",
+      "shortDescription": "Fast diagnosis and root-cause resolution for packet loss, DNS issues, IP conflicts, Wi-Fi interference, and bottlenecked throughput.",
+      "fullDescription": "When your network is slow or unstable, ABS Network engineers diagnose and resolve the root cause fast. We fix packet loss, DNS and DHCP issues, IP conflicts, Wi-Fi interference, and tune throughput and latency for peak performance.",
+      "iconName": "Activity",
+      "badge": "Rapid Resolution",
+      "imageUrl": "/net.jpg",
+      "imageAlt": "Network Troubleshooting and Packet Analysis",
+      "capabilities": [
+        "Slow network & bandwidth bottleneck resolution",
+        "Packet loss, DNS & DHCP conflict debugging",
+        "Wi-Fi coverage & routing fault remediation",
+        "Comprehensive throughput & latency tuning"
       ],
-      "isActive": true,
+      "features": [
+        "Slow network & bandwidth bottleneck resolution",
+        "Packet loss, DNS & DHCP conflict debugging",
+        "Wi-Fi coverage & routing fault remediation",
+        "Comprehensive throughput & latency tuning"
+      ],
+      "ctaLabel": "Fix My Network",
+      "whatsappMessage": "Hello ABS Network, I am facing network issues and need urgent network troubleshooting assistance.",
+      "isFeatured": false,
+      "isPublished": true,
+      "displayOrder": 4,
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_cisco",
+      "title": "Cisco Network Solutions",
+      "slug": "cisco-network-solutions",
+      "category": "cisco",
+      "shortDescription": "Certified configuration and management for Cisco Catalyst switches, ISR/ASR routers, Inter-VLAN routing, OSPF, ACLs, and port security.",
+      "fullDescription": "Our certified engineers configure and manage Cisco Catalyst switches, ISR/ASR routers, VLANs, trucks, Inter-VLAN routing, static routing, OSPF, EIGRP, NAT, and ACLs. We also harden and optimize your Cisco environment for performance and security.",
+      "iconName": "Cpu",
+      "badge": "Certified Engineers",
+      "imageUrl": "/images/shop/switches.jpg",
+      "imageAlt": "Cisco Router and Switch Enterprise Configuration",
+      "capabilities": [
+        "Cisco switch & router configuration",
+        "VLANs, 802.1Q trunks, access ports & Inter-VLAN routing",
+        "Static routing, OSPF, EIGRP, NAT & ACL security",
+        "STP, Port Security, device hardening & maintenance"
+      ],
+      "features": [
+        "Cisco switch configuration",
+        "Cisco router configuration",
+        "VLAN configuration",
+        "Trunk configuration",
+        "Access ports",
+        "Inter-VLAN routing",
+        "DHCP configuration",
+        "Static routing",
+        "OSPF & EIGRP",
+        "NAT & ACL configuration",
+        "Port security & STP",
+        "Cisco network optimization"
+      ],
+      "ctaLabel": "Contact an Engineer",
+      "whatsappMessage": "Hello ABS Network, I am interested in Cisco networking services and router/switch configuration.",
+      "isFeatured": true,
+      "isPublished": true,
+      "displayOrder": 5,
+      "seoTitle": "Cisco Network Solutions | ABS Network",
+      "seoDescription": "Certified Cisco Catalyst switch and router configuration, Inter-VLAN routing, OSPF, ACLs, and port security from ABS Network engineers.",
+      "seoKeywords": [
+        "cisco",
+        "cisco routing",
+        "cisco switch",
+        "catalyst",
+        "OSPF",
+        "network engineer"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_mikrotik",
+      "title": "MikroTik Network Solutions",
+      "slug": "mikrotik-network-solutions",
+      "category": "mikrotik",
+      "shortDescription": "Expert RouterOS deployment for PPPoE servers, Hotspot gateways, multi-WAN PCC load balancing, VPN tunnels, and advanced firewall filters.",
+      "fullDescription": "MikroTik is the backbone of cost-effective ISP and enterprise routing. ABS Network specializes in RouterOS configuration, PPPoE servers, hotspot portals, multi-WAN PCC load balancing, queue management, VPN tunnels, and firewall filter rules.",
+      "iconName": "Router",
+      "badge": "RouterOS Specialists",
+      "imageUrl": "/images/shop/routers.jpg",
+      "imageAlt": "MikroTik RouterOS Configuration and Bandwidth Management",
+      "capabilities": [
+        "RouterOS configuration, PPPoE server/client & DHCP",
+        "Multi-WAN failover, PCC load balancing & policy routing",
+        "Queue tree bandwidth management & hotspot portals",
+        "Site-to-site WireGuard, IPsec & OpenVPN tunnels"
+      ],
+      "features": [
+        "MikroTik router configuration",
+        "RouterOS configuration",
+        "PPPoE server & PPPoE client",
+        "DHCP, NAT & Firewall filter rules",
+        "VLAN & Routing table setup",
+        "Bandwidth management & Simple/Tree queues",
+        "Hotspot captive portal",
+        "Load balancing & Failover Multi-WAN",
+        "VPN & Remote access security",
+        "Wireless configuration & ISP setups"
+      ],
+      "ctaLabel": "Configure My Network",
+      "whatsappMessage": "Hello ABS Network, I am interested in MikroTik configuration and networking services.",
+      "isFeatured": true,
+      "isPublished": true,
       "displayOrder": 6,
-      "createdAt": "2026-08-26T19:36:53.323Z",
-      "updatedAt": "2026-08-26T19:36:53.323Z"
+      "seoTitle": "MikroTik Network Solutions | ABS Network",
+      "seoDescription": "Expert RouterOS configuration, PPPoE servers, multi-WAN PCC load balancing, VPN tunnels, and firewall filters by ABS Network.",
+      "seoKeywords": [
+        "mikrotik",
+        "routeros",
+        "pppoe",
+        "hotspot",
+        "load balancing",
+        "vpn"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_windows_server",
+      "title": "Windows Server & Active Directory",
+      "slug": "windows-server-administration",
+      "category": "servers",
+      "shortDescription": "Enterprise Windows Server setup, Domain Controller migration, Group Policy enforcement, File/Print servers, IIS, and Microsoft 365 hybrid sync.",
+      "fullDescription": "Reliable Windows Server management keeps your business identity and file services running. ABS Network installs and migrates Windows Server, manages Active Directory Domain Services, enforces Group Policy, and configures DNS, DHCP, IIS, and Remote Desktop Services.",
+      "iconName": "Server",
+      "badge": "Systems Engineering",
+      "imageUrl": "/why.jpg",
+      "imageAlt": "Windows Server and Active Directory Domain Management",
+      "capabilities": [
+        "Windows Server installation, migration & patching",
+        "Active Directory Domain Services & OU architecture",
+        "Group Policy Objects (GPO) security & access rights",
+        "DNS, DHCP, IIS web server & Remote Desktop Services"
+      ],
+      "features": [
+        "Windows Server installation & migration",
+        "Domain controller setup & AD migration",
+        "User & Group management with OUs",
+        "Group Policy (GPO) deployment",
+        "Domain joining & Windows authentication",
+        "File server, Print server, DHCP & DNS roles",
+        "IIS and Remote Desktop Services (RDS)",
+        "Microsoft 365 & hybrid cloud integration"
+      ],
+      "ctaLabel": "Manage Windows Server",
+      "whatsappMessage": "Hello ABS Network, I am interested in Windows Server and Active Directory services.",
+      "isFeatured": true,
+      "isPublished": true,
+      "displayOrder": 7,
+      "seoTitle": "Windows Server & Active Directory Services | ABS Network",
+      "seoDescription": "Windows Server installation, Active Directory, Group Policy, IIS, and Microsoft 365 hybrid sync from ABS Network system engineers.",
+      "seoKeywords": [
+        "windows server",
+        "active directory",
+        "domain controller",
+        "group policy",
+        "microsoft 365"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_linux_server",
+      "title": "Linux Server Administration",
+      "slug": "linux-server-administration",
+      "category": "servers",
+      "shortDescription": "Hardened Linux deployments (Ubuntu, Debian, RHEL/Rocky), Nginx/Apache reverse proxies, Docker containerization, databases, and automated backups.",
+      "fullDescription": "ABS Network deploys and hardens Linux servers running Ubuntu, Debian, and RHEL/Rocky. We configure Nginx and Apache reverse proxies, Docker containers, MySQL and PostgreSQL databases, SSL automation, firewalls, and automated backups.",
+      "iconName": "Terminal",
+      "badge": "DevOps & SysAdmin",
+      "imageUrl": "/hero4.jpg",
+      "imageAlt": "Linux Server Administration and Container Infrastructure",
+      "capabilities": [
+        "Ubuntu, Debian & RHEL/CentOS server deployment",
+        "Nginx, Apache, PHP-FPM, MySQL & PostgreSQL setup",
+        "Docker containers, reverse proxy & SSL automation",
+        "SSH hardening, UFW/iptables firewalls & backup cron"
+      ],
+      "features": [
+        "Ubuntu Server & Debian configuration",
+        "CentOS/RHEL-compatible environments",
+        "SSH hardening & user permissions",
+        "Nginx & Apache reverse proxies",
+        "MySQL/MariaDB & PostgreSQL databases",
+        "Docker containerization & stacks",
+        "SSL certificates & automated renewal",
+        "Server hardening, monitoring & backups"
+      ],
+      "ctaLabel": "Setup Linux Server",
+      "whatsappMessage": "Hello ABS Network, I am interested in Linux Server Administration and deployment services.",
+      "isFeatured": false,
+      "isPublished": true,
+      "displayOrder": 8,
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_office_it",
+      "title": "Office IT & Technical Services",
+      "slug": "office-it-technical-services",
+      "category": "it-support",
+      "shortDescription": "Get professional technical assistance for your office network, computers, servers, internet, printers, and complete IT workplace infrastructure.",
+      "fullDescription": "Your on-site IT engineering team. ABS Network provides complete office IT setup, computer, printer, and scanner configuration, hardware repairs, Windows troubleshooting, email and Wi-Fi setup, and preventive maintenance with on-demand SLA support.",
+      "iconName": "Wrench",
+      "badge": "On-Site & Remote",
+      "imageUrl": "/why1.jpg",
+      "imageAlt": "On-Site IT Engineering and Office Support",
+      "capabilities": [
+        "Complete office IT hardware & software setup",
+        "Computer, printer, scanner & peripheral configuration",
+        "Hardware repairs, Windows troubleshooting & diagnostics",
+        "Preventive IT maintenance & on-demand SLA support"
+      ],
+      "features": [
+        "Complete office IT setup",
+        "Office network deployment",
+        "Computer configuration",
+        "Printer & scanner installation",
+        "Wi-Fi & router setup",
+        "User account setup & email configuration",
+        "Software installation & licensing",
+        "Hardware & Windows troubleshooting",
+        "Preventive maintenance visits",
+        "On-site & remote engineer dispatch"
+      ],
+      "ctaLabel": "Get IT Support",
+      "whatsappMessage": "Hello ABS Network, I need technical IT support and on-site engineering for my office.",
+      "isFeatured": true,
+      "isPublished": true,
+      "displayOrder": 9,
+      "seoTitle": "Office IT & Technical Services | ABS Network",
+      "seoDescription": "Professional on-site and remote IT support for offices: computers, printers, servers, internet, and complete IT workplace infrastructure.",
+      "seoKeywords": [
+        "it support",
+        "office it",
+        "computer repair",
+        "managed it",
+        "on-site engineer"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_cybersecurity",
+      "title": "Network Security & Cybersecurity",
+      "slug": "network-security-cybersecurity",
+      "category": "cybersecurity",
+      "shortDescription": "Defense-in-depth infrastructure hardening, stateful firewall rules, VLAN isolation, secure VPNs, endpoint protection, and security auditing.",
+      "fullDescription": "Protect your infrastructure with a defense-in-depth strategy. ABS Network configures MikroTik and Cisco firewall rules, network segmentation and secure VLANs, encrypted remote-access and site-to-site VPNs, endpoint security, and performs security audits.",
+      "iconName": "ShieldCheck",
+      "badge": "Infrastructure Hardening",
+      "imageUrl": "/hero2.jpg",
+      "imageAlt": "Network Security, Firewalls and Enterprise Hardening",
+      "capabilities": [
+        "MikroTik & Cisco firewall rule configuration",
+        "Network segmentation & secure VLAN boundaries",
+        "Encrypted IPsec & WireGuard remote access VPNs",
+        "Infrastructure security assessments & backup audits"
+      ],
+      "features": [
+        "Firewall configuration",
+        "MikroTik firewall & Cisco security",
+        "Network segmentation & VLAN security",
+        "Access control policies",
+        "Remote access & site-to-site VPNs",
+        "Endpoint security & server hardening",
+        "Secure enterprise Wi-Fi (WPA3/Enterprise)",
+        "Security auditing & vulnerability assessments"
+      ],
+      "ctaLabel": "Secure My Network",
+      "whatsappMessage": "Hello ABS Network, I am interested in your network security and cybersecurity services.",
+      "isFeatured": true,
+      "isPublished": true,
+      "displayOrder": 10,
+      "seoTitle": "Network Security & Cybersecurity Services | ABS Network",
+      "seoDescription": "Infrastructure hardening, firewall configuration, VLAN isolation, secure VPNs, and security auditing from ABS Network.",
+      "seoKeywords": [
+        "cybersecurity",
+        "firewall",
+        "network security",
+        "vpn",
+        "security audit",
+        "vulnerability"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_wireless",
+      "title": "Enterprise Wi-Fi & Wireless",
+      "slug": "enterprise-wifi-wireless",
+      "category": "wireless",
+      "shortDescription": "Seamless roaming, high-density Access Point installation, RF heatmapping, captive guest portals, and high-throughput Point-to-Point links.",
+      "fullDescription": "High-density enterprise Wi-Fi that just works. ABS Network deploys Access Points with seamless 802.11k/v/r roaming, RF channel optimization, guest portals with isolated VLANS, and long-range Point-to-Point and Point-to-Multipoint wireless links.",
+      "iconName": "Wifi",
+      "badge": "High Density",
+      "imageUrl": "/images/shop/abs-ac1200-ceiling-access-point.jpg",
+      "imageAlt": "Enterprise Wi-Fi Access Points and Long Range Wireless Links",
+      "capabilities": [
+        "High-density office & campus Wi-Fi deployment",
+        "Seamless 802.11k/v/r roaming & RF channel optimization",
+        "Guest Wi-Fi with isolated VLAN & bandwidth quotas",
+        "Point-to-Point (PtP) & Point-to-Multipoint wireless links"
+      ],
+      "features": [
+        "Office & enterprise Wi-Fi installation",
+        "Ceiling AP deployment & PoE layout",
+        "Wireless coverage planning & RF heatmaps",
+        "Guest portal & isolated guest VLANs",
+        "Point-to-Point wireless links",
+        "Point-to-multipoint links for multi-building campuses",
+        "Wireless troubleshooting & interference cleanup"
+      ],
+      "ctaLabel": "Deploy Enterprise Wi-Fi",
+      "whatsappMessage": "Hello ABS Network, I am interested in your Enterprise Wi-Fi and Wireless Solutions.",
+      "isFeatured": false,
+      "isPublished": true,
+      "displayOrder": 11,
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_cabling",
+      "title": "Structured Cabling & Infrastructure",
+      "slug": "structured-cabling-infrastructure",
+      "category": "cabling",
+      "shortDescription": "Certified Cat6/Cat6A and singlemode/multimode fiber optic cabling, server rack assembly, patch panel dressing, and laser-precise labeling.",
+      "fullDescription": "A reliable network starts with a clean physical plant. ABS Network installs certified Cat5e, Cat6, and Cat6A copper drops, fiber optic backbones and splicing, server racks and cabinets, wire management, and Fluke/OTDR certified testing with precise labeling.",
+      "iconName": "Cable",
+      "badge": "Physical Plant",
+      "imageUrl": "/images/shop/fiber optics cable.jpg",
+      "imageAlt": "Structured Cabling and Fiber Optic Infrastructure",
+      "capabilities": [
+        "Cat5e, Cat6 & Cat6A high-bandwidth copper drops",
+        "Fiber optic backbone splicing & patch panels",
+        "Server room rack organization & vertical/horizontal wire management",
+        "Fluke/OTDR cable testing, certification & labeling"
+      ],
+      "features": [
+        "Cat5e, Cat6 & Cat6A structured cabling",
+        "Fiber optic infrastructure & termination",
+        "Patch panels & keystone jack installation",
+        "Network racks & server cabinets",
+        "Cable management & tray routing",
+        "Faceplates, keystone panels & labeling",
+        "Cable testing, continuity & certification",
+        "Server-room cabling revamp & cleanup"
+      ],
+      "ctaLabel": "Quote Cabling Project",
+      "whatsappMessage": "Hello ABS Network, I am interested in Structured Cabling and physical network infrastructure.",
+      "isFeatured": false,
+      "isPublished": true,
+      "displayOrder": 12,
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_cctv",
+      "title": "CCTV & Security Infrastructure",
+      "slug": "cctv-security-infrastructure",
+      "category": "cctv",
+      "shortDescription": "High-definition IP surveillance cameras, NVR/storage arrays, PoE switch infrastructure, remote mobile viewing, and biometric access control.",
+      "fullDescription": "Protect your premises with IP surveillance infrastructure. ABS Network installs HD IP cameras, designs PoE switch layouts, configures NVR storage and RAID, sets up encrypted remote viewing, and integrates access control and biometric security.",
+      "iconName": "Video",
+      "badge": "IP Surveillance",
+      "imageUrl": "/images/shop/rack&cabinet.jpg",
+      "imageAlt": "IP CCTV Surveillance and Physical Security Networking",
+      "capabilities": [
+        "IP CCTV camera placement & PoE network layout",
+        "NVR storage calculation, RAID setup & configuration",
+        "Encrypted remote viewing on mobile & desktop",
+        "Access control & biometric security integration"
+      ],
+      "features": [
+        "IP CCTV camera installation",
+        "CCTV dedicated network setup",
+        "NVR configuration & storage planning",
+        "Remote viewing configuration",
+        "PoE switch layout & power budgeting",
+        "Access control infrastructure",
+        "Security network architecture"
+      ],
+      "ctaLabel": "Setup Surveillance",
+      "whatsappMessage": "Hello ABS Network, I am interested in CCTV and security surveillance infrastructure.",
+      "isFeatured": false,
+      "isPublished": true,
+      "displayOrder": 13,
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_digital",
+      "title": "Web & Digital Solutions",
+      "slug": "web-digital-services",
+      "category": "digital-services",
+      "shortDescription": "High-performance corporate websites, bespoke web applications, UI/UX systems, technical SEO, and cloud DevOps deployment pipelines.",
+      "fullDescription": "Accelerate your digital transformation. ABS Network builds high-performance corporate websites and web applications, designs UI/UX systems and responsive interfaces, delivers technical SEO and performance tuning, and manages DevOps, CI/CD, and cloud deployments.",
+      "iconName": "Code",
+      "badge": "Digital Engineering",
+      "imageUrl": "/hero.jpg",
+      "imageAlt": "Custom Web Development and Digital Solutions",
+      "capabilities": [
+        "Corporate websites, landing pages & web apps",
+        "UI/UX design systems & responsive interfaces",
+        "Technical SEO, performance tuning & core web vitals",
+        "DevOps, CI/CD automation & cloud server deployment"
+      ],
+      "features": [
+        "Business & corporate websites",
+        "Custom web applications & portals",
+        "UI/UX design & interactive dashboards",
+        "Technical SEO & speed optimization",
+        "API integrations & business automation",
+        "DevOps, CI/CD & Linux/Cloud deployment"
+      ],
+      "ctaLabel": "Start Digital Project",
+      "whatsappMessage": "Hello ABS Network, I am interested in Web & Digital Solutions (Web Development, UI/UX, Custom Software).",
+      "isFeatured": true,
+      "isPublished": true,
+      "displayOrder": 14,
+      "seoTitle": "Web & Digital Solutions | ABS Network",
+      "seoDescription": "Corporate websites, web applications, UI/UX, technical SEO, and DevOps cloud deployment from ABS Network digital engineers.",
+      "seoKeywords": [
+        "web development",
+        "web design",
+        "seo",
+        "ui ux",
+        "devops",
+        "cloud"
+      ],
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
+    },
+    {
+      "id": "srv_managed_it",
+      "title": "Managed IT & Network Support",
+      "slug": "managed-it-network-support",
+      "category": "it-support",
+      "shortDescription": "Comprehensive monthly SLA retainers covering proactive 24/7 network monitoring, server patching, scheduled maintenance, and priority engineer response.",
+      "fullDescription": "Stay ahead of problems with a managed IT retainer. ABS Network provides proactive 24/7 network and server monitoring, preventive monthly maintenance and patching, guaranteed on-site and remote SLA response times, and strategic IT consulting.",
+      "iconName": "Headphones",
+      "badge": "24/7 SLA Support",
+      "imageUrl": "/hero1.jpg",
+      "imageAlt": "Managed IT and Network Operations Support",
+      "capabilities": [
+        "24/7 proactive network & server monitoring",
+        "Preventive monthly maintenance & patch updates",
+        "Guaranteed on-site & remote SLA response times",
+        "IT consulting, capacity planning & disaster recovery"
+      ],
+      "features": [
+        "Monthly IT support retainers",
+        "Network & server uptime monitoring",
+        "Preventive maintenance schedules",
+        "Remote & on-site priority support",
+        "Infrastructure health audits",
+        "Backup monitoring & verification",
+        "Network performance tuning",
+        "Strategic IT consulting"
+      ],
+      "ctaLabel": "Talk to an IT Engineer",
+      "whatsappMessage": "Hello ABS Network, I am interested in Managed IT & Network Support retainers for my organization.",
+      "isFeatured": false,
+      "isPublished": true,
+      "displayOrder": 15,
+      "publishedAt": "2026-09-02T21:59:20.718Z",
+      "createdAt": "2026-09-02T21:59:20.718Z",
+      "updatedAt": "2026-09-02T21:59:20.718Z"
     }
   ],
   "shopProducts": [],

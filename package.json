@@ -11,7 +11,8 @@
     "test:unit": "vitest run",
     "test:e2e": "npm run build && node scripts/standalone-assets.cjs && playwright test",
     "test": "npm run test:unit",
-    "stage:e2e": "node scripts/standalone-assets.cjs"
+    "stage:e2e": "node scripts/standalone-assets.cjs",
+    "validate:seo": "node scripts/validate-seo.mjs"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",

@@ -53,7 +53,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'High-performance LAN/WAN topology planning, VLAN segmentation, and enterprise infrastructure blueprints built for resilience and scalability.',
     iconName: 'Network',
     badge: 'Core Infrastructure',
-    image: '/net2.jpg',
+    image: '/images/services/network-design.jpg',
     imageAlt: 'Enterprise Network Architecture and Topology Planning',
     capabilities: [
       'LAN/WAN design & topology planning',
@@ -90,7 +90,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'End-to-end office networking rollout including rack assembly, patch panel dressing, switch configuration, and certified cable testing.',
     iconName: 'Building2',
     badge: 'On-Site Deployment',
-    image: '/net1.jpg',
+    image: '/images/services/office-it.jpg',
     imageAlt: 'Office Network Installation and Structured Rack Management',
     capabilities: [
       'Complete office network deployment',
@@ -128,7 +128,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Redundant ISP connectivity, dedicated fiber links, automated failover, dynamic load balancing, and bandwidth queue management.',
     iconName: 'Globe',
     badge: 'Zero Downtime',
-    image: '/hero3.jpg',
+    image: '/images/services/fiber-infrastructure.jpg',
     imageAlt: 'Enterprise Internet Infrastructure and Multi-WAN Failover',
     capabilities: [
       'ISP connectivity & dedicated fiber routing',
@@ -166,7 +166,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Fast diagnosis and root-cause resolution for packet loss, DNS issues, IP conflicts, Wi-Fi interference, and bottlenecked throughput.',
     iconName: 'Activity',
     badge: 'Rapid Resolution',
-    image: '/net.jpg',
+    image: '/images/services/network-design.jpg',
     imageAlt: 'Network Troubleshooting and Packet Analysis',
     capabilities: [
       'Slow network & bandwidth bottleneck resolution',
@@ -206,7 +206,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Certified configuration and management for Cisco Catalyst switches, ISR/ASR routers, Inter-VLAN routing, OSPF, ACLs, and port security.',
     iconName: 'Cpu',
     badge: 'Certified Engineers',
-    image: '/images/shop/switches.jpg',
+    image: '/images/services/cisco.jpg',
     imageAlt: 'Cisco Router and Switch Enterprise Configuration',
     capabilities: [
       'Cisco switch & router configuration',
@@ -249,7 +249,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Expert RouterOS deployment for PPPoE servers, Hotspot gateways, multi-WAN PCC load balancing, VPN tunnels, and advanced firewall filters.',
     iconName: 'Router',
     badge: 'RouterOS Specialists',
-    image: '/images/shop/routers.jpg',
+    image: '/images/services/mikrotik.jpg',
     imageAlt: 'MikroTik RouterOS Configuration and Bandwidth Management',
     capabilities: [
       'RouterOS configuration, PPPoE server/client & DHCP',
@@ -290,7 +290,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Enterprise Windows Server setup, Domain Controller migration, Group Policy enforcement, File/Print servers, IIS, and Microsoft 365 hybrid sync.',
     iconName: 'Server',
     badge: 'Systems Engineering',
-    image: '/why.jpg',
+    image: '/images/services/servers.jpg',
     imageAlt: 'Windows Server and Active Directory Domain Management',
     capabilities: [
       'Windows Server installation, migration & patching',
@@ -329,7 +329,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Hardened Linux deployments (Ubuntu, Debian, RHEL/Rocky), Nginx/Apache reverse proxies, Docker containerization, databases, and automated backups.',
     iconName: 'Terminal',
     badge: 'DevOps & SysAdmin',
-    image: '/hero4.jpg',
+    image: '/images/services/servers.jpg',
     imageAlt: 'Linux Server Administration and Container Infrastructure',
     capabilities: [
       'Ubuntu, Debian & RHEL/CentOS server deployment',
@@ -369,7 +369,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Get professional technical assistance for your office network, computers, servers, internet, printers, and complete IT workplace infrastructure.',
     iconName: 'Wrench',
     badge: 'On-Site & Remote',
-    image: '/why1.jpg',
+    image: '/images/services/it-support.jpg',
     imageAlt: 'On-Site IT Engineering and Office Support',
     capabilities: [
       'Complete office IT hardware & software setup',
@@ -410,7 +410,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Defense-in-depth infrastructure hardening, stateful firewall rules, VLAN isolation, secure VPNs, endpoint protection, and security auditing.',
     iconName: 'ShieldCheck',
     badge: 'Infrastructure Hardening',
-    image: '/hero2.jpg',
+    image: '/images/services/cybersecurity.jpg',
     imageAlt: 'Network Security, Firewalls and Enterprise Hardening',
     capabilities: [
       'MikroTik & Cisco firewall rule configuration',
@@ -449,13 +449,13 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Seamless roaming, high-density Access Point installation, RF heatmapping, captive guest portals, and high-throughput Point-to-Point links.',
     iconName: 'Wifi',
     badge: 'High Density',
-    image: '/images/shop/abs-ac1200-ceiling-access-point.jpg',
+    image: '/images/services/wifi.jpg',
     imageAlt: 'Enterprise Wi-Fi Access Points and Long Range Wireless Links',
     capabilities: [
       'High-density office & campus Wi-Fi deployment',
       'Seamless 802.11k/v/r roaming & RF channel optimization',
       'Guest Wi-Fi with isolated VLAN & bandwidth quotas',
-      'Point-to-Point (PtP) & Point-to-Multipoint wireless links',
+      'Point-to-Point (PtP) & Point-toMultipoint wireless links',
     ],
     detailedServices: [
       {
@@ -487,7 +487,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'Certified Cat6/Cat6A and singlemode/multimode fiber optic cabling, server rack assembly, patch panel dressing, and laser-precise labeling.',
     iconName: 'Cable',
     badge: 'Physical Plant',
-    image: '/images/shop/fiber optics cable.jpg',
+    image: '/images/services/structured-cabling.jpg',
     imageAlt: 'Structured Cabling and Fiber Optic Infrastructure',
     capabilities: [
       'Cat5e, Cat6 & Cat6A high-bandwidth copper drops',
@@ -526,7 +526,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'High-definition IP surveillance cameras, NVR/storage arrays, PoE switch infrastructure, remote mobile viewing, and biometric access control.',
     iconName: 'Video',
     badge: 'IP Surveillance',
-    image: '/images/shop/rack&cabinet.jpg',
+    image: '/images/services/cctv.jpg',
     imageAlt: 'IP CCTV Surveillance and Physical Security Networking',
     capabilities: [
       'IP CCTV camera placement & PoE network layout',
@@ -564,7 +564,7 @@ export const SERVICES_DATA: ServiceItemData[] = [
       'High-performance corporate websites, bespoke web applications, UI/UX systems, technical SEO, and cloud DevOps deployment pipelines.',
     iconName: 'Code',
     badge: 'Digital Engineering',
-    image: '/hero.jpg',
+    image: '/images/services/digital-services.jpg',
     imageAlt: 'Custom Web Development and Digital Solutions',
     capabilities: [
       'Corporate websites, landing pages & web apps',
@@ -598,10 +598,10 @@ export const SERVICES_DATA: ServiceItemData[] = [
     categoryName: 'IT Support',
     title: 'Managed IT & Network Support',
     shortDescription:
-      'Comprehensive monthly SLA retainers covering proactive 24/7 network monitoring, server patching, scheduled maintenance, and priority engineer response.',
+      'Proactive SLA monitoring, 24/7 technical helpdesk, network device patching, on-site emergency dispatch, and complete IT asset management.',
     iconName: 'Headphones',
     badge: '24/7 SLA Support',
-    image: '/hero1.jpg',
+    image: '/images/services/managed-it.jpg',
     imageAlt: 'Managed IT and Network Operations Support',
     capabilities: [
       '24/7 proactive network & server monitoring',

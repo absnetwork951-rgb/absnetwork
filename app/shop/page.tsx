@@ -6,12 +6,16 @@ import PageHeader from '@/components/public/PageHeader';
 import ShopClient from '@/components/public/ShopClient';
 import { getSupabaseSettings } from '@/lib/supabase-cms';
 import { getPublicShopProducts } from '@/lib/supabase-shop';
+import { getSiteUrl } from '@/lib/seo';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'ABS Network Shop | Cables, Routers, Switches & Accessories',
   description: 'Shop professional-grade fiber optic cables, network switches, routers, patch panels, and networking tools at ABS Network Broadband SMC-Pvt-Ltd.',
+  alternates: {
+    canonical: getSiteUrl() + '/shop',
+  },
   openGraph: {
     title: 'ABS Network Shop',
     description: 'Professional networking equipment with manufacturer warranty and expert technical support.',

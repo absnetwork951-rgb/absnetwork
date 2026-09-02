@@ -5,12 +5,16 @@ import Footer from '@/components/public/Footer';
 import PageHeader from '@/components/public/PageHeader';
 import PackagesClient from '@/components/public/PackagesClient';
 import { getSupabaseSettings, getSupabasePackages } from '@/lib/supabase-cms';
+import { getSiteUrl } from '@/lib/seo';
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: 'ABS Network Broadband Packages | Symmetrical Gigabit Fiber',
   description: 'Explore ultra-fast optical fiber broadband plans for home streaming, pro gaming, and business internet by ABS Network Broadband SMC-Pvt-Ltd.',
+  alternates: {
+    canonical: getSiteUrl() + '/packages',
+  },
   openGraph: {
     title: 'ABS Network Broadband Packages | Symmetrical Gigabit Fiber',
     description: 'High-speed fiber broadband packages with included Wi-Fi router, unlimited data, and zero throttling by ABS Network.',

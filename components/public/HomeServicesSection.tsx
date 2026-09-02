@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { createElement } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, CheckCircle2, MessageSquare } from 'lucide-react';
@@ -71,7 +71,7 @@ export default function HomeServicesSection({ services = [] }: HomeServicesSecti
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
-                      <Icon className="w-12 h-12 text-white/20" />
+                      {createElement(Icon, { className: 'w-12 h-12 text-white/20' })}
                     </div>
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-900/30 to-transparent" />
@@ -87,7 +87,7 @@ export default function HomeServicesSection({ services = [] }: HomeServicesSecti
 
                   {/* Icon */}
                   <div className="absolute -bottom-2.5 right-4 w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md group-hover:bg-blue-700 transition-colors">
-                    <Icon className="w-4 h-4" />
+                    {createElement(Icon, { className: 'w-4 h-4' })}
                   </div>
                 </div>
 

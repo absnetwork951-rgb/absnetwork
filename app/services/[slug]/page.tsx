@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { createElement } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { notFound, redirect, permanentRedirect } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import {
   CheckCircle2,
   ChevronRight,
@@ -10,7 +10,6 @@ import {
   Layers,
   MessageSquare,
   Phone,
-  ArrowRight,
   ShieldCheck,
   Headphones,
   Clock,
@@ -34,6 +33,7 @@ import {
   organizationJsonLd,
   websiteJsonLd,
   serviceRelativeUrl,
+  serviceUrl,
 } from '@/lib/seo';
 import { getWhatsAppLink } from '@/lib/whatsapp';
 import { getServiceCategoryLabel } from '@/lib/db/service-categories';
@@ -55,8 +55,6 @@ export async function generateMetadata({
   const canonicalSlug = getServiceCanonicalSlug(slug);
   const raw = getServiceBySlug(slug, true);
   if (!raw && canonicalSlug) {
-    // Legacy slug: redirect to canonical handled in page body. Metadata still
-    // resolves against the canonical service.
     const canonical = getServiceBySlug(canonicalSlug, true);
     if (canonical) return buildServiceMetadata(canonical, getSiteSettings());
   }
@@ -84,8 +82,7 @@ export default async function ServiceDetailPage({
     notFound();
   }
 
-  // If the requested slug is not the current canonical slug, issue a
-  // permanent 301 redirect to the canonical URL.
+  // Issue a permanent 301 to the canonical URL for legacy slugs.
   if (service.slug !== slug) {
     permanentRedirect(serviceRelativeUrl(service.slug));
   }
@@ -101,6 +98,7 @@ export default async function ServiceDetailPage({
   const capabilities = service.capabilities?.length
     ? service.capabilities
     : service.features || [];
+  const canonical = service.canonicalUrl || serviceUrl(service.slug);
 
   const orgLd = organizationJsonLd(settings);
   const siteLd = websiteJsonLd(settings);
@@ -154,7 +152,7 @@ export default async function ServiceDetailPage({
             </div>
             <div className="max-w-3xl space-y-4">
               <div className="w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/30">
-                <Icon className="w-7 h-7" />
+                {createElement(Icon, { className: 'w-7 h-7' })}
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
                 {service.title}
@@ -251,7 +249,6 @@ export default async function ServiceDetailPage({
 
             {/* Sidebar */}
             <aside className="lg:col-span-4 space-y-6">
-              {/* Service image card */}
               <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
                 <div className="relative h-52 w-full bg-slate-900">
                   {service.imageUrl ? (
@@ -264,7 +261,7 @@ export default async function ServiceDetailPage({
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-600 to-blue-800">
-                      <Icon className="w-16 h-16 text-white/20" />
+                      {createElement(Icon, { className: 'w-16 h-16 text-white/20' })}
                     </div>
                   )}
                 </div>
@@ -281,7 +278,6 @@ export default async function ServiceDetailPage({
                 </div>
               </div>
 
-              {/* Quick contact */}
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6 space-y-4 shadow-xs">
                 <h3 className="text-sm font-bold text-slate-900">Prefer to talk?</h3>
                 <div className="space-y-2.5">
@@ -330,6 +326,11 @@ export default async function ServiceDetailPage({
       </main>
 
       <Footer settings={settings} />
+
+      {/* React 19 hoists <link> rendered anywhere in the tree into <head>,
+          which reliably emits the canonical even when the Next.js metadata
+          API drops `alternates` from async generateMetadata. */}
+      <link rel="canonical" href={canonical} />
 
       {/* Structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }} />

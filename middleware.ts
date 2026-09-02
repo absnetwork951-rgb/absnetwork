@@ -23,7 +23,7 @@ function isExpired(payload: { exp?: number } | null): boolean {
   return payload.exp * 1000 < Date.now();
 }
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isLoginPage = pathname === '/admin/login' || pathname.startsWith('/admin/login');
   const method = request.method;
@@ -41,42 +41,51 @@ export async function proxy(request: NextRequest) {
 
     if (url && anonKey) {
       try {
-        const res = await fetch(`${url}/auth/v1/token?grant_type=refresh_token`, {
-          method: 'POST',
-          headers: {
-            apikey: anonKey,
-            Authorization: `Bearer ${anonKey}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ refresh_token: refreshToken }),
-        });
+        const refreshRes = await fetch(
+          `${url.replace(/\/+$/, '')}/auth/v1/token?grant_type=refresh_token`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              apikey: anonKey,
+            },
+            body: JSON.stringify({ refresh_token: refreshToken }),
+            cache: 'no-store',
+          }
+        );
 
-        if (res.ok) {
-          const session = (await res.json()) as { access_token?: string; refresh_token?: string };
-          if (session.access_token) {
-            response = NextResponse.next();
-            const secure = request.nextUrl.protocol === 'https:';
-            response.cookies.set(SB_ACCESS_COOKIE, session.access_token, {
-              httpOnly: true,
-              secure,
-              sameSite: 'lax',
-              path: '/',
-              maxAge: 60 * 60,
-            });
-            if (session.refresh_token) {
-              response.cookies.set(SB_REFRESH_COOKIE, session.refresh_token, {
-                httpOnly: true,
-                secure,
-                sameSite: 'lax',
-                path: '/',
-                maxAge: 60 * 60 * 24 * 7,
-              });
-            }
+        if (refreshRes.ok) {
+          const tokens = (await refreshRes.json()) as {
+            access_token?: string;
+            refresh_token?: string;
+            expires_in?: number;
+          };
+
+          if (tokens.access_token && tokens.refresh_token) {
             hasValidSession = true;
+
+            const isHttps =
+              request.nextUrl.protocol === 'https:' ||
+              request.headers.get('x-forwarded-proto') === 'https';
+
+            const cookieOptions = {
+              httpOnly: true,
+              secure: isHttps,
+              sameSite: 'lax' as const,
+              path: '/',
+            };
+
+            response.cookies.set(SB_ACCESS_COOKIE, tokens.access_token, {
+              ...cookieOptions,
+              maxAge: tokens.expires_in ?? 3600,
+            });
+            response.cookies.set(SB_REFRESH_COOKIE, tokens.refresh_token, {
+              ...cookieOptions,
+              maxAge: 60 * 60 * 24 * 30, // 30 days
+            });
           }
         } else {
-          // Refresh token dead: drop the stale cookies.
-          response = NextResponse.next();
+          // Token is invalid/revoked; drop the cookies.
           response.cookies.delete(SB_ACCESS_COOKIE);
           response.cookies.delete(SB_REFRESH_COOKIE);
         }

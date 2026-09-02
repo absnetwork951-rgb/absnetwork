@@ -1,5 +1,6 @@
 import 'server-only';
 import { getSupabaseAdmin } from './supabase-admin';
+import { getShopProducts, getShopProductById as getLocalShopProductById } from './db';
 import type {
   ShopProduct,
   ShopProductCategory,
@@ -204,7 +205,7 @@ const PRODUCT_SELECT =
 
 async function loadShopProducts(activeOnly: boolean): Promise<ShopProduct[]> {
   const admin = getSupabaseAdmin();
-  if (!admin) return [];
+  if (!admin) return getShopProducts(activeOnly);
 
   const productResult = await withTransientRetry(async () => {
     let query = admin
@@ -218,9 +219,11 @@ async function loadShopProducts(activeOnly: boolean): Promise<ShopProduct[]> {
   });
 
   const productError = productResult.error;
-  if (productError) {
-    console.error('[supabase-shop] Failed to load products:', productError.message);
-    return [];
+  if (productError || !productResult.data || productResult.data.length === 0) {
+    if (productError) {
+      console.error('[supabase-shop] Failed to load products:', productError.message);
+    }
+    return getShopProducts(activeOnly);
   }
   const productRows = productResult.data;
 
@@ -272,7 +275,7 @@ export async function getAllShopProducts(): Promise<ShopProduct[]> {
  */
 export async function getShopProductById(id: string): Promise<ShopProduct | null> {
   const admin = getSupabaseAdmin();
-  if (!admin) return null;
+  if (!admin) return getLocalShopProductById(id) ?? null;
 
   const productResult = await withTransientRetry(async () =>
     await admin
@@ -282,12 +285,13 @@ export async function getShopProductById(id: string): Promise<ShopProduct | null
       .maybeSingle()
   );
 
-  if (productResult.error) {
-    console.error('[supabase-shop] Failed to load product:', productResult.error.message);
-    return null;
+  if (productResult.error || !productResult.data) {
+    if (productResult.error) {
+      console.error('[supabase-shop] Failed to load product:', productResult.error.message);
+    }
+    return getLocalShopProductById(id) ?? null;
   }
   const productRow = productResult.data;
-  if (!productRow) return null;
 
   const imageResult = await withTransientRetry(async () =>
     await admin
