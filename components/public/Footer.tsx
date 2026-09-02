@@ -19,15 +19,17 @@ export default function Footer({ settings }: FooterProps) {
 
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'IT & Digital Services', href: '/services' },
     { name: 'Broadband Packages', href: '/packages' },
-    { name: 'Shop', href: '/shop' },
+    { name: 'Shop Equipment', href: '/shop' },
     { name: 'Contact & Support', href: '/contact' },
   ];
 
   const infraLinks = [
-    { name: 'Gigabit GPON FTTH', href: '/packages' },
-    { name: 'Gaming Low-Latency', href: '/packages' },
-    { name: 'Business & DIA', href: '/packages' },
+    { name: 'Networking & Infrastructure', href: '/services#services-catalog' },
+    { name: 'Cisco & MikroTik Solutions', href: '/services#services-catalog' },
+    { name: 'Windows & Linux SysAdmin', href: '/services#services-catalog' },
+    { name: 'Cybersecurity & Firewalls', href: '/services#services-catalog' },
     { name: 'Network Equipment Shop', href: '/shop' },
   ];
 

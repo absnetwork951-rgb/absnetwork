@@ -12,6 +12,7 @@ interface HeaderProps {
 
 const NAV_LINKS: { name: string; href: string }[] = [
   { name: 'Home', href: '/' },
+  { name: 'Services', href: '/services' },
   { name: 'Packages', href: '/packages' },
   { name: 'Shop', href: '/shop' },
   { name: 'Contact', href: '/contact' },

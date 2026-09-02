@@ -16,6 +16,7 @@ import WhyChooseSection from '@/components/public/WhyChooseSection';
 import CoverageCheckSection from '@/components/public/CoverageCheckSection';
 import CoverageCheckSectionLoader from '@/components/public/CoverageCheckSectionLoader';
 import VisualCategoryCards from '@/components/public/VisualCategoryCards';
+import HomeServicesSection from '@/components/public/HomeServicesSection';
 import HomeShopSection from '@/components/public/HomeShopSection';
 import NetworkImageMosaic from '@/components/home/NetworkImageMosaic';
 import { getSupabaseSettings, getSupabasePackages } from '@/lib/supabase-cms';
@@ -122,6 +123,8 @@ export default async function HomePage() {
         </section>
 
         <VisualCategoryCards />
+
+        <HomeServicesSection />
 
         <WhyChooseSection />
 

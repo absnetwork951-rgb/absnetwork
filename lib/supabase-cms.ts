@@ -228,12 +228,28 @@ function mapService(row: Record<string, any>): ServiceItem {
     shortDescription: row.short_description || '',
     fullDescription: row.full_description || '',
     iconName: row.icon_name || 'Zap',
-    category: row.category,
+    category: row.category || 'networking',
     features: toArray(row.features),
     capabilities: toArray(row.capabilities),
+    badge: row.badge || undefined,
+    imageUrl: row.image_url || undefined,
+    imageAlt: row.image_alt || undefined,
+    ctaLabel: row.cta_label || undefined,
+    whatsappMessage: row.whatsapp_message || undefined,
+    isFeatured: Boolean(row.is_featured),
+    isPublished:
+      row.is_published === false ? false : row.is_active === false ? false : true,
     isActive: row.is_active === false ? false : true,
     displayOrder: Number(row.display_order) || 0,
-    badge: row.badge || undefined,
+    seoTitle: row.seo_title || undefined,
+    seoDescription: row.seo_description || undefined,
+    seoKeywords: toArray(row.seo_keywords),
+    canonicalUrl: row.canonical_url || undefined,
+    socialImage: row.social_image || undefined,
+    robotsIndex: row.robots_index === false ? false : true,
+    robotsFollow: row.robots_follow === false ? false : true,
+    previousSlugs: toArray(row.previous_slugs),
+    publishedAt: row.published_at || undefined,
     createdAt: row.created_at || '',
     updatedAt: row.updated_at || '',
   };
@@ -246,10 +262,35 @@ function toServiceColumns(input: Record<string, any>): Record<string, unknown> {
     short_description: String(input.shortDescription || ''),
     full_description: String(input.fullDescription || ''),
     icon_name: String(input.iconName || 'Zap'),
-    category: input.category,
+    category: input.category || 'networking',
     badge: input.badge ? String(input.badge).trim() : null,
     features: toJsonbArray(input.features),
     capabilities: toJsonbArray(input.capabilities),
+    is_featured:
+      input.isFeatured === undefined ? false : Boolean(input.isFeatured),
+    is_published:
+      input.isPublished === undefined
+        ? input.isActive === undefined
+          ? true
+          : Boolean(input.isActive)
+        : Boolean(input.isPublished),
+    image_url: input.imageUrl ? String(input.imageUrl).trim() : null,
+    image_alt: input.imageAlt ? String(input.imageAlt).trim() : null,
+    cta_label: input.ctaLabel ? String(input.ctaLabel).trim() : null,
+    whatsapp_message: input.whatsappMessage
+      ? String(input.whatsappMessage).trim()
+      : null,
+    seo_title: input.seoTitle ? String(input.seoTitle).trim() : null,
+    seo_description: input.seoDescription
+      ? String(input.seoDescription).trim()
+      : null,
+    seo_keywords: toJsonbArray(input.seoKeywords),
+    canonical_url: input.canonicalUrl ? String(input.canonicalUrl).trim() : null,
+    social_image: input.socialImage ? String(input.socialImage).trim() : null,
+    robots_index: input.robotsIndex === false ? false : true,
+    robots_follow: input.robotsFollow === false ? false : true,
+    previous_slugs: toJsonbArray(input.previousSlugs),
+    published_at: input.publishedAt || null,
     is_active: input.isActive === undefined ? true : Boolean(input.isActive),
     display_order: Number(input.displayOrder) || 0,
   };
@@ -438,6 +479,9 @@ function toSettingsColumns(input: Partial<SiteSettings>): Record<string, unknown
 
 export async function getSupabaseSettings(): Promise<SiteSettings> {
   const admin = getSupabaseAdmin() as any;
+  if (!admin) {
+    return DEFAULT_SETTINGS;
+  }
   const { data, error } = await admin
     .from('site_settings')
     .select('*')

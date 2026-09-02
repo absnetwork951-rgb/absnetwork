@@ -78,21 +78,64 @@ export interface BroadbandPackage {
   updatedAt: string;
 }
 
+export type ServiceCategorySlug =
+  | 'networking'
+  | 'internet'
+  | 'cisco'
+  | 'mikrotik'
+  | 'servers'
+  | 'it-support'
+  | 'cybersecurity'
+  | 'wireless'
+  | 'cabling'
+  | 'cctv'
+  | 'digital-services';
+
+export interface ServiceCategoryConfig {
+  slug: ServiceCategorySlug | string;
+  label: string;
+  iconName?: string;
+  /** Legacy categories inherited from the earlier CMS shape. */
+  legacy?: boolean;
+}
+
 export interface ServiceItem {
   id: string;
   title: string;
   slug: string;
+  category: ServiceCategorySlug | string;
   shortDescription: string;
   fullDescription: string;
   iconName: string;
-  category: 'broadband' | 'enterprise' | 'it' | 'cloud' | 'support';
   features: string[];
   capabilities?: string[];
-  isActive: boolean;
-  displayOrder: number;
+  /** Alternate titles/aliases for the card (e.g. short display title). */
   badge?: string;
+  /** Public visual image. Falls back to a branded placeholder when empty. */
+  imageUrl?: string;
+  imageAlt?: string;
+  /** Call-to-action label shown on the card / detail page. */
+  ctaLabel?: string;
+  /** Prefilled WhatsApp message for this service. */
+  whatsappMessage?: string;
+  isFeatured: boolean;
+  /** Published services are publicly visible; drafts are admin-only. */
+  isPublished: boolean;
+  displayOrder: number;
+  seoTitle?: string;
+  seoDescription?: string;
+  seoKeywords?: string[];
+  canonicalUrl?: string;
+  socialImage?: string;
+  robotsIndex?: boolean;
+  robotsFollow?: boolean;
+  /** Historical slugs that permanently redirect to the current slug. */
+  previousSlugs?: string[];
+  publishedAt?: string;
   createdAt: string;
   updatedAt: string;
+  /** @deprecated use isPublished */
+  isActive?: boolean;
 }
 
 export type ShopProductCategory =

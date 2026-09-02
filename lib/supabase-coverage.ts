@@ -64,6 +64,7 @@ export async function getSupabaseCoverageAreas(
 
 export async function getSupabaseCoverageAreaById(id: string): Promise<CoverageArea | null> {
   const admin = getSupabaseAdmin() as any;
+  if (!admin) return null;
   const { data, error } = await admin
     .from('coverage_areas')
     .select('*')
@@ -81,6 +82,7 @@ export async function findSupabaseCoverageAreaByIdentity(
   name: string
 ): Promise<CoverageArea | null> {
   const admin = getSupabaseAdmin() as any;
+  if (!admin) return null;
   const { data, error } = await admin
     .from('coverage_areas')
     .select('id, city, name, created_at, updated_at')

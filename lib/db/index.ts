@@ -140,7 +140,16 @@ function loadDatabaseFromDisk(): DatabaseSchema {
       };
     });
 
-    return parsed;
+    // ---- Services CMS migration -------------------------------------------
+  // Upgrades legacy service rows (old `ServiceItem` shape: `isActive`, no
+  // featured/publish/SEO fields) to the current CMS shape so the public site,
+  // sitemap, and admin editor all read the same rich structure.
+  parsed.services = (parsed.services || []).map((s) => {
+    if (s.isPublished !== undefined && s.isFeatured !== undefined) return s;
+    return normalizeServiceRow(s);
+  });
+
+  return parsed;
   } catch (error) {
     console.error('Error reading database file, re-initializing with seed:', error);
     return getInitialSeedData();
@@ -406,18 +415,96 @@ export function deletePackage(
 // Services
 // -------------------------------------------------------------
 
+/**
+ * Normalizes a possibly-legacy service row into the current ServiceItem
+ * shape. Legacy rows used `isActive`/`features` and had no featured/publish
+ * or SEO fields; this guarantees defaults so public/SEO layers never choke.
+ */
+export function normalizeServiceRow(row: any): ServiceItem {
+  const now = new Date().toISOString();
+  const legacyActive = (row as any).isActive === false ? false : true;
+  const isPublished = (row as any).isPublished === true ? true : legacyActive;
+  return {
+    id: String(row.id || generateEntityId('srv')),
+    title: String(row.title || ''),
+    slug: String(row.slug || ''),
+    category: (row.category as string) || 'networking',
+    shortDescription: String(row.shortDescription || ''),
+    fullDescription: String(row.fullDescription || ''),
+    iconName: String(row.iconName || 'Zap'),
+    features: Array.isArray(row.features)
+      ? row.features.filter((f: unknown): f is string => typeof f === 'string')
+      : [],
+    capabilities: Array.isArray(row.capabilities)
+      ? row.capabilities.filter((c: unknown): c is string => typeof c === 'string')
+      : Array.isArray(row.features)
+        ? row.features.filter((f: unknown): f is string => typeof f === 'string')
+        : [],
+    badge: row.badge || undefined,
+    imageUrl: row.imageUrl || undefined,
+    imageAlt: row.imageAlt || undefined,
+    ctaLabel: row.ctaLabel || undefined,
+    whatsappMessage: row.whatsappMessage || undefined,
+    isFeatured: Boolean(row.isFeatured),
+    isPublished,
+    displayOrder: Number(row.displayOrder) || 0,
+    seoTitle: row.seoTitle || undefined,
+    seoDescription: row.seoDescription || undefined,
+    seoKeywords: Array.isArray(row.seoKeywords)
+      ? row.seoKeywords.filter((k: unknown): k is string => typeof k === 'string')
+      : undefined,
+    canonicalUrl: row.canonicalUrl || undefined,
+    socialImage: row.socialImage || undefined,
+    robotsIndex: row.robotsIndex === false ? false : true,
+    robotsFollow: row.robotsFollow === false ? false : true,
+    previousSlugs: Array.isArray(row.previousSlugs)
+      ? row.previousSlugs.filter((p: unknown): p is string => typeof p === 'string')
+      : undefined,
+    publishedAt: row.publishedAt || (isPublished ? row.createdAt || now : undefined),
+    createdAt: row.createdAt || now,
+    updatedAt: row.updatedAt || now,
+  };
+}
+
 export function getServices(activeOnly = false): ServiceItem[] {
   const db = getDatabase();
-  let services = [...db.services];
+  let services = (db.services || []).map(normalizeServiceRow);
   if (activeOnly) {
-    services = services.filter((s) => s.isActive);
+    services = services.filter((s) => s.isPublished);
   }
   return services.sort((a, b) => a.displayOrder - b.displayOrder);
 }
 
+/** Published services that are also featured, ordered by sort_order. */
+export function getFeaturedServices(): ServiceItem[] {
+  return getServices(true).filter((s) => s.isFeatured);
+}
+
 export function getServiceById(id: string): ServiceItem | undefined {
   const db = getDatabase();
-  return db.services.find((s) => s.id === id);
+  const row = (db.services || []).find((s) => s.id === id);
+  return row ? normalizeServiceRow(row) : undefined;
+}
+
+export function getServiceBySlug(
+  slug: string,
+  activeOnly = true
+): ServiceItem | undefined {
+  const db = getDatabase();
+  const row = (db.services || []).find((s) => {
+    if (s.slug === slug) return true;
+    return Array.isArray(s.previousSlugs) && s.previousSlugs.includes(slug);
+  });
+  if (!row) return undefined;
+  const service = normalizeServiceRow(row);
+  if (activeOnly && !service.isPublished) return undefined;
+  return service;
+}
+
+/** Returns the canonical (current) slug for a given slug, honouring redirects. */
+export function getServiceCanonicalSlug(slug: string): string | undefined {
+  const service = getServiceBySlug(slug, false);
+  return service?.slug;
 }
 
 export function createService(
@@ -428,12 +515,14 @@ export function createService(
   const db = getDatabase();
   const now = new Date().toISOString();
   const id = generateEntityId('srv');
-  const newService: ServiceItem = {
+  const isPublished = Boolean(serviceData.isPublished);
+  const newService: ServiceItem = normalizeServiceRow({
     ...serviceData,
     id,
+    publishedAt: isPublished ? serviceData.publishedAt || now : undefined,
     createdAt: now,
     updatedAt: now,
-  };
+  });
 
   db.services.push(newService);
   saveDatabase(db);
@@ -460,13 +549,24 @@ export function updateService(
   const index = db.services.findIndex((s) => s.id === id);
   if (index === -1) return null;
 
-  const prev = db.services[index];
-  const updated: ServiceItem = {
-    ...prev,
-    ...updates,
-    updatedAt: new Date().toISOString(),
-  };
+  const prev = normalizeServiceRow(db.services[index]);
+  const now = new Date().toISOString();
 
+  const merged = { ...prev, ...updates, updatedAt: now };
+
+  // If becoming published (or staying published) and no publish date, set it.
+  if (merged.isPublished && !merged.publishedAt) {
+    merged.publishedAt = now;
+  }
+  // If a published service changes slug, preserve the old slug for redirects.
+  if (updates.slug && updates.slug !== prev.slug && prev.isPublished) {
+    const prevList = prev.previousSlugs || [];
+    if (!prevList.includes(prev.slug)) {
+      merged.previousSlugs = [...prevList, prev.slug];
+    }
+  }
+
+  const updated = normalizeServiceRow(merged);
   db.services[index] = updated;
   saveDatabase(db);
 
@@ -482,6 +582,37 @@ export function updateService(
   return updated;
 }
 
+/** Soft-delete: marks a service inactive/unpublished and removes it from public surfaces. */
+export function softDeleteService(
+  id: string,
+  actor?: { id: string; email: string },
+  ipAddress?: string
+): ServiceItem | null {
+  const db = getDatabase();
+  const index = db.services.findIndex((s) => s.id === id);
+  if (index === -1) return null;
+
+  const prev = normalizeServiceRow(db.services[index]);
+  db.services[index] = normalizeServiceRow({
+    ...prev,
+    isPublished: false,
+    isFeatured: false,
+    updatedAt: new Date().toISOString(),
+  });
+  saveDatabase(db);
+
+  logAudit(
+    'ADMIN_DELETED_SERVICE',
+    'ServiceItem',
+    id,
+    { title: prev.title, softDelete: true },
+    actor,
+    ipAddress
+  );
+
+  return db.services[index];
+}
+
 export function deleteService(
   id: string,
   actor?: { id: string; email: string },
@@ -491,14 +622,14 @@ export function deleteService(
   const index = db.services.findIndex((s) => s.id === id);
   if (index === -1) return false;
 
-  const removed = db.services.splice(index, 1)[0];
+  const removed = normalizeServiceRow(db.services.splice(index, 1)[0]);
   saveDatabase(db);
 
   logAudit(
     'ADMIN_DELETED_SERVICE',
     'ServiceItem',
     id,
-    { title: removed.title },
+    { title: removed.title, softDelete: false },
     actor,
     ipAddress
   );
@@ -1152,7 +1283,9 @@ export function getDashboardMetrics() {
   const activePackages = db.packages.filter((p) => p.isActive).length;
 
   const totalServices = db.services.length;
-  const activeServices = db.services.filter((s) => s.isActive).length;
+  const activeServices = db.services.filter(
+    (s) => (s as any).isPublished !== false && (s as any).isActive !== false
+  ).length;
 
   const totalShopProducts = (db.shopProducts || []).length;
   const lowStockShopProducts = (db.shopProducts || []).filter(

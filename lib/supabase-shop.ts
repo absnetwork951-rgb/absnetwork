@@ -204,6 +204,7 @@ const PRODUCT_SELECT =
 
 async function loadShopProducts(activeOnly: boolean): Promise<ShopProduct[]> {
   const admin = getSupabaseAdmin();
+  if (!admin) return [];
 
   const productResult = await withTransientRetry(async () => {
     let query = admin
@@ -271,6 +272,7 @@ export async function getAllShopProducts(): Promise<ShopProduct[]> {
  */
 export async function getShopProductById(id: string): Promise<ShopProduct | null> {
   const admin = getSupabaseAdmin();
+  if (!admin) return null;
 
   const productResult = await withTransientRetry(async () =>
     await admin
