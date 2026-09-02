@@ -1,7 +1,0 @@
-vitestInDevDeps=MISSING
-playwrightInDevDeps=MISSING
-scripts={"dev":"next dev","build":"next build","start":"next start","lint":"eslint .","clean":"next clean"}
-unitTestsExist=false,false
-e2eTestsExist=false,false
-vitestBin=false
-pwBin=false
