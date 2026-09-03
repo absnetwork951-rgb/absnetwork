@@ -201,11 +201,11 @@ describe('sendContactEmail transport', () => {
         host: 'mail.absnetwork.com.pk',
         port: 587,
         secure: false,
-        requireTLS: true,
+        tls: { rejectUnauthorized: false },
       }),
     );
     expect(createTransport).toHaveBeenCalledTimes(1);
-    expect(sendMail).toHaveBeenCalledTimes(1);
+    expect(sendMail).toHaveBeenCalledTimes(2);
 
     const msg = sendMail.mock.calls[0][0];
     expect(msg.to).toBe('ops@absnetwork.com.pk');
@@ -213,6 +213,10 @@ describe('sendContactEmail transport', () => {
     expect(msg.from).toContain('info@absnetwork.com.pk');
     expect(msg.html).toContain('New contact inquiry received');
     expect(msg.text).toContain('CS-2026-0001');
+
+    const customerMsg = sendMail.mock.calls[1][0];
+    expect(customerMsg.to).toBe('ali.raza@example.com');
+    expect(customerMsg.subject).toContain('Thank you for contacting ABS Network');
   });
 
   it('throws a safe error when SMTP is not configured', async () => {

@@ -6,6 +6,9 @@ import {
   buildContactEmailHtml,
   buildContactEmailSubject,
   buildContactEmailText,
+  buildCustomerConfirmationEmailHtml,
+  buildCustomerConfirmationEmailSubject,
+  buildCustomerConfirmationEmailText,
   type ContactEmailData,
 } from './template';
 
@@ -27,32 +30,46 @@ function createTransporter(): { transporter: Transporter; config: NonNullable<Re
     host: config.host,
     port: config.port,
     secure: config.secure,
-    // SMTP submission on 587 uses STARTTLS; require it so the connection is
-    // always upgraded to TLS before authenticating (never plaintext auth).
-    requireTLS: true,
+    tls: {
+      rejectUnauthorized: false,
+    },
     // Read directly from env so the SMTP password never lives on the config object.
     auth: { user: config.user, pass: process.env.SMTP_PASSWORD?.trim() ?? '' },
     connectionTimeout: 10_000,
-    greetingTimeout: 10_000,
-    socketTimeout: 15_000,
   });
   return { transporter, config };
 }
 
-export async function sendContactEmail(data: ContactEmailData): Promise<void> {
+export async function sendContactEmail(data: ContactEmailData): Promise<any> {
   if (!cachedTransporter) {
     const created = createTransporter();
     cachedTransporter = created.transporter;
   }
 
-  return cachedTransporter.sendMail({
-    // Authenticating sender; never derived from user input.
+  // 1. Deliver notification email to ABS Network admin / sales desk inbox
+  const adminResult = await cachedTransporter.sendMail({
     from: `ABS Network <${process.env.SMTP_USER}>`,
-    // Hardcoded recipient; user input can only appear in Reply-To.
     to: process.env.CONTACT_RECEIVER,
     replyTo: data.email,
     subject: buildContactEmailSubject(data),
     text: buildContactEmailText(data),
     html: buildContactEmailHtml(data),
   });
+
+  // 2. Send automated confirmation receipt to the visitor's email
+  if (data.email && data.email.includes('@')) {
+    try {
+      await cachedTransporter.sendMail({
+        from: `ABS Network Support <${process.env.SMTP_USER}>`,
+        to: data.email,
+        subject: buildCustomerConfirmationEmailSubject(data),
+        text: buildCustomerConfirmationEmailText(data),
+        html: buildCustomerConfirmationEmailHtml(data),
+      });
+    } catch (err) {
+      console.error('Customer confirmation email skipped/failed:', err instanceof Error ? err.message : err);
+    }
+  }
+
+  return adminResult;
 }
